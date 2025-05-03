@@ -88,5 +88,4 @@
  #endif
  
  #endif  // _PROS_MAIN_H_
- enum Alliance { RED, BLUE };
  
