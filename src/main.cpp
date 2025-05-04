@@ -48,6 +48,7 @@ void initialize() {
   // Print our branding over your terminal :D
   ez::ez_template_print();
   lb.tare_position();
+  
 
   pros::delay(500);  // Stop the user from doing anything while legacy ports configure
 
@@ -235,6 +236,28 @@ void ez_template_extras() {
   }
 }
 
+int64_t nvt = 0; //no velocity timer
+bool jammed = false;
+bool initialp = true;
+void antijam(int direction) {
+  int hook_velocity = hook.get_actual_velocity();
+  if (hook_velocity == 0 && !jammed && !initialp) {
+    nvt = pros::millis();
+    jammed = true;
+  }
+  if (jammed && pros::millis() - nvt < 500) {
+    hook.move(-127 * direction);
+  } else if (jammed && pros::millis() - nvt >= 500) {
+    jammed = false;
+    hook.move(127 * direction);
+  } else {
+    hook.move(127 * direction);
+  }
+  if (initialp && hook_velocity != 0) {
+    initialp = false;
+  }
+}
+
 /**
  * Runs the operator control code. This function will be started in its own task
  * with the default priority and stack size whenever the robot is enabled via
@@ -252,9 +275,6 @@ void opcontrol() {
   // This is preference to what you like to drive on
   chassis.drive_brake_set(MOTOR_BRAKE_COAST);
   lb.set_brake_mode(MOTOR_BRAKE_COAST);
-  int nvt = 0; //no velocity timer
-  bool wait = false;
-  bool reverse = false;
   int stage = 0;
   bool last_state = false;
   
@@ -290,31 +310,15 @@ void opcontrol() {
     goalrush.set(master.get_digital(pros::E_CONTROLLER_DIGITAL_R2));
 
     // Intake
-    bool xp = master.get_digital(pros::E_CONTROLLER_DIGITAL_X);
-    bool bp = master.get_digital(pros::E_CONTROLLER_DIGITAL_B);
-    int hook_velocity = hook.get_actual_velocity();
     int direction = 0;
-    if (xp) direction = 1;
-    if (bp) direction = -1;
-    if (direction != 0) {
-      if (hook_velocity ==0) {
-        if (!wait) {
-          nvt = pros::millis();
-          wait = true;
-        } else if (pros::millis() - nvt >= 500 && !reverse) {
-          hook.move(-127*direction);
-          reverse = true;
-        }
-      } else {
-        wait = false;
-        reverse = false;
-        intake.move(127*direction);
-      }
-    } else {
-      intake.move(0);
-      wait = false;
-      reverse = false;
+    if (master.get_digital(pros::E_CONTROLLER_DIGITAL_X)) {
+      direction = 1;
+    } else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_B)) {
+      direction = -1;
     }
+   intake.move(direction != 0 ? 127 * direction : 0);
+   hook.move(direction != 0? 127 * direction : 0);
+   antijam(direction);
 
     // LB
     /*manual mode where 2 buttons control lift manually
