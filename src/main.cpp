@@ -236,24 +236,36 @@ void ez_template_extras() {
   }
 }
 
+void color_sort(std::string eject_color) {
+
+}
+
 int64_t nvt = 0; //no velocity timer
 bool jammed = false;
 bool initialp = true;
 
 void antijam(int direction) {
   int hook_velocity = hook.get_actual_velocity();
-  if (hook_velocity == 0 && !jammed && initialp) {
-    nvt = pros::millis();
-    jammed = true;
-    initialp = false;
-  }
-  if (jammed && pros::millis() - nvt < 500) {
-    hook.move(-127 * direction);
-  } else if (jammed && pros::millis() - nvt >= 500) {
-    jammed = false;
-    hook.move(127 * direction);
+  if (direction != 0) {
+    if (hook_velocity == 0 && !jammed && !initialp) {
+      nvt = pros::millis();
+      jammed = true;
+    }
+    if (jammed && pros::millis() - nvt < 500) {
+      hook.move(-127 * direction);
+    } else if (jammed && pros::millis() - nvt >= 500) {
+      jammed = false;
+      hook.move(127 * direction);
+    } else {
+      hook.move(127 * direction);
+    }
+    if (initialp && hook_velocity != 0) {
+      initialp = false;
+    }
   } else {
-    hook.move(127 * direction);
+    hook.move(0);
+    jammed = false;
+    initialp = true;
   }
 }
 
@@ -273,7 +285,7 @@ void antijam(int direction) {
 void opcontrol() {
   // This is preference to what you like to drive on
   chassis.drive_brake_set(MOTOR_BRAKE_COAST);
-  lb.set_brake_mode(MOTOR_BRAKE_COAST);
+  lb.set_brake_mode(MOTOR_BRAKE_HOLD);
   int stage = 0;
   bool last_state = false;
   
@@ -282,8 +294,6 @@ void opcontrol() {
     // Gives you some extras to make EZ-Template ezier
     ez_template_extras();
     chassis.opcontrol_arcade_standard(ez::SINGLE);
-
-
 
     // Slowmode
     if (master.get_digital(pros::E_CONTROLLER_DIGITAL_A)) {
@@ -315,43 +325,49 @@ void opcontrol() {
     } else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_B)) {
       direction = -1;
     }
-   intake.move(direction != 0 ? 127 * direction : 0);
-   hook.move(direction != 0? 127 * direction : 0);
-   antijam(direction);
+    intake.move(direction != 0 ? 127 * direction : 0);
+    if (stage == 1) {
+      hook.move(127);
+      if (hook.get_actual_velocity() == 0) {
+        hook.move(0);
+      } else {
+        hook.move(127);
+      }
+    } else {
+      antijam(direction);
+    }
 
     // LB
-    /*manual mode where 2 buttons control lift manually
-    lb.get_encoder_units() 5degrees set state 1
-    10degrees state 2
-    150 degrees state 3
-    while button is held, deactivate manual mode and switch to cycle mode
-    cycle through these states*/
     int lbspeed = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
-    lb.set_brake_mode(MOTOR_BRAKE_HOLD);
-    if (lbspeed > 0) {
+    if (abs(lbspeed) > 10) {
+      stage = -1;
+      lb.set_brake_mode(MOTOR_BRAKE_HOLD);
       lb.move(lbspeed);
-    } else if (lbspeed < 0) {
-      lb.move(lbspeed);
-    } else {
+    } else if (stage == -1) {
+      lb.set_brake_mode(MOTOR_BRAKE_HOLD);
       lb.move(0);
     }
     // LB stages
     bool current_state = master.get_digital(pros::E_CONTROLLER_DIGITAL_R1);
     lb.set_brake_mode(MOTOR_BRAKE_COAST);
     if (current_state && !last_state) {
-      if (stage == 0) {
+      lb.set_brake_mode(MOTOR_BRAKE_COAST);
+      if (stage == -1 || stage == 0) {
         lbPID.target_set(50);
-        stage++;
+        stage = 1;
       } else if (stage == 1) {
         lbPID.target_set(220);
-        stage++;
+        stage = 2;
       } else if (stage == 2) {
         lbPID.target_set(0);
         stage = 0;
       }
-      lb.move(lbPID.compute(lb.get_position()));
-      last_state = current_state;
     }
+    if (stage != -1) {
+      lb.set_brake_mode(MOTOR_BRAKE_HOLD);
+      lb.move(lbPID.compute(lb.get_position()));
+    }
+    last_state = current_state;
 
     pros::delay(ez::util::DELAY_TIME);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME
   }
