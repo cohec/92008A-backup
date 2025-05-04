@@ -8,7 +8,7 @@
 
 extern Drive chassis;
 inline pros::Motor intake(4);
-inline pros::Motor hook(5);
+inline pros::Motor hook(-5);
 inline pros::Motor lb(17);
 inline pros::Optical op(2);
 inline ez::Piston goalClamp('A');

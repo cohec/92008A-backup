@@ -17,13 +17,13 @@
 /////
 // For installation, upgrading, documentations, and tutorials, check out our website!
 // https://ez-robotics.github.io/EZ-Template/
-/////3
+/////
 
 // Chassis constructor
 ez::Drive chassis(
   // These are your drive motors, the first motor is used for sensing!
-  {-11, -12, 13},     // Left Chassis Ports (negative port will reverse it!)
-  {20,19, -18},  // Right Chassis Ports (negative port will reverse it!)
+  {-11,-12,13},     // Left Chassis Ports (negative port will reverse it!)
+  {20,19,-18},  // Right Chassis Ports (negative port will reverse it!)
     
   7,      // IMU Port
   2.75,  // Wheel Diameter (Remember, 4" wheels without screw holes are actually 4.125!)
@@ -285,30 +285,35 @@ void opcontrol() {
     // Intake
     if (master.get_digital(pros::E_CONTROLLER_DIGITAL_X)) {
       intake.move(127);
-      if (abs(hook.get_actual_velocity())<5 && hook.get_current_draw()>1500) {
-        hook.move(-127);
-      } else {
-        hook.move(127); //will probably run reverse until button pressed again
-      }
     } else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_B)) {
       intake.move(-127);
-      if (abs(hook.get_actual_velocity())<5 && hook.get_current_draw()>1500) {
-        hook.move(127);
-      } else {
-        hook.move(-127);
-      }
     } else {
       intake.move(0);
     }
 
-    /* LB
-    manual mode where 2 buttons control lift manually
+    // LB
+    /*manual mode where 2 buttons control lift manually
     lb.get_encoder_units() 5degrees set state 1
     10degrees state 2
     150 degrees state 3
     while button is held, deactivate manual mode and switch to cycle mode
     cycle through these states*/
+    /* int lbspeed = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
+    if (lbspeed > 0) {
+      lb.move(lbspeed);
+    } else if (master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y)<0) {
+      lb.move(lbspeed);
+    } else {
+      lb.move(0);
+    } */
+    if (master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT)) {
+      lb.move(127);
+    } else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_RIGHT)) {
+      lb.move(-127);
+    } else {
+      lb.move(0);
+    }
 
     pros::delay(ez::util::DELAY_TIME);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME
   }
-} 
+}
