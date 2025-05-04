@@ -298,7 +298,7 @@ void opcontrol() {
     150 degrees state 3
     while button is held, deactivate manual mode and switch to cycle mode
     cycle through these states*/
-    int lbspeed = 0.5*master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
+    int lbspeed = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
     if (lbspeed > 0) {
       lb.move(lbspeed);
     } else if (master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y)<0) {
