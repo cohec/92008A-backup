@@ -239,11 +239,13 @@ void ez_template_extras() {
 int64_t nvt = 0; //no velocity timer
 bool jammed = false;
 bool initialp = true;
+
 void antijam(int direction) {
   int hook_velocity = hook.get_actual_velocity();
-  if (hook_velocity == 0 && !jammed && !initialp) {
+  if (hook_velocity == 0 && !jammed && initialp) {
     nvt = pros::millis();
     jammed = true;
+    initialp = false;
   }
   if (jammed && pros::millis() - nvt < 500) {
     hook.move(-127 * direction);
@@ -252,9 +254,6 @@ void antijam(int direction) {
     hook.move(127 * direction);
   } else {
     hook.move(127 * direction);
-  }
-  if (initialp && hook_velocity != 0) {
-    initialp = false;
   }
 }
 
