@@ -18,3 +18,4 @@ inline ez::Piston goalrush('C');
 inline ez::Piston ringrush('D');
 inline ez::Piston intakeLift('E');
 inline pros::Optical col(6);
+inline ez::PID lbPID{0.45, 0, 0, 0, "lb"};

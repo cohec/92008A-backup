@@ -9,6 +9,7 @@
 #include "pros/motors.h"
 #include "pros/motors.hpp"
 #include "pros/optical.h"
+#include "pros/rtos.h"
 #include "subsystems.hpp"
 #include "autons.hpp"
 #include "pros/colors.h"
@@ -46,6 +47,7 @@ ez::tracking_wheel vert_tracker(16, 2, 1.25);   // This tracking wheel is parall
 void initialize() {
   // Print our branding over your terminal :D
   ez::ez_template_print();
+  lb.tare_position();
 
   pros::delay(500);  // Stop the user from doing anything while legacy ports configure
 
@@ -249,7 +251,11 @@ void ez_template_extras() {
 void opcontrol() {
   // This is preference to what you like to drive on
   chassis.drive_brake_set(MOTOR_BRAKE_COAST);
-  lb.set_brake_mode(MOTOR_BRAKE_HOLD);
+  lb.set_brake_mode(MOTOR_BRAKE_COAST);
+  int nvt = 0; //no velocity timer
+  bool reverse = false;
+  int stage = 0;
+  bool last_state = false;
   
 
   while (true) {
@@ -283,12 +289,24 @@ void opcontrol() {
     goalrush.set(master.get_digital(pros::E_CONTROLLER_DIGITAL_R2));
 
     // Intake
-    if (master.get_digital(pros::E_CONTROLLER_DIGITAL_X)) {
-      intake.move(127);
-    } else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_B)) {
-      intake.move(-127);
+    bool xp = master.get_digital(pros::E_CONTROLLER_DIGITAL_X);
+    bool bp = master.get_digital(pros::E_CONTROLLER_DIGITAL_B);
+    if (xp || bp) {
+      int direction = xp ? 1 : -1;
+      if (hook.get_actual_velocity() == 0) {
+        if (!reverse) {
+          nvt = pros::millis();
+          reverse = true;
+        } else if (pros::millis() - nvt >= 500) {
+          hook.move(-127 * direction);
+        }
+      } else {
+        reverse = false;
+        intake.move(127 * direction);
+      }
     } else {
       intake.move(0);
+      reverse = false;
     }
 
     // LB
@@ -299,12 +317,30 @@ void opcontrol() {
     while button is held, deactivate manual mode and switch to cycle mode
     cycle through these states*/
     int lbspeed = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
+    lb.set_brake_mode(MOTOR_BRAKE_HOLD);
     if (lbspeed > 0) {
       lb.move(lbspeed);
-    } else if (master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y)<0) {
+    } else if (lbspeed < 0) {
       lb.move(lbspeed);
     } else {
       lb.move(0);
+    }
+    // LB stages
+    bool current_state = master.get_digital(pros::E_CONTROLLER_DIGITAL_R1);
+    lb.set_brake_mode(MOTOR_BRAKE_COAST);
+    if (current_state && !last_state) {
+      if (stage == 0) {
+        lbPID.target_set(50);
+        stage++;
+      } else if (stage == 1) {
+        lbPID.target_set(220);
+        stage++;
+      } else if (stage == 2) {
+        lbPID.target_set(0);
+        stage = 0;
+      }
+      lb.move(lbPID.compute(lb.get_position()));
+      last_state = current_state;
     }
 
     pros::delay(ez::util::DELAY_TIME);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME
