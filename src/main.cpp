@@ -253,6 +253,7 @@ void opcontrol() {
   chassis.drive_brake_set(MOTOR_BRAKE_COAST);
   lb.set_brake_mode(MOTOR_BRAKE_COAST);
   int nvt = 0; //no velocity timer
+  bool wait = false;
   bool reverse = false;
   int stage = 0;
   bool last_state = false;
@@ -291,21 +292,27 @@ void opcontrol() {
     // Intake
     bool xp = master.get_digital(pros::E_CONTROLLER_DIGITAL_X);
     bool bp = master.get_digital(pros::E_CONTROLLER_DIGITAL_B);
-    if (xp || bp) {
-      int direction = xp ? 1 : -1;
-      if (hook.get_actual_velocity() == 0) {
-        if (!reverse) {
+    int hook_velocity = hook.get_actual_velocity();
+    int direction = 0;
+    if (xp) direction = 1;
+    if (bp) direction = -1;
+    if (direction != 0) {
+      if (hook_velocity ==0) {
+        if (!wait) {
           nvt = pros::millis();
+          wait = true;
+        } else if (pros::millis() - nvt >= 500 && !reverse) {
+          hook.move(-127*direction);
           reverse = true;
-        } else if (pros::millis() - nvt >= 500) {
-          hook.move(-127 * direction);
         }
       } else {
+        wait = false;
         reverse = false;
-        intake.move(127 * direction);
+        intake.move(127*direction);
       }
     } else {
       intake.move(0);
+      wait = false;
       reverse = false;
     }
 
