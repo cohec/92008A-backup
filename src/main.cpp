@@ -1,19 +1,11 @@
 #include "main.h"
 #include <string>
 #include "EZ-Template/util.hpp"
-#include "liblvgl/extra/widgets/colorwheel/lv_colorwheel.h"
-#include "liblvgl/misc/lv_color.h"
-#include "pros/abstract_motor.hpp"
-#include "pros/colors.hpp"
 #include "pros/misc.h"
 #include "pros/motors.h"
 #include "pros/motors.hpp"
-#include "pros/optical.h"
-#include "pros/rtos.h"
 #include "subsystems.hpp"
 #include "autons.hpp"
-#include "pros/colors.h"
-#include "pros/colors.hpp"
 
 /////
 // For installation, upgrading, documentations, and tutorials, check out our website!
@@ -326,16 +318,7 @@ void opcontrol() {
       direction = -1;
     }
     intake.move(direction != 0 ? 127 * direction : 0);
-    if (stage == 1) {
-      hook.move(127);
-      if (hook.get_actual_velocity() == 0) {
-        hook.move(0);
-      } else {
-        hook.move(127);
-      }
-    } else {
-      antijam(direction);
-    }
+    antijam(direction);
 
     // LB
     int lbspeed = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
