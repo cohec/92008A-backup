@@ -1,7 +1,6 @@
 #include "main.h"
 #include "subsystems.hpp"
 #include "autons.hpp"
-#include "main.cpp"
 
 /////
 // For installation, upgrading, documentations, and tutorials, check out our website!

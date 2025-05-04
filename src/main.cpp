@@ -336,10 +336,10 @@ void opcontrol() {
     if (current_state && !last_state) {
       lb.set_brake_mode(MOTOR_BRAKE_COAST);
       if (stage == -1 || stage == 0) {
-        lbPID.target_set(50);
+        lbPID.target_set(500);
         stage = 1;
       } else if (stage == 1) {
-        lbPID.target_set(220);
+        lbPID.target_set(2200);
         stage = 2;
       } else if (stage == 2) {
         lbPID.target_set(0);
