@@ -334,6 +334,7 @@ void opcontrol() {
     bool current_state = master.get_digital(pros::E_CONTROLLER_DIGITAL_R1);
     static bool fit = false;
     static bool held = false;
+    static bool stop = false;
     static int64_t fd = 0;
     if (current_state && !last_state) { 
       lb.set_brake_mode(MOTOR_BRAKE_COAST);
@@ -341,6 +342,7 @@ void opcontrol() {
         lbPID.target_set(150);
         fit = false;
         held = false;
+        stop = false;
         fd = 0;
         stage = 1;
       } else if (stage == 1) {
@@ -368,13 +370,14 @@ void opcontrol() {
       if (!held && hook.get_actual_velocity() != 0) {
         held = true;
       }
-      if (held && hook.get_actual_velocity() == 0 && !fit) {
+      if (held && hook.get_actual_velocity() == 0 && !stop) {
         fd = pros::millis();
-        fit = true;
+        stop = true;
       }
-      if (fit && pros::millis() - fd >= 1000) {
+      if (stop && pros::millis() - fd >= 1000 && !fit) {
         hook.move(0);
-        held = false;
+        hook.set_brake_mode(MOTOR_BRAKE_HOLD);
+        fit = true;
       }
     }
     last_state = current_state;
