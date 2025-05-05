@@ -381,126 +381,6 @@ void measure_offsets() {
 // Make your own autonomous functions here!
 // . . .
 /*
-void autonomous_blue_left(){
-  //drive forward, spin around, and clamp goal
-  goalClamp.set(false);
-  chassis.pid_drive_set(19_in, 110, true);
-  chassis.pid_wait();
-  chassis.pid_drive_set(2_in, 15, true);
-  chassis.pid_wait();
-
-  chassis.pid_turn_set(180_deg, 100, true);
-  chassis.pid_wait();
-
-  chassis.pid_drive_set(-5_in, 100, true);
-  chassis.pid_wait();
-
-  
-
-  chassis.pid_drive_set(-10_in, 50, true);
-  chassis.pid_wait();
-
-  goalClamp.set(true);
-
-  chassis.pid_turn_set(-90_deg, 50);
-  chassis.pid_wait();
-
- chassis.pid_drive_set(17_in, 100, true);
-  chassis.pid_wait();
-  chassis.pid_drive_set(0.1_in, 1);
-  chassis.pid_drive_set(0.1_in, 1);
-  intake.move(127);
-  hook.move(127);
-
-  //grab top of 2 stack
-
-  chassis.pid_drive_set(4_in,127);
-  chassis.pid_wait();
-
-chassis.pid_turn_set(90_deg, 35);
-  chassis.pid_wait();
-
-  chassis.pid_drive_set(40_in, 75, true);
-  chassis.pid_wait();
-//chassis.pid_turn_set(135_deg, 75);
-  //chassis.pid_wait();
-  //chassis.pid_drive_set(23_in, 100, true);
-  //chassis.pid_wait();
-  //chassis.pid_turn_set(0_deg, 75);
-  //chassis.pid_drive_set(30_in, 90);
-};
-
-void autonomous_blue_right(){
-};
-void autonomous_blue_middle(){
-intake.move(127);
-hook.move(127);
-
-chassis.pid_wait();
-intake.move(0);
-chassis.pid_turn_set(22.5_deg, 127, true);
-chassis.pid_drive_set(50_in,127,true);
-chassis.pid_turn_set(202.5_deg,127,true);
-chassis.pid_drive_set(3.6_in,20,true);
-goalClamp.set(true);
-chassis.pid_turn_set(40_deg,127,true);
-chassis.pid_drive_set(30_in,127,true);
-chassis.pid_turn_set(90_deg,127,true);
-intake.move(127);
-chassis.pid_drive_set(36_in,127,true);
-chassis.pid_turn_set(225_deg,127,true);
-chassis.pid_drive_set(68_in,127,true);
-chassis.pid_turn_set(-90_deg,127,true);
-chassis.pid_drive_set(24_in,127,true);
-chassis.pid_turn_set(-22.5_deg,127,true);
-chassis.pid_drive_set(53.6_in,127,true);
-chassis.pid_turn_set(45_deg,127,true);
-chassis.pid_drive_set(33_in,127,true);
-
-};
-void autonomous_red_left(){
-  chassis.pid_drive_set(40_in, 127, true);
-  chassis.pid_drive_set(4_in, 15, true);
-  chassis.pid_wait();
-
-  chassis.pid_turn_set(180_deg, 127, true);
-  chassis.pid_wait();
-
-  chassis.pid_drive_set(-1_in, 15, true);
-  chassis.pid_wait();
-
-  goalClamp.set(false);
-
-  chassis.pid_drive_set(-3_in, 15, true);
-  chassis.pid_wait();
-
-  chassis.pid_turn_set(-90_deg, 75);
-  chassis.pid_wait();
-
- chassis.pid_drive_set(19_in, 90, true);
-  chassis.pid_wait();
-
-  intake.move(127);
-  hook.move(127);
-
-  //grab top of 2 stack
-
-chassis.pid_turn_set(95_deg, 75);
-  chassis.pid_wait();
-
-  chassis.pid_drive_set(20_in, 90, true);
-  chassis.pid_wait();
-
-
-chassis.pid_turn_set(-95_deg, 75);
-  chassis.pid_wait();
-
-
-  chassis.pid_drive_set(5_in, 15, true);
-  chassis.pid_wait();
-}
-void autonomous_red_right(){
-
 ALL OF THESE AUTOS ARE HELLA INCONSISTENT AND USE 3 FUNCTIONS, TURN, DRIVE, WAIT
 YK THERES LIKE 50 MORE FUNCTIONS THAT SIMPLIFY THE WHOLE THING RIGHT???????
 I TOLD YOU TO NAME THE AUTONS POSITIVE NEGATIVE BLUE RED ITS BEEN 2 MONTHS
@@ -508,7 +388,12 @@ I ALSO TOLD YOU TO USE BOOMERANG, SWING, ODOM SET BECAUSE WHY WOULDNT YOU, ITS O
 OH ZITENG WILL DO THE SKILLS NO HE WOULDNT, HE DOESN'T EVEN HAVE GITHUB, GIT, VSCODE DOWNLOADED
 AND UR ON UR PHONE THE WHOLE TIME, WHY CANT YOU WATCH TUTORIAL VIDEOS FOR EZ TEMPLATE OR READ THE WIKI TO LEARN THE MOVEMENTS??????????????
 + EVERYTHING IS PROVIDED, YOU DONT NEED THE ROBOT TO TEST, LAST TIME SWING DIDNT WORK WAS BECAUSE CODE DIDNT EVEN UPLOAD
-}*/ 
++ ALL UR CODE IS HELLA DELAYED, IF U READ THE WIKI EZTEMPLATE PROVIDED U WOULD KNOW ABOUT WAIT QUICK CHAIN
+HOW TF WOULD YOU DO SKILLS AUTO IF U WASTE 20 SEC WITH DELAYS
+HOW TF WOULD YOU GOAL RUSH WHEN U USE 5 SEC ALIGNING TO IT
+IF I ASK YOU SG7 WILL YOU TELL ME WHAT WE CANT DO WITH AUTO NOW THAT ITS UPDATED????
+IF U WATCHED ANY MATCH VIDEOS U KNOW HOW IMPORTANT GOAL RUSH IS AND TOP RINGS ARE
+*/ 
 
 void blue_negative_awp() {
   /*
@@ -527,7 +412,9 @@ void blue_positive_awp() {
   /*
   place robot in front of alliancestake
   score preload
-  go to positive goal
+  go to mid goal
+  extend goal doinker
+  retract and pull back
   clamp goal
   get closest ring
   sweep corner
@@ -589,7 +476,9 @@ void red_positive_awp() {
   /*
   place robot in front of alliancestake
   score preload
-  go to positive goal
+  go to mid goal
+  extend goal doinker
+  retract and pull back
   clamp goal
   get closest ring
   sweep corner
