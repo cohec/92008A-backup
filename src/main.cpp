@@ -333,12 +333,14 @@ void opcontrol() {
     // LB stages
     bool current_state = master.get_digital(pros::E_CONTROLLER_DIGITAL_R1);
     static bool fit = false;
+    static bool held = false;
     static int64_t fd = 0;
     if (current_state && !last_state) { 
       lb.set_brake_mode(MOTOR_BRAKE_COAST);
       if (stage == -1 || stage == 0) {
-        lbPID.target_set(210);
+        lbPID.target_set(100);
         fit = false;
+        held = false;
         fd = 0;
         stage = 1;
       } else if (stage == 1) {
@@ -354,18 +356,25 @@ void opcontrol() {
       lb.set_brake_mode(MOTOR_BRAKE_HOLD);
       lb.move(lbPID.compute(lb.get_position()));
     }
-    if (stage == 1 && lbPID.target_get() == 210) {
+    if (stage == 1 && lbPID.target_get() == 100) {
+      intake.move(127);
       if (!fit) {
         hook.set_brake_mode(MOTOR_BRAKE_COAST);
-        intake.move(127);
+        hook.move(127);
+      } else {
+        hook.set_brake_mode(MOTOR_BRAKE_HOLD);
+        hook.move(0);
       }
-      if (!fit && hook.get_actual_velocity() == 0) {
+      if (!held && hook.get_actual_velocity() != 0) {
+        held = true;
+      }
+      if (held && hook.get_actual_velocity() == 0 && !fit) {
         fd = pros::millis();
         fit = true;
       }
       if (fit && pros::millis() - fd >= 1000) {
-        hook.set_brake_mode(MOTOR_BRAKE_HOLD);
         hook.move(0);
+        held = false;
       }
     }
     last_state = current_state;
