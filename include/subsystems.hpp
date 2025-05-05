@@ -18,3 +18,4 @@ inline ez::Piston goalrush('C');
 inline ez::Piston ringrush('D');
 inline ez::Piston intakeLift('E');
 inline ez::PID lbPID{0.45, 0, 0, 0, "lb"};
+void sortcolor(bool enabled);

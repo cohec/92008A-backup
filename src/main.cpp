@@ -230,26 +230,23 @@ void ez_template_extras() {
   }
 }
 
-void color_sort(std::string eject_color) {
+void sortcolor(bool enabled) {
   op.set_led_pwm(100);
   int hue = op.get_hue();
   bool is_red = hue < 30 || hue > 330;
   bool is_blue = hue > 180 && hue < 250;
+  bool eject = false;
   static bool match = false;
   static int64_t dt = 0;
-  if (!match && (eject_color == "red" && is_red) || (eject_color == "blue" && is_blue)) {
-    dt = pros::millis();
-    match = true;
-  }
-  if (match) {
-    if (pros::millis() - dt >= 2) {
+  if (enabled) {
+    if (!match && (eject_color == "red" && is_red) || (eject_color == "blue" && is_blue)) {
       hook.brake();
+      dt = pros::millis();
+      match = true;
+      eject = true;
+    } else if (match && pros::millis() - dt >= 2) {
       match = false;
-    } else {
-      hook.move(127);
     }
-  } else {
-    hook.move(127);
   }
 }
 
@@ -332,11 +329,21 @@ void opcontrol() {
     goalrush.set(master.get_digital(pros::E_CONTROLLER_DIGITAL_R2));
 
     // Intake
+    static bool sorting_enabled = true;
+    static bool ldown = false;
+    bool cdown = master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN);
+    if (cdown && !ldown) {
+      sorting_enabled = !sorting_enabled;
+    }
+    ldown = cdown;
     int direction = 0;
     if (master.get_digital(pros::E_CONTROLLER_DIGITAL_X)) {
       direction = 1;
     } else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_B)) {
       direction = -1;
+    }
+    if (sorting_enabled) {
+      sortcolor(true);
     }
     intake.move(direction != 0 ? 127 * direction : 0);
     antijam(direction);
