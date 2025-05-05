@@ -1,9 +1,11 @@
 #include "main.h"
+#include <cstdint>
 #include <string>
 #include "EZ-Template/util.hpp"
 #include "pros/misc.h"
 #include "pros/motors.h"
 #include "pros/motors.hpp"
+#include "pros/optical.hpp"
 #include "subsystems.hpp"
 #include "autons.hpp"
 
@@ -229,7 +231,26 @@ void ez_template_extras() {
 }
 
 void color_sort(std::string eject_color) {
-
+  op.set_led_pwm(100);
+  int hue = op.get_hue();
+  bool is_red = hue < 30 || hue > 330;
+  bool is_blue = hue > 180 && hue < 250;
+  static bool match = false;
+  static int64_t dt = 0;
+  if (!match && (eject_color == "red" && is_red) || (eject_color == "blue" && is_blue)) {
+    dt = pros::millis();
+    match = true;
+  }
+  if (match) {
+    if (pros::millis() - dt >= 2) {
+      hook.brake();
+      match = false;
+    } else {
+      hook.move(127);
+    }
+  } else {
+    hook.move(127);
+  }
 }
 
 int64_t nvt = 0; //no velocity timer

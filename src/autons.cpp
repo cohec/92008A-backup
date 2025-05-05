@@ -1,6 +1,7 @@
 #include "main.h"
 #include "subsystems.hpp"
 #include "autons.hpp"
+#include <string>
 
 /////
 // For installation, upgrading, documentations, and tutorials, check out our website!
@@ -11,6 +12,7 @@
 const int DRIVE_SPEED = 100;
 const int TURN_SPEED = 60;
 const int SWING_SPEED = 110;
+std::string eject_color = "red"; // "red" or "blue" red default change in auto functions
 
 ///
 // Constants
@@ -378,6 +380,7 @@ void measure_offsets() {
 // . . .
 // Make your own autonomous functions here!
 // . . .
+/*
 void autonomous_blue_left(){
   //drive forward, spin around, and clamp goal
   goalClamp.set(false);
@@ -498,7 +501,130 @@ chassis.pid_turn_set(-95_deg, 75);
 }
 void autonomous_red_right(){
 
+ALL OF THESE AUTOS ARE HELLA INCONSISTENT AND USE 3 FUNCTIONS, TURN, DRIVE, WAIT
+YK THERES LIKE 50 MORE FUNCTIONS THAT SIMPLIFY THE WHOLE THING RIGHT???????
+I TOLD YOU TO NAME THE AUTONS POSITIVE NEGATIVE BLUE RED ITS BEEN 2 MONTHS
+I ALSO TOLD YOU TO USE BOOMERANG, SWING, ODOM SET BECAUSE WHY WOULDNT YOU, ITS OPTIMIZED
+OH ZITENG WILL DO THE SKILLS NO HE WOULDNT, HE DOESN'T EVEN HAVE GITHUB, GIT, VSCODE DOWNLOADED
+AND UR ON UR PHONE THE WHOLE TIME, WHY CANT YOU WATCH TUTORIAL VIDEOS FOR EZ TEMPLATE OR READ THE WIKI TO LEARN THE MOVEMENTS??????????????
++ EVERYTHING IS PROVIDED, YOU DONT NEED THE ROBOT TO TEST, LAST TIME SWING DIDNT WORK WAS BECAUSE CODE DIDNT EVEN UPLOAD
+}*/ 
+
+void blue_negative_awp() {
+  /*
+  place robot in front of alliancestake
+  score preload
+  go to negative goal
+  clamp goal
+  get closest ring
+  sweep corner
+  intake those
+  drive to touch hang
+  */
 }
-void autonomous_skills(){
+
+void blue_positive_awp() {
+  /*
+  place robot in front of alliancestake
+  score preload
+  go to positive goal
+  clamp goal
+  get closest ring
+  sweep corner
+  intake those
+  drive to touch hang
+  */
+}
+
+void blue_goal_rush() {
+  /*
+  place robot in closest position to goal while touching starting tape
+  extend doinker while driving max speed toward mid goal
+  retract doinker when hits
+  pull back
+  enable tug detection
+  if no tug, score preload
+  if tug, realign
+  release
+  turn around and clamp other goal right next to it
+  score top ring
+  release near positive corner
+  go for eyelash tech t1 contact
+  */
+}
+
+void blue_top_rings() {
+  /* ELIMS GOAL RUSH
+  same starting code as goal rush, just add wallstakes at end instead of eyelash tech t1 contact
+  */
+}
+
+void blue_center_ring_rush() {
+  /* ELIMS IF CANT GOAL RUSH GET STACKED ASAP ALSO NEED ALLIANCE WITH GOOD GOAL RUSH AND CAMPING SKILLS
+  place robot in front of alliance stake
+  score preload
+  turn around and drive back to clamp goal
+  turn and after turned, extend ring doinker
+  get one red and drive back to intake and only move intake not hooks to hold it in robot
+  turn and extend doinker again to get other ring
+  drive back and get the negative side stacks on mid
+  end at optimal pos for wall stakes
+  */
+}
+
+void red_negative_awp() {
+  /*
+  place robot in front of alliancestake
+  score preload
+  go to negative goal
+  clamp goal
+  get closest ring
+  sweep corner
+  intake those
+  drive to touch hang
+  */
+}
+
+void red_positive_awp() {
+  /*
+  place robot in front of alliancestake
+  score preload
+  go to positive goal
+  clamp goal
+  get closest ring
+  sweep corner
+  intake those
+  drive to touch hang
+  */
+}
+
+void red_goal_rush() {
+  /*
+  place robot in closest position to goal while touching starting tape
+  extend doinker while driving max speed toward mid goal
+  retract doinker when hits
+  pull back
+  enable tug detection
+  if no tug, score preload
+  if tug, realign
+  release
+  turn around and clamp other goal right next to it
+  score top ring
+  release near positive corner
+  go for eyelash tech t1 contact
+  */
+}
+
+void red_top_rings() {
+  /* ELIMS GOAL RUSH
+  same starting code as goal rush, just add wallstakes at end instead of eyelash tech t1 contact
+  */
+}
+
+
+
+
+
+void skills() {
   
 }

@@ -2,12 +2,12 @@
 
 #include "EZ-Template/api.hpp"
 #include "api.h"
-#include "pros/colors.hpp"
 #include "pros/motor_group.hpp"
 #include "pros/optical.hpp"
-#include "pros/vision.hpp"
+#include <string>
 
 extern Drive chassis;
+extern std::string eject_color;
 inline pros::MotorGroup intake({4,-5});
 inline pros::Motor hook(-5);
 inline pros::Motor lb(17);
