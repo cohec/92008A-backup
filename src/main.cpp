@@ -70,11 +70,15 @@ void initialize() {
 
   // Autonomous Selector using LLEMU
   ez::as::auton_selector.autons_add({
-    {"BLUE LEFT SIDE", autonomous_blue_left},
-    {"BLUE RIGHT SIDE", autonomous_blue_right},
-    {"RED LEFT SIDE", autonomous_red_left},
-    {"RED RIGHT SIDE", autonomous_red_right},
-    {"SKILLS", autonomous_skills},
+    {"blue - awp", blue_negative_awp},
+    {"blue + awp", blue_positive_awp},
+    {"blue goal rush", blue_goal_rush},
+    {"blue top rings", blue_top_rings},
+    {"red - awp", red_negative_awp},
+    {"red + awp", red_positive_awp},
+    {"red goal rush", red_goal_rush},
+    {"red top rings", red_top_rings},
+    {"auto skills", skills},
     {"Measure Offsets\n\nThis will turn the robot a bunch of times and calculate your offsets for your tracking wheels.", measure_offsets},
   });
 
@@ -229,24 +233,40 @@ void ez_template_extras() {
       chassis.pid_tuner_disable();
   }
 }
-
+static bool cma = false; // color match active
 void sortcolor(bool enabled) {
   op.set_led_pwm(100);
   int hue = op.get_hue();
   bool is_red = hue < 30 || hue > 330;
   bool is_blue = hue > 180 && hue < 250;
-  bool eject = false;
-  static bool match = false;
+  static enum {IDLE, PULSE, COAST} state = IDLE;
   static int64_t dt = 0;
   if (enabled) {
-    if (!match && (eject_color == "red" && is_red) || (eject_color == "blue" && is_blue)) {
-      hook.brake();
-      dt = pros::millis();
-      match = true;
-      eject = true;
-    } else if (match && pros::millis() - dt >= 2) {
-      match = false;
+    switch (state) {
+      case IDLE:
+        if ((eject_color == "red" && is_red) || (eject_color == "blue" && is_blue)) {
+          dt = pros::millis();
+          state = PULSE;
+          cma = true;
+        }
+        break;
+      case PULSE:
+        if (pros::millis() - dt >= 10) {
+          hook.move(0);
+          dt = pros::millis();
+          state = COAST;
+        }
+        break;
+      case COAST:
+        if (pros::millis() - dt >= 100) {
+          state = IDLE;
+          cma = false;
+        }
+        break;
     }
+  } else {
+    state = IDLE;
+    cma = false;
   }
 }
 
@@ -256,10 +276,14 @@ bool initialp = true;
 
 void antijam(int direction) {
   int hook_velocity = hook.get_actual_velocity();
+  if (cma) {
+    return;
+  }
   if (direction != 0) {
     if (hook_velocity == 0 && !jammed && !initialp) {
       nvt = pros::millis();
       jammed = true;
+      master.rumble(".");
     }
     if (jammed && pros::millis() - nvt < 500) {
       hook.move(-127 * direction);
@@ -292,6 +316,7 @@ void antijam(int direction) {
  * operator control task will be stopped. Re-enabling the robot will restart the
  * task, not resume it from where it left off.
  */
+
 void opcontrol() {
   // This is preference to what you like to drive on
   chassis.drive_brake_set(MOTOR_BRAKE_COAST);
@@ -316,8 +341,7 @@ void opcontrol() {
     
     // Pneumatics
     // Clamp change to toggle
-    goalClamp.set(master.get_digital(pros::E_CONTROLLER_DIGITAL_L1));
-    
+    goalClamp.button_toggle(master.get_digital(pros::E_CONTROLLER_DIGITAL_L1));
     // Intake lift
     intakeLift.set(master.get_digital(pros::E_CONTROLLER_DIGITAL_Y));
 
@@ -330,12 +354,11 @@ void opcontrol() {
 
     // Intake
     static bool sorting_enabled = true;
-    static bool ldown = false;
-    bool cdown = master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN);
-    if (cdown && !ldown) {
+    bool dn = master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_DOWN);
+    if (dn) {
       sorting_enabled = !sorting_enabled;
+      master.rumble(sorting_enabled ? ".-" : "-.");
     }
-    ldown = cdown;
     int direction = 0;
     if (master.get_digital(pros::E_CONTROLLER_DIGITAL_X)) {
       direction = 1;
@@ -345,8 +368,10 @@ void opcontrol() {
     if (sorting_enabled) {
       sortcolor(true);
     }
-    intake.move(direction != 0 ? 127 * direction : 0);
-    antijam(direction);
+    if (!sorting_enabled || !cma) {
+      intake.move(direction != 0 ? 127 * direction : 0);
+      antijam(direction);
+    }
 
     // LB
     int lbspeed = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
@@ -367,7 +392,7 @@ void opcontrol() {
     if (current_state && !last_state) { 
       lb.set_brake_mode(MOTOR_BRAKE_COAST);
       if (stage == -1 || stage == 0) {
-        lbPID.target_set(200);
+        lbPID.target_set(175);
         fit = false;
         held = false;
         stop = false;
@@ -386,7 +411,7 @@ void opcontrol() {
       lb.set_brake_mode(MOTOR_BRAKE_HOLD);
       lb.move(lbPID.compute(lb.get_position()));
     }
-    if (stage == 1 && lbPID.target_get() == 200) {
+    if (stage == 1 && lbPID.target_get() == 175) {
       intake.move(127);
       if (!fit) {
         hook.set_brake_mode(MOTOR_BRAKE_COAST);

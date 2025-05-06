@@ -1,12 +1,6 @@
 #pragma once
 
 void default_constants();
-
-void autonomous_skills();
-void autonomous_blue_left();
-void autonomous_blue_right();
-void autonomous_red_left();
-void autonomous_red_right();
 void drive_and_turn();
 void wait_until_change_speed();
 void swing_example();
@@ -19,3 +13,12 @@ void odom_pure_pursuit_wait_until_example();
 void odom_boomerang_example();
 void odom_boomerang_injected_pure_pursuit_example();
 void measure_offsets();
+void blue_negative_awp();
+void blue_positive_awp();
+void blue_goal_rush();
+void blue_top_rings();
+void red_negative_awp();
+void red_positive_awp();
+void red_goal_rush();
+void red_top_rings();
+void skills();

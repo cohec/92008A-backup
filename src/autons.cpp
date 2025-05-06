@@ -406,6 +406,7 @@ void blue_negative_awp() {
   intake those
   drive to touch hang
   */
+  chassis.pid_wait();
 }
 
 void blue_positive_awp() {
@@ -421,6 +422,7 @@ void blue_positive_awp() {
   intake those
   drive to touch hang
   */
+  chassis.pid_wait();
 }
 
 void blue_goal_rush() {
@@ -438,15 +440,18 @@ void blue_goal_rush() {
   release near positive corner
   go for eyelash tech t1 contact
   */
+  chassis.pid_wait();
 }
 
 void blue_top_rings() {
+
   /* ELIMS GOAL RUSH
   same starting code as goal rush, just add wallstakes at end instead of eyelash tech t1 contact
   */
+  chassis.pid_wait();
 }
 
-void blue_center_ring_rush() {
+//void blue_center_ring_rush() {
   /* ELIMS IF CANT GOAL RUSH GET STACKED ASAP ALSO NEED ALLIANCE WITH GOOD GOAL RUSH AND CAMPING SKILLS
   place robot in front of alliance stake
   score preload
@@ -457,7 +462,7 @@ void blue_center_ring_rush() {
   drive back and get the negative side stacks on mid
   end at optimal pos for wall stakes
   */
-}
+//}
 
 void red_negative_awp() {
   /*
@@ -470,6 +475,7 @@ void red_negative_awp() {
   intake those
   drive to touch hang
   */
+  chassis.pid_wait();
 }
 
 void red_positive_awp() {
@@ -485,6 +491,7 @@ void red_positive_awp() {
   intake those
   drive to touch hang
   */
+  chassis.pid_wait();
 }
 
 void red_goal_rush() {
@@ -502,12 +509,14 @@ void red_goal_rush() {
   release near positive corner
   go for eyelash tech t1 contact
   */
+  chassis.pid_wait();
 }
 
 void red_top_rings() {
   /* ELIMS GOAL RUSH
   same starting code as goal rush, just add wallstakes at end instead of eyelash tech t1 contact
   */
+  chassis.pid_wait();
 }
 
 
@@ -515,5 +524,5 @@ void red_top_rings() {
 
 
 void skills() {
-  
+  chassis.pid_wait();
 }
