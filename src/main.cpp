@@ -255,6 +255,7 @@ void sortcolor(bool enabled) {
           hook.move(0);
           dt = pros::millis();
           state = COAST;
+          master.rumble(".");
         }
         break;
       case COAST:
@@ -276,14 +277,10 @@ bool initialp = true;
 
 void antijam(int direction) {
   int hook_velocity = hook.get_actual_velocity();
-  if (cma) {
-    return;
-  }
   if (direction != 0) {
-    if (hook_velocity == 0 && !jammed && !initialp) {
+    if (hook_velocity == 0 && !jammed && !initialp && !cma) {
       nvt = pros::millis();
       jammed = true;
-      master.rumble(".");
     }
     if (jammed && pros::millis() - nvt < 500) {
       hook.move(-127 * direction);
