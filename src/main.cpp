@@ -239,20 +239,15 @@ void sortcolor(bool enabled) {
   int hue = op.get_hue();
   bool is_red = hue < 30 || hue > 330;
   bool is_blue = hue > 180 && hue < 250;
-  bool match = (eject_color == "red" && is_red) || (eject_color == "blue" && is_blue);
   static enum {IDLE, PULSE, COAST} state = IDLE;
   static int64_t dt = 0;
-  static bool seen = false;
   if (enabled) {
     switch (state) {
       case IDLE:
-        if (match && !seen) {
+        if ((eject_color == "red" && is_red) || (eject_color == "blue" && is_blue)) {
           dt = pros::millis();
           state = PULSE;
           cma = true;
-          seen = true;
-        } else if (!match) {
-          seen = false;
         }
         break;
       case PULSE:
@@ -272,7 +267,6 @@ void sortcolor(bool enabled) {
   } else {
     state = IDLE;
     cma = false;
-    seen = false;
   }
 }
 
