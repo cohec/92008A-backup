@@ -382,20 +382,6 @@ void measure_offsets() {
 // . . .
 // Make your own autonomous functions here!
 // . . .
-/*
-ALL OF THESE AUTOS ARE HELLA INCONSISTENT AND USE 3 FUNCTIONS, TURN, DRIVE, WAIT
-YK THERES LIKE 50 MORE FUNCTIONS THAT SIMPLIFY THE WHOLE THING RIGHT???????
-I TOLD YOU TO NAME THE AUTONS POSITIVE NEGATIVE BLUE RED ITS BEEN 2 MONTHS
-I ALSO TOLD YOU TO USE BOOMERANG, SWING, ODOM SET BECAUSE WHY WOULDNT YOU, ITS OPTIMIZED
-OH ZITENG WILL DO THE SKILLS NO HE WOULDNT, HE DOESN'T EVEN HAVE GITHUB, GIT, VSCODE DOWNLOADED
-AND UR ON UR PHONE THE WHOLE TIME, WHY CANT YOU WATCH TUTORIAL VIDEOS FOR EZ TEMPLATE OR READ THE WIKI TO LEARN THE MOVEMENTS??????????????
-+ EVERYTHING IS PROVIDED, YOU DONT NEED THE ROBOT TO TEST, LAST TIME SWING DIDNT WORK WAS BECAUSE CODE DIDNT EVEN UPLOAD
-+ ALL UR CODE IS HELLA DELAYED, IF U READ THE WIKI EZTEMPLATE PROVIDED U WOULD KNOW ABOUT WAIT QUICK CHAIN
-HOW TF WOULD YOU DO SKILLS AUTO IF U WASTE 20 SEC WITH DELAYS
-HOW TF WOULD YOU GOAL RUSH WHEN U USE 5 SEC ALIGNING TO IT
-IF I ASK YOU SG7 WILL YOU TELL ME WHAT WE CANT DO WITH AUTO NOW THAT ITS UPDATED????
-IF U WATCHED ANY MATCH VIDEOS U KNOW HOW IMPORTANT GOAL RUSH IS AND TOP RINGS ARE
-*/ 
 
 void blue_negative_awp() {
   /*
@@ -411,18 +397,20 @@ void blue_negative_awp() {
   eject_color = "red";
   chassis.pid_odom_set({{0, 8, 135}, fwd, 100});
   lbPID.target_set(200);
+  chassis.pid_wait();
   intake.move(127);
-  pros::delay(250);
+  pros::delay(500);
   hook.move(0);
+  chassis.pid_wait();
   lbPID.target_set(1000);
   chassis.pid_drive_set(-5_in, 50, true);
-  chassis.pid_wait_quick_chain();
+  chassis.pid_wait();
   chassis.pid_odom_set({{-6, 20, 180}, fwd, 100});
-  chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set({{-6, 24, 180}, rev, 50});
+  chassis.pid_wait();
+  chassis.pid_odom_set({{-6, 24}, rev, 50});
   goalClamp.set(true);
-  chassis.pid_odom_set({{-6, 28, 180}, rev, 100});
-  chassis.pid_wait_quick_chain();
+  chassis.pid_odom_set({{-6, 28}, rev, 100});
+  chassis.pid_wait();
   chassis.pid_swing_set(ez::LEFT_SWING, -90, 90);
   chassis.pid_wait();
 }
