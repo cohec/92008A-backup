@@ -239,27 +239,30 @@ void sortcolor(bool enabled) {
   int hue = op.get_hue();
   bool is_red = hue < 30 || hue > 330;
   bool is_blue = hue > 180 && hue < 250;
-  static enum {IDLE, PULSE, COAST} state = IDLE;
+  static enum {IDLE, PULSE, COOLDOWN} state = IDLE;
   static int64_t dt = 0;
   if (enabled) {
     switch (state) {
       case IDLE:
         if ((eject_color == "red" && is_red) || (eject_color == "blue" && is_blue)) {
+          hook.set_brake_mode(MOTOR_BRAKE_HOLD);
           dt = pros::millis();
           state = PULSE;
           cma = true;
-        }
-        break;
-      case PULSE:
-        if (pros::millis() - dt >= 10) {
-          hook.move(0);
-          dt = pros::millis();
-          state = COAST;
           master.rumble(".");
         }
         break;
-      case COAST:
+      case PULSE:
         if (pros::millis() - dt >= 50) {
+          hook.move(0);
+          dt = pros::millis();
+          state = COOLDOWN;
+        }
+        break;
+      case COOLDOWN:
+        if (pros::millis() - dt >= 100) {
+          hook.set_brake_mode(MOTOR_BRAKE_COAST);
+          hook.move(0);
           state = IDLE;
           cma = false;
         }
@@ -281,6 +284,7 @@ void antijam(int direction) {
     if (hook_velocity == 0 && !jammed && !initialp && !cma) {
       nvt = pros::millis();
       jammed = true;
+      master.rumble("-");
     }
     if (jammed && pros::millis() - nvt < 500) {
       hook.move(-127 * direction);
@@ -389,7 +393,7 @@ void opcontrol() {
     if (current_state && !last_state) { 
       lb.set_brake_mode(MOTOR_BRAKE_COAST);
       if (stage == -1 || stage == 0) {
-        lbPID.target_set(175);
+        lbPID.target_set(200);
         fit = false;
         held = false;
         stop = false;
@@ -408,7 +412,7 @@ void opcontrol() {
       lb.set_brake_mode(MOTOR_BRAKE_HOLD);
       lb.move(lbPID.compute(lb.get_position()));
     }
-    if (stage == 1 && lbPID.target_get() == 175) {
+    if (stage == 1 && lbPID.target_get() == 200) {
       intake.move(127);
       if (!fit) {
         hook.set_brake_mode(MOTOR_BRAKE_COAST);

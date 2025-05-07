@@ -1,4 +1,6 @@
+#include "EZ-Template/util.hpp"
 #include "main.h"
+#include "pros/motors.h"
 #include "subsystems.hpp"
 #include "autons.hpp"
 #include <string>
@@ -338,7 +340,7 @@ void measure_offsets() {
     chassis.pid_targets_reset();
     chassis.drive_imu_reset();
     chassis.drive_sensor_reset();
-    chassis.drive_brake_set(MOTOR_BRAKE_HOLD);
+    chassis.drive_brake_set(pros::E_MOTOR_BRAKE_HOLD);
     chassis.odom_xyt_set(0_in, 0_in, 0_deg);
     double imu_start = chassis.odom_theta_get();
     double target = i % 2 == 0 ? 90 : 270;  // Switch the turn target every run from 270 to 90
@@ -406,6 +408,22 @@ void blue_negative_awp() {
   intake those
   drive to touch hang
   */
+  eject_color = "red";
+  chassis.pid_odom_set({{0, 8, 135}, fwd, 100});
+  lbPID.target_set(200);
+  intake.move(127);
+  pros::delay(250);
+  hook.move(0);
+  lbPID.target_set(1000);
+  chassis.pid_drive_set(-5_in, 50, true);
+  chassis.pid_wait_quick_chain();
+  chassis.pid_odom_set({{-6, 20, 180}, fwd, 100});
+  chassis.pid_wait_quick_chain();
+  chassis.pid_odom_set({{-6, 24, 180}, rev, 50});
+  goalClamp.set(true);
+  chassis.pid_odom_set({{-6, 28, 180}, rev, 100});
+  chassis.pid_wait_quick_chain();
+  chassis.pid_swing_set(ez::LEFT_SWING, -90, 90);
   chassis.pid_wait();
 }
 
@@ -422,6 +440,7 @@ void blue_positive_awp() {
   intake those
   drive to touch hang
   */
+  eject_color = "red";
   chassis.pid_wait();
 }
 
@@ -440,6 +459,7 @@ void blue_goal_rush() {
   release near positive corner
   go for eyelash tech t1 contact
   */
+  eject_color = "red";
   chassis.pid_wait();
 }
 
@@ -449,6 +469,7 @@ void blue_top_rings() {
   same starting code as goal rush, just add wallstakes at end instead of eyelash tech t1 contact
   */
   chassis.pid_wait();
+  eject_color = "red";
 }
 
 //void blue_center_ring_rush() {
@@ -475,6 +496,7 @@ void red_negative_awp() {
   intake those
   drive to touch hang
   */
+  eject_color = "blue";
   chassis.pid_wait();
 }
 
@@ -491,6 +513,7 @@ void red_positive_awp() {
   intake those
   drive to touch hang
   */
+  eject_color = "blue";
   chassis.pid_wait();
 }
 
@@ -509,6 +532,7 @@ void red_goal_rush() {
   release near positive corner
   go for eyelash tech t1 contact
   */
+  eject_color = "blue";
   chassis.pid_wait();
 }
 
@@ -516,6 +540,7 @@ void red_top_rings() {
   /* ELIMS GOAL RUSH
   same starting code as goal rush, just add wallstakes at end instead of eyelash tech t1 contact
   */
+  eject_color = "blue";
   chassis.pid_wait();
 }
 
