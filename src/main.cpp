@@ -324,6 +324,7 @@ void opcontrol() {
   lb.set_brake_mode(MOTOR_BRAKE_HOLD);
   int stage = 0;
   bool last_state = false;
+  static bool clamped = false;
   
 
   while (true) {
@@ -341,8 +342,15 @@ void opcontrol() {
     }
     
     // Pneumatics
-    // Clamp change to toggle
     goalClamp.button_toggle(master.get_digital(pros::E_CONTROLLER_DIGITAL_L1));
+    if (goalClamp.get() == true && !clamped) {
+      master.rumble(".-.");
+      clamped = true;
+    } else if (goalClamp.get() == false && clamped) {
+      master.rumble("...");
+      clamped = false;
+    }
+
     // Intake lift
     intakeLift.set(master.get_digital(pros::E_CONTROLLER_DIGITAL_Y));
 
