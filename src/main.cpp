@@ -402,7 +402,7 @@ void opcontrol() {
     static bool held = false;
     static bool stop = false;
     static int64_t fd = 0;
-    if (current_state && !last_state) { 
+    if (current_state && !last_state) {
       lb.set_brake_mode(MOTOR_BRAKE_COAST);
       if (stage == -1 || stage == 0) {
         lbPID.target_set(200);
