@@ -246,6 +246,7 @@ void sortcolor(bool enabled) {
       case IDLE:
         if ((eject_color == "red" && is_red) || (eject_color == "blue" && is_blue)) {
           hook.set_brake_mode(MOTOR_BRAKE_HOLD);
+          hook.move(127);
           dt = pros::millis();
           state = PULSE;
           cma = true;
@@ -253,16 +254,15 @@ void sortcolor(bool enabled) {
         }
         break;
       case PULSE:
-        if (pros::millis() - dt >= 50) {
+        if (pros::millis() - dt >= 100) {
           hook.move(0);
           dt = pros::millis();
           state = COOLDOWN;
         }
         break;
       case COOLDOWN:
-        if (pros::millis() - dt >= 100) {
+        if (pros::millis() - dt >= 200) {
           hook.set_brake_mode(MOTOR_BRAKE_COAST);
-          hook.move(0);
           state = IDLE;
           cma = false;
         }
@@ -377,7 +377,7 @@ void opcontrol() {
     if (sorting_enabled) {
       sortcolor(true);
     }
-    if (!sorting_enabled || !cma) {
+    if (!cma) {
       intake.move(direction != 0 ? 127 * direction : 0);
       antijam(direction);
     }
@@ -393,6 +393,10 @@ void opcontrol() {
       lb.move(0);
     }
     // LB stages
+    if (master.get_digital(pros::E_CONTROLLER_DIGITAL_RIGHT)) {
+      lb.tare_position();
+      master.rumble("..-");
+    }
     bool current_state = master.get_digital(pros::E_CONTROLLER_DIGITAL_R1);
     static bool fit = false;
     static bool held = false;
@@ -427,7 +431,7 @@ void opcontrol() {
         hook.move(127);
       } else {
         hook.set_brake_mode(MOTOR_BRAKE_HOLD);
-        hook.move(0);
+        hook.move(50);
       }
       if (!held && hook.get_actual_velocity() != 0) {
         held = true;
