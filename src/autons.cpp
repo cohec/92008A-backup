@@ -557,7 +557,7 @@ void skills() {
   goalClamp.set(true);
   chassis.pid_wait();
   //Turn to the left of -90 degrees
-  chassis.pid_turn_set(90_deg, 90);
+  chassis.pid_turn_set(-78_deg, 90);
   chassis.pid_wait();
   //*****score the ring
   hook.move(128);
@@ -572,19 +572,40 @@ void skills() {
   chassis.pid_drive_set(-26.83,90);
   chassis.pid_wait();
   //Turn
-  chassis.pid_turn_set(-125_deg, 90);
+  chassis.pid_turn_set(-150_deg, 90);
   chassis.pid_wait();
   //Drive Forward
   chassis.pid_drive_set(72,100);
   chassis.pid_wait();
   //Turn
-  chassis.pid_turn_set(-125,90);
+  chassis.pid_turn_set(-115.5,90);
   chassis.pid_wait();
   //Put the goal on the positive side
   chassis.pid_drive_set(-17,90);
   chassis.pid_wait();
+  goalClamp.set(false);
+  chassis.pid_wait();
+  chassis.pid_turn_set(50.2,90);
+  chassis.pid_wait();
+  chassis.pid_drive_set(17,90);
+  chassis.pid_wait();
+  chassis.pid_turn_set(16.5,90);
+  chassis.pid_wait();
+
+  chassis.pid_drive_set(48,90);
+  chassis.pid_wait();
+  hook.brake();
   chassis.pid_turn_set(-45,90);
   chassis.pid_wait();
+  lbPID.target_set(200);
+  lb.move(lbPID.compute(lb.get_position()));
+  hook.move(127);
+  pros::delay(500);
+  lbPID.target_set(800);
+  lb.move(lbPID.compute(lb.get_position()));
+  chassis.pid_drive_set(-12,90);
+  lbPID.target_set(0);
+  lb.move(lbPID.compute(lb.get_position()));
 
   chassis.pid_turn_set(50,23);
 }
