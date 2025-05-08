@@ -14,7 +14,7 @@
 const int DRIVE_SPEED = 100;
 const int TURN_SPEED = 60;
 const int SWING_SPEED = 110;
-std::string eject_color = "red"; // "red" or "blue" red default change in auto functions
+std::string eject_color = ""; // "red" or "blue"
 
 ///
 // Constants
@@ -395,8 +395,9 @@ void blue_negative_awp() {
   drive to touch hang
   */
   eject_color = "red";
+  chassis.odom_xyt_set(0_in, 0_in, 0_deg);
   lb.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-  chassis.pid_odom_set({{0, 8, 135}, fwd, 100});
+  chassis.pid_swing_set(ez::RIGHT_SWING, 180_deg, 100, 100);
   lbPID.target_set(200);
   lb.move(lbPID.compute(lb.get_position()));
   chassis.pid_wait();
