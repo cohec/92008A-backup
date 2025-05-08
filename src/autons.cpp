@@ -585,4 +585,6 @@ void skills() {
   chassis.pid_wait();
   chassis.pid_turn_set(-45,90);
   chassis.pid_wait();
+
+  chassis.pid_turn_set(50,23);
 }
