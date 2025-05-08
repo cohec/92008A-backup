@@ -543,5 +543,46 @@ void red_top_rings() {
 
 
 void skills() {
+  //score the ring
+  hook.move(127);
+  pros::delay(500);
+  hook.brake();
+  //swing to the right of 90 degrees
+  chassis.pid_swing_set(ez::LEFT_SWING, 95_deg, 90);
+  chassis.pid_wait();
+  //Drive forward
+  chassis.pid_drive_set(-27_in, 100);
+  chassis.pid_wait();
+  //Grab the goal
+  goalClamp.set(true);
+  chassis.pid_wait();
+  //Turn to the left of -90 degrees
+  chassis.pid_turn_set(90_deg, 90);
+  chassis.pid_wait();
+  //*****score the ring
+  hook.move(128);
+  //Drive forward
+  chassis.pid_drive_set(24_in, 110);
+  chassis.pid_wait();
+  chassis.pid_turn_set(-45_deg, 90);
+  chassis.pid_wait();
+  chassis.pid_drive_set(80.5_in,90);
+  chassis.pid_wait();
+  //Drive Back
+  chassis.pid_drive_set(-26.83,90);
+  chassis.pid_wait();
+  //Turn
+  chassis.pid_turn_set(-125_deg, 90);
+  chassis.pid_wait();
+  //Drive Forward
+  chassis.pid_drive_set(72,100);
+  chassis.pid_wait();
+  //Turn
+  chassis.pid_turn_set(-125,90);
+  chassis.pid_wait();
+  //Put the goal on the positive side
+  chassis.pid_drive_set(-17,90);
+  chassis.pid_wait();
+  chassis.pid_turn_set(-45,90);
   chassis.pid_wait();
 }
