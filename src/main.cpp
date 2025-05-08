@@ -363,7 +363,7 @@ void opcontrol() {
 
     // Intake
     static bool sorting_enabled = true;
-    bool dn = master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_DOWN);
+    bool dn = master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_RIGHT);
     if (dn) {
       sorting_enabled = !sorting_enabled;
       master.rumble(sorting_enabled ? ".-" : "-.");
@@ -393,7 +393,7 @@ void opcontrol() {
       lb.move(0);
     }
     // LB stages
-    if (master.get_digital(pros::E_CONTROLLER_DIGITAL_RIGHT)) {
+    if (master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT)) {
       lb.tare_position();
       master.rumble("..-");
     }
