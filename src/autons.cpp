@@ -395,29 +395,7 @@ void blue_negative_awp() {
   drive to touch hang
   */
   eject_color = "red";
-  chassis.odom_xyt_set(0_in, 0_in, 0_deg);
-  lb.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-  chassis.pid_swing_set(ez::RIGHT_SWING, 180_deg, 100, 100);
-  lbPID.target_set(200);
-  lb.move(lbPID.compute(lb.get_position()));
-  chassis.pid_wait();
-  intake.move(127);
-  pros::delay(500);
-  hook.move(0);
-  chassis.pid_wait();
-  lbPID.target_set(1000);
-  lb.move(lbPID.compute(lb.get_position()));
-  chassis.pid_drive_set(-5_in, 50, true);
-  chassis.pid_wait();
-  lbPID.target_set(0);
-  lb.move(lbPID.compute(lb.get_position()));
-  chassis.pid_odom_set({{-6, 20, 180}, fwd, 100});
-  chassis.pid_wait();
-  chassis.pid_odom_set({{-6, 24}, rev, 50});
-  goalClamp.set(true);
-  chassis.pid_odom_set({{-6, 28}, rev, 100});
-  chassis.pid_wait();
-  chassis.pid_swing_set(ez::LEFT_SWING, -90, 90);
+  chassis.pid_odom_set({{5_in, 12_in, 30_deg}, fwd, 90}, false);
   chassis.pid_wait();
 }
 
@@ -435,6 +413,12 @@ void blue_positive_awp() {
   drive to touch hang
   */
   eject_color = "red";
+  int time = pros::millis();
+  intake.move(127);
+  while (pros::millis() - time < 5000) {
+    antijam(1);
+    sortcolor(true);
+  }
   chassis.pid_wait();
 }
 
@@ -585,5 +569,6 @@ void skills() {
   chassis.pid_wait();
   chassis.pid_turn_set(-45,90);
   chassis.pid_wait();
+
   chassis.pid_turn_set(50,23);
 }

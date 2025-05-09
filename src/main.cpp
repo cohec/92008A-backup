@@ -79,6 +79,14 @@ void initialize() {
     {"red goal rush", red_goal_rush},
     {"red top rings", red_top_rings},
     {"auto skills", skills},
+    {"motion chaining", motion_chaining},
+    {"combining movements", combining_movements},
+    {"interfered example", interfered_example},
+    {"odom drive example", odom_drive_example},
+    {"odom pure pursuit example", odom_pure_pursuit_example},
+    {"odom pure pursuit wait until example", odom_pure_pursuit_wait_until_example},
+    {"odom boomerang example", odom_boomerang_example},
+    {"odom boomerang injected pure pursuit example", odom_boomerang_injected_pure_pursuit_example},
     {"Measure Offsets\n\nThis will turn the robot a bunch of times and calculate your offsets for your tracking wheels.", measure_offsets},
   });
 
@@ -246,7 +254,6 @@ void sortcolor(bool enabled) {
       case IDLE:
         if ((eject_color == "red" && is_red) || (eject_color == "blue" && is_blue)) {
           hook.set_brake_mode(MOTOR_BRAKE_HOLD);
-          hook.move(127);
           dt = pros::millis();
           state = PULSE;
           cma = true;
@@ -288,7 +295,7 @@ void antijam(int direction) {
     }
     if (jammed && pros::millis() - nvt < 500) {
       hook.move(-127 * direction);
-    } else if (jammed && pros::millis() - nvt >= 500) {
+    } else if (jammed && pros::millis() - nvt >= 250) {
       jammed = false;
       hook.move(127 * direction);
     } else {
@@ -398,17 +405,11 @@ void opcontrol() {
       master.rumble("..-");
     }
     bool current_state = master.get_digital(pros::E_CONTROLLER_DIGITAL_R1);
-    static bool fit = false;
-    static bool held = false;
-    static bool stop = false;
     static int64_t fd = 0;
     if (current_state && !last_state) {
       lb.set_brake_mode(MOTOR_BRAKE_COAST);
       if (stage == -1 || stage == 0) {
         lbPID.target_set(200);
-        fit = false;
-        held = false;
-        stop = false;
         fd = 0;
         stage = 1;
       } else if (stage == 1) {
@@ -421,30 +422,14 @@ void opcontrol() {
       }
     }
     if (!current_state && stage != -1) {
-      lb.set_brake_mode(MOTOR_BRAKE_HOLD);
       lb.move(lbPID.compute(lb.get_position()));
     }
-    if (stage == 1 && lbPID.target_get() == 200) {
+    if (stage == 1 && lbPID.target_get() == 200 && lb.get_position() >= 150) {
+      hook.set_brake_mode(MOTOR_BRAKE_HOLD);
       intake.move(127);
-      if (!fit) {
-        hook.set_brake_mode(MOTOR_BRAKE_COAST);
-        hook.move(127);
-      } else {
-        hook.set_brake_mode(MOTOR_BRAKE_HOLD);
-        hook.move(50);
-      }
-      if (!held && hook.get_actual_velocity() != 0) {
-        held = true;
-      }
-      if (held && hook.get_actual_velocity() == 0 && !stop) {
-        fd = pros::millis();
-        stop = true;
-      }
-      if (stop && pros::millis() - fd >= 1000 && !fit) {
-        hook.move(0);
-        hook.set_brake_mode(MOTOR_BRAKE_HOLD);
-        fit = true;
-      }
+    }
+    if (stage == 2 && lbPID.target_get() == 800 && lb.get_position() <= 300) {
+      hook.move(127);
     }
     last_state = current_state;
 

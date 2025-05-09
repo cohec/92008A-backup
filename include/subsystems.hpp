@@ -19,3 +19,4 @@ inline ez::Piston ringrush('F');
 inline ez::Piston intakeLift('G');
 inline ez::PID lbPID{0.45, 0, 0, 0, "lb"};
 void sortcolor(bool enabled);
+void antijam(int direction);
