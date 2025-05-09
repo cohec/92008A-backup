@@ -29,8 +29,8 @@ ez::Drive chassis(
 //  - you should get positive values on the encoders going FORWARD and RIGHT
 // - `2.75` is the wheel diameter
 // - `4.0` is the distance from the center of the wheel to the center of the robot
-ez::tracking_wheel horiz_tracker(15, 2, 0.5);  // This tracking wheel is perpendicular to the drive wheels
-ez::tracking_wheel vert_tracker(16, 2, 1.25);   // This tracking wheel is parallel to the drive wheels
+//ez::tracking_wheel horiz_tracker(15, 2, 0.5);  // This tracking wheel is perpendicular to the drive wheels
+//ez::tracking_wheel vert_tracker(16, 2, 1.25);   // This tracking wheel is parallel to the drive wheels
 /**
  * Runs initialization code. This occurs as soon as the program is started.
  *
@@ -49,8 +49,8 @@ void initialize() {
   // Look at your horizontal tracking wheel and decide if it's in front of the midline of your robot or behind it
   //  - change `back` to `front` if the tracking wheel is in front of the midline
   //  - ignore this if you aren't using a horizontal tracker
-  chassis.odom_tracker_back_set(&horiz_tracker);
-  chassis.odom_tracker_right_set(&vert_tracker);
+  //chassis.odom_tracker_back_set(&horiz_tracker);
+  //chassis.odom_tracker_right_set(&vert_tracker);
   // Look at your vertical tracking wheel and decide if it's to the left or right of the center of the robot
   //  - change `left` to `right` if the tracking wheel is to the right of the centerline
   //  - ignore this if you aren't using a vertical tracker

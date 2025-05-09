@@ -9,6 +9,7 @@
 extern Drive chassis;
 extern std::string eject_color;
 inline pros::MotorGroup intake({4,-5});
+inline pros::Motor roller(4);
 inline pros::Motor hook(-5);
 inline pros::Motor lb(17);
 inline pros::Optical op(6);
