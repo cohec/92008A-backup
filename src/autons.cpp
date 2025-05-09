@@ -414,9 +414,9 @@ void blue_positive_awp() {
   */
   eject_color = "red";
   int time = pros::millis();
+  chassis.pid_odom_set({{5_in, 5_in}, fwd, 90}, false);
   intake.move(127);
   while (pros::millis() - time < 5000) {
-    antijam(1);
     sortcolor(true);
   }
   chassis.pid_wait();
