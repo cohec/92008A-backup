@@ -11,9 +11,9 @@
 /////
 
 // These are out of 127
-const int DRIVE_SPEED = 100;
-const int TURN_SPEED = 60;
-const int SWING_SPEED = 110;
+const int DS = 100;
+const int TS = 60;
+const int SS = 110;
 std::string eject_color = ""; // "red" or "blue"
 
 ///
@@ -63,13 +63,13 @@ void drive_example() {
   // The third parameter is a boolean (true or false) for enabling/disabling a slew at the start of drive motions
   // for slew, only enable it when the drive distance is greater than the slew distance + a few inches
 
-  chassis.pid_drive_set(24_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(24_in, DS, true);
   chassis.pid_wait();
 
-  chassis.pid_drive_set(-12_in, DRIVE_SPEED);
+  chassis.pid_drive_set(-12_in, DS);
   chassis.pid_wait();
 
-  chassis.pid_drive_set(-12_in, DRIVE_SPEED);
+  chassis.pid_drive_set(-12_in, DS);
   chassis.pid_wait();
 }
 
@@ -80,13 +80,13 @@ void turn_example() {
   // The first parameter is the target in degrees
   // The second parameter is max speed the robot will drive at
 
-  chassis.pid_turn_set(90_deg, TURN_SPEED);
+  chassis.pid_turn_set(90_deg, TS);
   chassis.pid_wait();
 
-  chassis.pid_turn_set(45_deg, TURN_SPEED);
+  chassis.pid_turn_set(45_deg, TS);
   chassis.pid_wait();
 
-  chassis.pid_turn_set(0_deg, TURN_SPEED);
+  chassis.pid_turn_set(0_deg, TS);
   chassis.pid_wait();
 }
 
@@ -94,19 +94,19 @@ void turn_example() {
 // Combining Turn + Drive
 ///
 void drive_and_turn() {
-  chassis.pid_drive_set(24_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(24_in, DS, true);
   chassis.pid_wait();
 
-  chassis.pid_turn_set(45_deg, TURN_SPEED);
+  chassis.pid_turn_set(45_deg, TS);
   chassis.pid_wait();
 
-  chassis.pid_turn_set(-45_deg, TURN_SPEED);
+  chassis.pid_turn_set(-45_deg, TS);
   chassis.pid_wait();
 
-  chassis.pid_turn_set(0_deg, TURN_SPEED);
+  chassis.pid_turn_set(0_deg, TS);
   chassis.pid_wait();
 
-  chassis.pid_drive_set(-24_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(-24_in, DS, true);
   chassis.pid_wait();
 }
 
@@ -119,22 +119,22 @@ void wait_until_change_speed() {
   // When the robot gets to 6 inches slowly, the robot will travel the remaining distance at full speed
   chassis.pid_drive_set(24_in, 30, true);
   chassis.pid_wait_until(6_in);
-  chassis.pid_speed_max_set(DRIVE_SPEED);  // After driving 6 inches at 30 speed, the robot will go the remaining distance at DRIVE_SPEED
+  chassis.pid_speed_max_set(DS);  // After driving 6 inches at 30 speed, the robot will go the remaining distance at DRIVE_SPEED
   chassis.pid_wait();
 
-  chassis.pid_turn_set(45_deg, TURN_SPEED);
+  chassis.pid_turn_set(45_deg, TS);
   chassis.pid_wait();
 
-  chassis.pid_turn_set(-45_deg, TURN_SPEED);
+  chassis.pid_turn_set(-45_deg, TS);
   chassis.pid_wait();
 
-  chassis.pid_turn_set(0_deg, TURN_SPEED);
+  chassis.pid_turn_set(0_deg, TS);
   chassis.pid_wait();
 
   // When the robot gets to -6 inches slowly, the robot will travel the remaining distance at full speed
   chassis.pid_drive_set(-24_in, 30, true);
   chassis.pid_wait_until(-6_in);
-  chassis.pid_speed_max_set(DRIVE_SPEED);  // After driving 6 inches at 30 speed, the robot will go the remaining distance at DRIVE_SPEED
+  chassis.pid_speed_max_set(DS);  // After driving 6 inches at 30 speed, the robot will go the remaining distance at DRIVE_SPEED
   chassis.pid_wait();
 }
 
@@ -147,16 +147,16 @@ void swing_example() {
   // The third parameter is the speed of the moving side of the drive
   // The fourth parameter is the speed of the still side of the drive, this allows for wider arcs
 
-  chassis.pid_swing_set(ez::LEFT_SWING, 45_deg, SWING_SPEED, 45);
+  chassis.pid_swing_set(ez::LEFT_SWING, 45_deg, SS, 45);
   chassis.pid_wait();
 
-  chassis.pid_swing_set(ez::RIGHT_SWING, 0_deg, SWING_SPEED, 45);
+  chassis.pid_swing_set(ez::RIGHT_SWING, 0_deg, SS, 45);
   chassis.pid_wait();
 
-  chassis.pid_swing_set(ez::RIGHT_SWING, 45_deg, SWING_SPEED, 45);
+  chassis.pid_swing_set(ez::RIGHT_SWING, 45_deg, SS, 45);
   chassis.pid_wait();
 
-  chassis.pid_swing_set(ez::LEFT_SWING, 0_deg, SWING_SPEED, 45);
+  chassis.pid_swing_set(ez::LEFT_SWING, 0_deg, SS, 45);
   chassis.pid_wait();
 }
 
@@ -167,20 +167,20 @@ void motion_chaining() {
   // Motion chaining is where motions all try to blend together instead of individual movements.
   // This works by exiting while the robot is still moving a little bit.
   // To use this, replace pid_wait with pid_wait_quick_chain.
-  chassis.pid_drive_set(24_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(24_in, DS, true);
   chassis.pid_wait();
 
-  chassis.pid_turn_set(45_deg, TURN_SPEED);
+  chassis.pid_turn_set(45_deg, TS);
   chassis.pid_wait_quick_chain();
 
-  chassis.pid_turn_set(-45_deg, TURN_SPEED);
+  chassis.pid_turn_set(-45_deg, TS);
   chassis.pid_wait_quick_chain();
 
-  chassis.pid_turn_set(0_deg, TURN_SPEED);
+  chassis.pid_turn_set(0_deg, TS);
   chassis.pid_wait();
 
   // Your final motion should still be a normal pid_wait
-  chassis.pid_drive_set(-24_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(-24_in, TS, true);
   chassis.pid_wait();
 }
 
@@ -188,19 +188,19 @@ void motion_chaining() {
 // Auto that tests everything
 ///
 void combining_movements() {
-  chassis.pid_drive_set(24_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(24_in, DS, true);
   chassis.pid_wait();
 
-  chassis.pid_turn_set(45_deg, TURN_SPEED);
+  chassis.pid_turn_set(45_deg, TS);
   chassis.pid_wait();
 
-  chassis.pid_swing_set(ez::RIGHT_SWING, -45_deg, SWING_SPEED, 45);
+  chassis.pid_swing_set(ez::RIGHT_SWING, -45_deg, SS, 45);
   chassis.pid_wait();
 
-  chassis.pid_turn_set(0_deg, TURN_SPEED);
+  chassis.pid_turn_set(0_deg, TS);
   chassis.pid_wait();
 
-  chassis.pid_drive_set(-24_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(-24_in, DS, true);
   chassis.pid_wait();
 }
 
@@ -230,7 +230,7 @@ void tug(int attempts) {
 // If there is no interference, the robot will drive forward and turn 90 degrees.
 // If interfered, the robot will drive forward and then attempt to drive backward.
 void interfered_example() {
-  chassis.pid_drive_set(24_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(24_in, DS, true);
   chassis.pid_wait();
 
   if (chassis.interfered) {
@@ -238,7 +238,7 @@ void interfered_example() {
     return;
   }
 
-  chassis.pid_turn_set(90_deg, TURN_SPEED);
+  chassis.pid_turn_set(90_deg, TS);
   chassis.pid_wait();
 }
 
@@ -250,13 +250,13 @@ void odom_drive_example() {
   // You can replace pid_drive_set with pid_odom_set and your robot will
   // have better error correction.
 
-  chassis.pid_odom_set(24_in, DRIVE_SPEED, true);
+  chassis.pid_odom_set(24_in, DS, true);
   chassis.pid_wait();
 
-  chassis.pid_odom_set(-12_in, DRIVE_SPEED);
+  chassis.pid_odom_set(-12_in, DS);
   chassis.pid_wait();
 
-  chassis.pid_odom_set(-12_in, DRIVE_SPEED);
+  chassis.pid_odom_set(-12_in, DS);
   chassis.pid_wait();
 }
 
@@ -265,14 +265,14 @@ void odom_drive_example() {
 ///
 void odom_pure_pursuit_example() {
   // Drive to 0, 30 and pass through 6, 10 and 0, 20 on the way, with slew
-  chassis.pid_odom_set({{{6_in, 10_in}, fwd, DRIVE_SPEED},
-                        {{0_in, 20_in}, fwd, DRIVE_SPEED},
-                        {{0_in, 30_in}, fwd, DRIVE_SPEED}},
+  chassis.pid_odom_set({{{6_in, 10_in}, fwd, DS},
+                        {{0_in, 20_in}, fwd, DS},
+                        {{0_in, 30_in}, fwd, DS}},
                        true);
   chassis.pid_wait();
 
   // Drive to 0, 0 backwards
-  chassis.pid_odom_set({{0_in, 0_in}, rev, DRIVE_SPEED},
+  chassis.pid_odom_set({{0_in, 0_in}, rev, DS},
                        true);
   chassis.pid_wait();
 }
@@ -281,9 +281,9 @@ void odom_pure_pursuit_example() {
 // Odom Pure Pursuit Wait Until
 ///
 void odom_pure_pursuit_wait_until_example() {
-  chassis.pid_odom_set({{{0_in, 24_in}, fwd, DRIVE_SPEED},
-                        {{12_in, 24_in}, fwd, DRIVE_SPEED},
-                        {{24_in, 24_in}, fwd, DRIVE_SPEED}},
+  chassis.pid_odom_set({{{0_in, 24_in}, fwd, DS},
+                        {{12_in, 24_in}, fwd, DS},
+                        {{24_in, 24_in}, fwd, DS}},
                        true);
   chassis.pid_wait_until_index(1);  // Waits until the robot passes 12, 24
   // Intake.move(127);  // Set your intake to start moving once it passes through the second point in the index
@@ -295,11 +295,11 @@ void odom_pure_pursuit_wait_until_example() {
 // Odom Boomerang
 ///
 void odom_boomerang_example() {
-  chassis.pid_odom_set({{0_in, 24_in, 45_deg}, fwd, DRIVE_SPEED},
+  chassis.pid_odom_set({{0_in, 24_in, 45_deg}, fwd, DS},
                        true);
   chassis.pid_wait();
 
-  chassis.pid_odom_set({{0_in, 0_in, 0_deg}, rev, DRIVE_SPEED},
+  chassis.pid_odom_set({{0_in, 0_in, 0_deg}, rev, DS},
                        true);
   chassis.pid_wait();
 }
@@ -308,13 +308,13 @@ void odom_boomerang_example() {
 // Odom Boomerang Injected Pure Pursuit
 ///
 void odom_boomerang_injected_pure_pursuit_example() {
-  chassis.pid_odom_set({{{0_in, 24_in, 45_deg}, fwd, DRIVE_SPEED},
-                        {{12_in, 24_in}, fwd, DRIVE_SPEED},
-                        {{24_in, 24_in}, fwd, DRIVE_SPEED}},
+  chassis.pid_odom_set({{{0_in, 24_in, 45_deg}, fwd, DS},
+                        {{12_in, 24_in}, fwd, DS},
+                        {{24_in, 24_in}, fwd, DS}},
                        true);
   chassis.pid_wait();
 
-  chassis.pid_odom_set({{0_in, 0_in, 0_deg}, rev, DRIVE_SPEED},
+  chassis.pid_odom_set({{0_in, 0_in, 0_deg}, rev, DS},
                        true);
   chassis.pid_wait();
 }
@@ -541,57 +541,57 @@ void skills() {
   pros::delay(500);
   hook.brake();
   //swing to the right of 90 degrees
-  chassis.pid_swing_set(ez::LEFT_SWING, 95_deg, 90);
+  chassis.pid_swing_set(ez::LEFT_SWING, 95_deg, SS);
   chassis.pid_wait();
   //Drive forward
-  chassis.pid_drive_set(-27_in, 100);
+  chassis.pid_drive_set(-27_in, DS);
   chassis.pid_wait();
   //Grab the goal
   goalClamp.set(true);
   chassis.pid_wait();
   //Turn to the left of -90 degrees
-  chassis.pid_turn_set(-78_deg, 90);
+  chassis.pid_turn_set(-78_deg, TS);
   chassis.pid_wait();
   //*****score the ring
   hook.move(128);
   intake.move(128);
   //Drive forward
-  chassis.pid_drive_set(24_in, 110);
+  chassis.pid_drive_set(24_in, DS);
   chassis.pid_wait();
-  chassis.pid_turn_set(-45_deg, 90);
+  chassis.pid_turn_set(-45_deg, TS);
   chassis.pid_wait();
-  chassis.pid_drive_set(80.5_in,90);
+  chassis.pid_drive_set(80.5_in,DS);
   chassis.pid_wait();
   //Drive Back
-  chassis.pid_drive_set(-26.83,90);
+  chassis.pid_drive_set(-26.83,DS);
   chassis.pid_wait();
   //Turn
-  chassis.pid_turn_set(-150_deg, 90);
+  chassis.pid_turn_set(-150_deg, TS);
   chassis.pid_wait();
   //Drive Forward
-  chassis.pid_drive_set(72,100);
+  chassis.pid_drive_set(72,DS);
   chassis.pid_wait();
   //Turn
-  chassis.pid_turn_set(-120,90);
+  chassis.pid_turn_set(-120,TS);
   chassis.pid_wait();
   intake.move(0);
   hook.brake();
   //Put the goal on the positive side
-  chassis.pid_drive_set(-17,90);
+  chassis.pid_drive_set(-17,DS);
   chassis.pid_wait();
   goalClamp.set(false);
   chassis.pid_wait();
-  chassis.pid_turn_set(-50.2,90);
+  chassis.pid_turn_set(-50.2,TS);
   chassis.pid_wait();
   intake.move(127);
-  chassis.pid_drive_set(17,90);
+  chassis.pid_drive_set(17,DS);
   chassis.pid_wait();
-  chassis.pid_turn_set(-16.5,90);
+  chassis.pid_turn_set(-16.5,TS);
   chassis.pid_wait();
 
-  chassis.pid_drive_set(48,90);
+  chassis.pid_drive_set(48,DS);
   chassis.pid_wait();
-  chassis.pid_turn_set(-45,90);
+  chassis.pid_turn_set(-45,TS);
   chassis.pid_wait();
   //score ring
   lbPID.target_set(200);
@@ -600,22 +600,22 @@ void skills() {
   pros::delay(500);
   lbPID.target_set(800);
   lb.move(lbPID.compute(lb.get_position()));
-  chassis.pid_drive_set(-12,90);
+  chassis.pid_drive_set(-12,DS);
   lbPID.target_set(0);
   lb.move(lbPID.compute(lb.get_position()));
 
-  chassis.pid_turn_set(152.8,90);
+  chassis.pid_turn_set(152.8,TS);
   chassis.pid_wait();
 
   intake.move(127);
   hook.move(0);
 
-  chassis.pid_drive_set(46.64,90);
+  chassis.pid_drive_set(46.64,DS);
   chassis.pid_wait();
 
-  chassis.pid_turn_set(-160.3,90);
+  chassis.pid_turn_set(-160.3,TS);
   chassis.pid_wait();
-  chassis.pid_drive_set(-35,90);
+  chassis.pid_drive_set(-35,DS);
   chassis.pid_wait();
 
   goalClamp.set(true);
@@ -623,21 +623,21 @@ void skills() {
   hook.move(127);
   intake.move(127);
 
-  chassis.pid_turn_set(-90,90);
+  chassis.pid_turn_set(-90,TS);
   chassis.pid_wait();
-  chassis.pid_drive_set(35,90);
-  chassis.pid_wait();
-
-
-  chassis.pid_turn_set(-37,90);
+  chassis.pid_drive_set(35,DS);
   chassis.pid_wait();
 
-  chassis.pid_drive_set(25,90);
-  chassis.pid_wait();
-  chassis.pid_turn_set(90,90);
+
+  chassis.pid_turn_set(-37,TS);
   chassis.pid_wait();
 
-  chassis.pid_drive_set(84,90);
+  chassis.pid_drive_set(25,DS);
   chassis.pid_wait();
-  
+  chassis.pid_turn_set(90,TS);
+  chassis.pid_wait();
+
+  chassis.pid_drive_set(84,DS);
+  chassis.pid_wait();
+
 }
