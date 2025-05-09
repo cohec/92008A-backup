@@ -360,7 +360,10 @@ void opcontrol() {
 
     // Intake lift
     intakeLift.set(master.get_digital(pros::E_CONTROLLER_DIGITAL_Y));
-
+    if (intakeLift.get() == true) {
+      ringrush.set(false);
+      goalrush.set(false);
+    }
     // Climb arm
     climbArm.button_toggle(master.get_digital(pros::E_CONTROLLER_DIGITAL_UP));
 
