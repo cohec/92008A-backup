@@ -416,7 +416,6 @@ void blue_positive_awp() {
   int time = pros::millis();
   intake.move(127);
   while (pros::millis() - time < 5000) {
-    antijam(1);
     sortcolor(true);
   }
   chassis.pid_wait();
@@ -545,6 +544,7 @@ void skills() {
   chassis.pid_wait();
   //*****score the ring
   hook.move(128);
+  intake.move(128);
   //Drive forward
   chassis.pid_drive_set(24_in, 110);
   chassis.pid_wait();
@@ -562,25 +562,28 @@ void skills() {
   chassis.pid_drive_set(72,100);
   chassis.pid_wait();
   //Turn
-  chassis.pid_turn_set(-115.5,90);
+  chassis.pid_turn_set(-120,90);
   chassis.pid_wait();
+  intake.move(0);
+  hook.brake();
   //Put the goal on the positive side
   chassis.pid_drive_set(-17,90);
   chassis.pid_wait();
   goalClamp.set(false);
   chassis.pid_wait();
-  chassis.pid_turn_set(50.2,90);
+  chassis.pid_turn_set(-50.2,90);
   chassis.pid_wait();
+  intake.move(127);
   chassis.pid_drive_set(17,90);
   chassis.pid_wait();
-  chassis.pid_turn_set(16.5,90);
+  chassis.pid_turn_set(-16.5,90);
   chassis.pid_wait();
 
   chassis.pid_drive_set(48,90);
   chassis.pid_wait();
-  hook.brake();
   chassis.pid_turn_set(-45,90);
   chassis.pid_wait();
+  //score ring
   lbPID.target_set(200);
   lb.move(lbPID.compute(lb.get_position()));
   hook.move(127);
@@ -591,5 +594,40 @@ void skills() {
   lbPID.target_set(0);
   lb.move(lbPID.compute(lb.get_position()));
 
+  chassis.pid_turn_set(152.8,90);
+  chassis.pid_wait();
+
+  intake.move(127);
+  hook.move(0);
+
+  chassis.pid_drive_set(46.64,90);
+  chassis.pid_wait();
+
+  chassis.pid_turn_set(-160.3,90);
+  chassis.pid_wait();
+  chassis.pid_drive_set(-35,90);
+  chassis.pid_wait();
+
+  goalClamp.set(true);
+  chassis.pid_wait();
+  hook.move(127);
+  intake.move(127);
+
+  chassis.pid_turn_set(-90,90);
+  chassis.pid_wait();
+  chassis.pid_drive_set(35,90);
+  chassis.pid_wait();
+
+
+  chassis.pid_turn_set(-37,90);
+  chassis.pid_wait();
+
+  chassis.pid_drive_set(25,90);
+  chassis.pid_wait();
+  chassis.pid_turn_set(90,90);
+  chassis.pid_wait();
+
+  chassis.pid_drive_set(84,90);
+  chassis.pid_wait();
   
 }
