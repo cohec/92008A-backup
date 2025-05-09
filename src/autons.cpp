@@ -395,7 +395,14 @@ void blue_negative_awp() {
   drive to touch hang
   */
   eject_color = "red";
-  chassis.pid_odom_set({{5_in, 12_in, 30_deg}, fwd, 90}, false);
+  int time = pros::millis();
+  intake.move(127);
+  pros::delay(500);
+  chassis.pid_drive_set(5_in, 60);
+  intake.move(127);
+  while (pros::millis() - time < 5000) {
+    sortcolor(true);
+  }
   chassis.pid_wait();
 }
 
@@ -414,7 +421,9 @@ void blue_positive_awp() {
   */
   eject_color = "red";
   int time = pros::millis();
-  chassis.pid_odom_set({{5_in, 5_in}, fwd, 90}, false);
+  intake.move(127);
+  pros::delay(500);
+  chassis.pid_drive_set(5_in, 60);
   intake.move(127);
   while (pros::millis() - time < 5000) {
     sortcolor(true);
