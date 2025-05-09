@@ -78,16 +78,7 @@ void initialize() {
     {"red + awp", red_positive_awp},
     {"red goal rush", red_goal_rush},
     {"red top rings", red_top_rings},
-    {"auto skills", skills},
-    {"motion chaining", motion_chaining},
-    {"combining movements", combining_movements},
-    {"interfered example", interfered_example},
-    {"odom drive example", odom_drive_example},
-    {"odom pure pursuit example", odom_pure_pursuit_example},
-    {"odom pure pursuit wait until example", odom_pure_pursuit_wait_until_example},
-    {"odom boomerang example", odom_boomerang_example},
-    {"odom boomerang injected pure pursuit example", odom_boomerang_injected_pure_pursuit_example},
-    {"Measure Offsets\n\nThis will turn the robot a bunch of times and calculate your offsets for your tracking wheels.", measure_offsets},
+    {"auto skills", skills}
   });
 
   // Initialize chassis and auton selector

@@ -404,15 +404,14 @@ void blue_negative_awp() {
   chassis.pid_drive_set(5_in, DS);
   chassis.pid_wait();
   intakeLift.set(false);
-  lbPID.target_set(200);
+  lbPID.target_set(1000);
   lb.move(lbPID.compute(lb.get_position()));
   pros::delay(200);
   chassis.pid_drive_set(-5_in, DS);
   chassis.pid_wait_quick();
   chassis.pid_turn_set(135_deg, TS);
-  lbPID.target_set(-200);
+  lbPID.target_set(0);
   lb.move(lbPID.compute(lb.get_position()));
-  lb.tare_position();
   chassis.pid_drive_set(-30_in, DS);
   chassis.pid_wait();
   chassis.pid_drive_set(-10_in, DS/2);
@@ -426,9 +425,11 @@ void blue_negative_awp() {
   chassis.pid_swing_set(ez::LEFT_SWING, 90, SS/2);
   chassis.pid_wait();
   chassis.pid_drive_set(10_in, DS);
+  chassis.pid_wait();
   chassis.pid_turn_set(120_deg, TS);
-  chassis.pid_wait_quick(); 
+  chassis.pid_wait(); 
   chassis.pid_drive_set(24_in, DS);
+  chassis.pid_wait();
   
 }
 
