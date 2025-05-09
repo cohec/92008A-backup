@@ -538,13 +538,13 @@ void red_top_rings() {
 void skills() {
   //score the ring
   hook.move(127);
-  pros::delay(500);
+  pros::delay(700);
   hook.brake();
   //swing to the right of 90 degrees
-  chassis.pid_swing_set(ez::LEFT_SWING, 95_deg, SS);
+  chassis.pid_swing_set(ez::LEFT_SWING, 106.2_deg, SS);
   chassis.pid_wait();
   //Drive forward
-  chassis.pid_drive_set(-27_in, DS);
+  chassis.pid_drive_set(-32.56_in, 66);
   chassis.pid_wait();
   //Grab the goal
   goalClamp.set(true);
@@ -556,41 +556,43 @@ void skills() {
   hook.move(128);
   intake.move(128);
   //Drive forward
-  chassis.pid_drive_set(24_in, DS);
+  chassis.pid_swing_set(ez::RIGHT_SWING, -30, 75, 90);
   chassis.pid_wait_quick_chain();
-  chassis.pid_turn_set(-45_deg, TS);
-  chassis.pid_wait_quick_chain();
-  chassis.pid_drive_set(80.5_in,DS);
-  chassis.pid_wait_quick_chain();
+  chassis.pid_swing_set(ez::LEFT_SWING, 0_deg, 90, 75);
+  chassis.pid_wait();
+  chassis.pid_turn_set(-30,90);
+  chassis.pid_wait();
+  chassis.pid_drive_set(26.83,90);
+  chassis.pid_wait();
   //Drive Back
   chassis.pid_drive_set(-26.83,DS);
-  chassis.pid_wait_quick_chain();
+  chassis.pid_wait();
   //Turn
   chassis.pid_turn_set(180_deg, TS);
-  chassis.pid_wait_quick_chain();
+  chassis.pid_wait();
   //Drive Forward
-  chassis.pid_drive_set(72,DS);
-  chassis.pid_wait_quick_chain();
+  chassis.pid_drive_set(84,DS);
+  chassis.pid_wait();
   //Turn
-  chassis.pid_turn_set(66,TS);
+  chassis.pid_turn_set(68,TS);
   chassis.pid_wait();
   intake.move(0);
   hook.brake();
   //Put the goal on the positive side
-  chassis.pid_drive_set(-17,DS);
+  chassis.pid_drive_set(-10,DS);
   chassis.pid_wait();
   goalClamp.set(false);
   chassis.pid_wait();
-  chassis.pid_turn_set(13,TS);
+  chassis.pid_turn_set(5,TS);
   chassis.pid_wait();
   intake.move(127);
-  chassis.pid_drive_set(17,DS);
-  chassis.pid_wait_quick_chain();
+  chassis.pid_drive_set(16,DS);
+  chassis.pid_wait();
   chassis.pid_turn_set(0,TS);
-  chassis.pid_wait_quick_chain();
+  chassis.pid_wait();
 
   chassis.pid_drive_set(48,DS);
-  chassis.pid_wait_quick_chain();
+  chassis.pid_wait();
   chassis.pid_turn_set(-90,TS);
   chassis.pid_wait();
   //score ring
@@ -605,16 +607,16 @@ void skills() {
   lb.move(lbPID.compute(lb.get_position()));
 
   chassis.pid_turn_set(55.8,TS);
-  chassis.pid_wait_quick_chain();
+  chassis.pid_wait();
 
   intake.move(127);
   hook.move(0);
 
   chassis.pid_drive_set(46.64,DS);
-  chassis.pid_wait_quick_chain();
+  chassis.pid_wait();
 
   chassis.pid_turn_set(-136.9,TS);
-  chassis.pid_wait_quick_chain();
+  chassis.pid_wait();
   chassis.pid_drive_set(-35,DS);
   chassis.pid_wait();
 
@@ -623,18 +625,18 @@ void skills() {
   hook.move(127);
 
   chassis.pid_turn_set(134.6,TS);
-  chassis.pid_wait_quick_chain();
+  chassis.pid_wait();
   chassis.pid_drive_set(35,DS);
-  chassis.pid_wait_quick_chain();
+  chassis.pid_wait();
 
 
   chassis.pid_turn_set(90,TS);
-  chassis.pid_wait_quick_chain();
+  chassis.pid_wait();
 
   chassis.pid_drive_set(25,DS);
-  chassis.pid_wait_quick_chain();
+  chassis.pid_wait();
   chassis.pid_turn_set(-180,TS);
-  chassis.pid_wait_quick_chain();
+  chassis.pid_wait();
 
   chassis.pid_drive_set(84,DS);
   chassis.pid_wait();
@@ -643,7 +645,7 @@ void skills() {
   hook.brake();
 
   chassis.pid_turn_set(111,TS);
-  chassis.pid_wait_quick_chain();
+  chassis.pid_wait();
   chassis.pid_drive_set(-17,DS);
   chassis.pid_wait();
   goalClamp.set(false);
