@@ -407,13 +407,10 @@ void blue_negative_awp() {
   chassis.pid_wait();
   chassis.pid_swing_set(ez::LEFT_SWING, 180_deg, SS);
   intakeLift.set(true);
-  hook.move(0);
-  roller.move(127);
   chassis.pid_wait();
   chassis.pid_drive_set(8_in, DS);
   chassis.pid_wait();
   intakeLift.set(false);
-  roller.move(127);
   lbPID.target_set(975);
   while (lb.get_position() < 950) {
     lb.move(lbPID.compute(lb.get_position()));
@@ -436,7 +433,7 @@ void blue_negative_awp() {
   chassis.pid_drive_set(-6_in, DS/2);
   chassis.pid_wait();
   goalClamp.set(true);
-  chassis.pid_drive_set(4_in, DS);
+  chassis.pid_drive_set(7_in, DS);
   chassis.pid_turn_set(-90_deg, TS);
   chassis.pid_wait();
   pros::delay(200);
@@ -449,9 +446,8 @@ void blue_negative_awp() {
   chassis.pid_wait();
   chassis.pid_turn_set(110_deg, TS);
   chassis.pid_wait(); 
-  chassis.pid_drive_set(25_in, DS);
+  chassis.pid_drive_set(24_in, DS);
   chassis.pid_wait();
-  
 }
 
 void blue_positive_awp() {
@@ -532,6 +528,57 @@ void red_negative_awp() {
   drive to touch hang
   */
   eject_color = "blue";
+  lbPID.target_set(200);
+  while (lb.get_position() < 180) {
+    lb.move(lbPID.compute(lb.get_position()));
+  }
+  pros::delay(100);
+  intake.move(127);
+  pros::delay(500);
+  chassis.pid_drive_set(8_in, DS);
+  chassis.pid_wait();
+  chassis.pid_swing_set(ez::LEFT_SWING, 180_deg, SS);
+  intakeLift.set(true);
+  chassis.pid_wait();
+  chassis.pid_drive_set(8_in, DS);
+  chassis.pid_wait();
+  intakeLift.set(false);
+  lbPID.target_set(975);
+  while (lb.get_position() < 950) {
+    lb.move(lbPID.compute(lb.get_position()));
+    while (lb.get_position() <= 300) {
+      hook.move(127);
+    }
+  }
+  pros::delay(200);
+  chassis.pid_drive_set(-8_in, DS);
+  chassis.pid_wait();
+  intake.move(0);
+  lbPID.target_set(0);
+  while (lb.get_position() > 10) {
+    lb.move(lbPID.compute(lb.get_position()));
+  }
+  chassis.pid_turn_set(135_deg, TS);
+  chassis.pid_wait();
+  chassis.pid_drive_set(-30_in, DS);
+  chassis.pid_wait();
+  chassis.pid_drive_set(-6_in, DS/2);
+  chassis.pid_wait();
+  goalClamp.set(true);
+  chassis.pid_drive_set(7_in, DS);
+  chassis.pid_turn_set(-90_deg, TS);
+  chassis.pid_wait();
+  pros::delay(200);
+  intake.move(127);
+  chassis.pid_drive_set(25_in, DS/1.5);
+  chassis.pid_wait_quick();
+  chassis.pid_swing_set(ez::LEFT_SWING, 90, SS/1.5);
+  chassis.pid_wait();
+  chassis.pid_drive_set(15_in, DS);
+  chassis.pid_wait();
+  chassis.pid_turn_set(110_deg, TS);
+  chassis.pid_wait(); 
+  chassis.pid_drive_set(24_in, DS);
   chassis.pid_wait();
 }
 
