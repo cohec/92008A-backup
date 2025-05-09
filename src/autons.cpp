@@ -547,42 +547,42 @@ void skills() {
   hook.move(128);
   intake.move(128);
   //Drive forward
-  chassis.pid_drive_set(24_in, 110);
+  chassis.pid_drive_set(24_in, DS);
   chassis.pid_wait();
-  chassis.pid_turn_set(-45_deg, 90);
+  chassis.pid_turn_set(-45_deg, TS);
   chassis.pid_wait();
-  chassis.pid_drive_set(80.5_in,90);
+  chassis.pid_drive_set(80.5_in,DS);
   chassis.pid_wait();
   //Drive Back
-  chassis.pid_drive_set(-26.83,90);
+  chassis.pid_drive_set(-26.83,DS);
   chassis.pid_wait();
   //Turn
-  chassis.pid_turn_set(-150_deg, 90);
+  chassis.pid_turn_set(-150_deg, TS);
   chassis.pid_wait();
   //Drive Forward
-  chassis.pid_drive_set(72,100);
+  chassis.pid_drive_set(72,DS);
   chassis.pid_wait();
   //Turn
-  chassis.pid_turn_set(-120,90);
+  chassis.pid_turn_set(-120,TS);
   chassis.pid_wait();
   intake.move(0);
   hook.brake();
   //Put the goal on the positive side
-  chassis.pid_drive_set(-17,90);
+  chassis.pid_drive_set(-17,DS);
   chassis.pid_wait();
   goalClamp.set(false);
   chassis.pid_wait();
-  chassis.pid_turn_set(-50.2,90);
+  chassis.pid_turn_set(-50.2,TS);
   chassis.pid_wait();
   intake.move(127);
-  chassis.pid_drive_set(17,90);
+  chassis.pid_drive_set(17,DS);
   chassis.pid_wait();
-  chassis.pid_turn_set(-16.5,90);
+  chassis.pid_turn_set(-16.5,TS);
   chassis.pid_wait();
 
-  chassis.pid_drive_set(48,90);
+  chassis.pid_drive_set(48,DS);
   chassis.pid_wait();
-  chassis.pid_turn_set(-45,90);
+  chassis.pid_turn_set(-45,TS);
   chassis.pid_wait();
   //score ring
   lbPID.target_set(200);
@@ -591,22 +591,22 @@ void skills() {
   pros::delay(500);
   lbPID.target_set(800);
   lb.move(lbPID.compute(lb.get_position()));
-  chassis.pid_drive_set(-12,90);
+  chassis.pid_drive_set(-12,DS);
   lbPID.target_set(0);
   lb.move(lbPID.compute(lb.get_position()));
 
-  chassis.pid_turn_set(152.8,90);
+  chassis.pid_turn_set(152.8,TS);
   chassis.pid_wait();
 
   intake.move(127);
   hook.move(0);
 
-  chassis.pid_drive_set(46.64,90);
+  chassis.pid_drive_set(46.64,DS);
   chassis.pid_wait();
 
-  chassis.pid_turn_set(-160.3,90);
+  chassis.pid_turn_set(-160.3,TS);
   chassis.pid_wait();
-  chassis.pid_drive_set(-35,90);
+  chassis.pid_drive_set(-35,DS);
   chassis.pid_wait();
 
   goalClamp.set(true);
@@ -614,21 +614,21 @@ void skills() {
   hook.move(127);
   intake.move(127);
 
-  chassis.pid_turn_set(-90,90);
+  chassis.pid_turn_set(-90,TS);
   chassis.pid_wait();
-  chassis.pid_drive_set(35,100);
-  chassis.pid_wait();
-
-
-  chassis.pid_turn_set(-37,100);
+  chassis.pid_drive_set(35,DS);
   chassis.pid_wait();
 
-  chassis.pid_drive_set(25,90);
-  chassis.pid_wait();
-  chassis.pid_turn_set(90,90);
+
+  chassis.pid_turn_set(-37,TS);
   chassis.pid_wait();
 
-  chassis.pid_drive_set(84,90);
+  chassis.pid_drive_set(25,DS);
+  chassis.pid_wait();
+  chassis.pid_turn_set(90,TS);
+  chassis.pid_wait();
+
+  chassis.pid_drive_set(84,DS);
   chassis.pid_wait();
 
 }
