@@ -682,14 +682,25 @@ void skills() {
   hook.move(128);
   intake.move(128);
   //Drive forward
-  chassis.pid_swing_set(ez::RIGHT_SWING, -30, 75, 90);
+
+  chassis.pid_drive_set(24,DS);
   chassis.pid_wait();
-  chassis.pid_swing_set(ez::LEFT_SWING, 0_deg, 90, 75);
+  
+  chassis.pid_drive_set(-12,DS);
   chassis.pid_wait();
-  chassis.pid_turn_set(-30,TS);
+  chassis.pid_turn_set(-22.7,TS);
   chassis.pid_wait();
-  chassis.pid_drive_set(26.83,DS);
+  chassis.pid_drive_set(84,DS);
   chassis.pid_wait();
+
+  //chassis.pid_swing_set(ez::RIGHT_SWING, -30, 75, 90);
+  //chassis.pid_wait();
+  //chassis.pid_swing_set(ez::LEFT_SWING, 0_deg, 90, 75);
+  //chassis.pid_wait();
+  //chassis.pid_turn_set(-30,TS);
+  //chassis.pid_wait();
+  //chassis.pid_drive_set(26.83,DS);
+  //chassis.pid_wait();
   //Drive Back
   chassis.pid_drive_set(-26.83,DS);
   chassis.pid_wait();
@@ -731,8 +742,9 @@ void skills() {
   chassis.pid_drive_set(-12,DS);
   lbPID.target_set(0);
   lb.move(lbPID.compute(lb.get_position()));
+  chassis.pid_wait();
 
-  chassis.pid_turn_set(55.8,TS);
+  chassis.pid_turn_set(56,TS);
   chassis.pid_wait();
 
   intake.move(127);
