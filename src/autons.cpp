@@ -396,8 +396,9 @@ void blue_negative_awp() {
   drive to touch hang
   */
   eject_color = "red";
+  int64_t failsafe = pros::millis();
   lbPID.target_set(200);
-  while (lb.get_position() < 180) {
+  while (lb.get_position() < 180 && pros::millis() - failsafe < 500) {
     lb.move(lbPID.compute(lb.get_position()));
   }
   pros::delay(100);
@@ -405,16 +406,17 @@ void blue_negative_awp() {
   pros::delay(500);
   chassis.pid_drive_set(8_in, DS);
   chassis.pid_wait();
-  chassis.pid_swing_set(ez::LEFT_SWING, 180_deg, SS);
+  chassis.pid_swing_set(ez::RIGHT_SWING, 180_deg, SS);
   intakeLift.set(true);
   chassis.pid_wait();
   chassis.pid_drive_set(8_in, DS);
   chassis.pid_wait();
   intakeLift.set(false);
+  failsafe = pros::millis();
   lbPID.target_set(975);
-  while (lb.get_position() < 950) {
+  while (lb.get_position() < 950 && pros::millis() - failsafe < 500) {
     lb.move(lbPID.compute(lb.get_position()));
-    while (lb.get_position() <= 300) {
+    if (lb.get_position() <= 300) {
       hook.move(127);
     }
   }
@@ -422,11 +424,12 @@ void blue_negative_awp() {
   chassis.pid_drive_set(-8_in, DS);
   chassis.pid_wait();
   intake.move(0);
+  failsafe = pros::millis();
   lbPID.target_set(0);
-  while (lb.get_position() > 10) {
+  while (lb.get_position() > 10 && pros::millis() - failsafe < 500) {
     lb.move(lbPID.compute(lb.get_position()));
   }
-  chassis.pid_turn_set(135_deg, TS);
+  chassis.pid_turn_set(-135_deg, TS);
   chassis.pid_wait();
   chassis.pid_drive_set(-30_in, DS);
   chassis.pid_wait();
@@ -434,17 +437,17 @@ void blue_negative_awp() {
   chassis.pid_wait();
   goalClamp.set(true);
   chassis.pid_drive_set(7_in, DS);
-  chassis.pid_turn_set(-90_deg, TS);
+  chassis.pid_turn_set(90_deg, TS);
   chassis.pid_wait();
   pros::delay(200);
   intake.move(127);
   chassis.pid_drive_set(25_in, DS/1.5);
   chassis.pid_wait_quick();
-  chassis.pid_swing_set(ez::LEFT_SWING, 90, SS/1.5);
+  chassis.pid_swing_set(ez::RIGHT_SWING, 90, SS/1.5);
   chassis.pid_wait();
   chassis.pid_drive_set(15_in, DS);
   chassis.pid_wait();
-  chassis.pid_turn_set(110_deg, TS);
+  chassis.pid_turn_set(-110_deg, TS);
   chassis.pid_wait(); 
   chassis.pid_drive_set(24_in, DS);
   chassis.pid_wait();
@@ -472,7 +475,6 @@ void blue_positive_awp() {
   while (pros::millis() - time < 5000) {
     sortcolor(true);
   }
-  chassis.pid_wait();
 }
 
 void blue_goal_rush() {
@@ -491,7 +493,47 @@ void blue_goal_rush() {
   go for eyelash tech t1 contact
   */
   eject_color = "red";
+  roller.move(-127);
+  chassis.pid_drive_set(43_in, 127);
+  chassis.pid_wait_until(30_in);
+  goalrush.set(true);
+  chassis.pid_wait_until(42_in);
+  goalrush.set(false);
+  chassis.pid_drive_set(-12_in, 127);
   chassis.pid_wait();
+  goalrush.set(true);
+  chassis.pid_drive_set(-5_in, DS);
+  chassis.pid_wait();
+  goalrush.set(false);
+  chassis.pid_turn_set(210_deg, TS);
+  chassis.pid_wait();
+  chassis.pid_drive_set(-7_in, DS/2);
+  chassis.pid_wait();
+  goalClamp.set(true);
+  intake.move(127);
+  pros::delay(1500);
+  intake.move(0);
+  goalClamp.set(false);
+  chassis.pid_drive_set(17_in, DS);
+  chassis.pid_wait();
+  chassis.pid_turn_set(135_deg, TS);
+  chassis.pid_wait();
+  chassis.pid_drive_set(-29_in, DS);
+  chassis.pid_wait();
+  chassis.pid_drive_set(-7_in, DS/2);
+  chassis.pid_wait();
+  goalClamp.set(true);
+  intake.move(127);
+  chassis.pid_drive_set(36_in, DS);
+  chassis.pid_wait();
+  chassis.pid_drive_set(18_in, DS/1.5);
+  chassis.pid_wait();
+  pros::delay(100);
+  chassis.pid_drive_set(-5_in, DS);
+  chassis.pid_wait();
+  chassis.pid_turn_set(-45_deg, TS);
+  chassis.pid_wait();
+  chassis.pid_drive_set(38_in, DS);
 }
 
 void blue_top_rings() {
@@ -528,8 +570,9 @@ void red_negative_awp() {
   drive to touch hang
   */
   eject_color = "blue";
+  int64_t failsafe = pros::millis();
   lbPID.target_set(200);
-  while (lb.get_position() < 180) {
+  while (lb.get_position() < 180 && pros::millis() - failsafe < 500) {
     lb.move(lbPID.compute(lb.get_position()));
   }
   pros::delay(100);
@@ -543,10 +586,11 @@ void red_negative_awp() {
   chassis.pid_drive_set(8_in, DS);
   chassis.pid_wait();
   intakeLift.set(false);
+  failsafe = pros::millis();
   lbPID.target_set(975);
-  while (lb.get_position() < 950) {
+  while (lb.get_position() < 950 && pros::millis() - failsafe < 500) {
     lb.move(lbPID.compute(lb.get_position()));
-    while (lb.get_position() <= 300) {
+    if (lb.get_position() <= 300) {
       hook.move(127);
     }
   }
@@ -554,8 +598,9 @@ void red_negative_awp() {
   chassis.pid_drive_set(-8_in, DS);
   chassis.pid_wait();
   intake.move(0);
+  failsafe = pros::millis();
   lbPID.target_set(0);
-  while (lb.get_position() > 10) {
+  while (lb.get_position() > 10 && pros::millis() - failsafe < 500) {
     lb.move(lbPID.compute(lb.get_position()));
   }
   chassis.pid_turn_set(135_deg, TS);
@@ -566,7 +611,7 @@ void red_negative_awp() {
   chassis.pid_wait();
   goalClamp.set(true);
   chassis.pid_drive_set(7_in, DS);
-  chassis.pid_turn_set(-90_deg, TS);
+  chassis.pid_turn_set(90_deg, TS);
   chassis.pid_wait();
   pros::delay(200);
   intake.move(127);
@@ -579,23 +624,6 @@ void red_negative_awp() {
   chassis.pid_turn_set(110_deg, TS);
   chassis.pid_wait(); 
   chassis.pid_drive_set(24_in, DS);
-  chassis.pid_wait();
-}
-
-void red_positive_awp() {
-  /*
-  place robot in front of alliancestake
-  score preload
-  go to mid goal
-  extend goal doinker
-  retract and pull back
-  clamp goal
-  get closest ring
-  sweep corner
-  intake those
-  drive to touch hang
-  */
-  eject_color = "blue";
   chassis.pid_wait();
 }
 
