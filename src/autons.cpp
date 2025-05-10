@@ -383,7 +383,6 @@ void measure_offsets() {
 // . . .
 // Make your own autonomous functions here!
 // . . .
-
 void blue_negative_awp() {
   /*
   place robot in front of alliancestake
@@ -467,14 +466,6 @@ void blue_positive_awp() {
   drive to touch hang
   */
   eject_color = "red";
-  int time = pros::millis();
-  intake.move(127);
-  pros::delay(500);
-  chassis.pid_drive_set(5_in, 60);
-  intake.move(127);
-  while (pros::millis() - time < 5000) {
-    sortcolor(true);
-  }
 }
 
 void blue_goal_rush() {
@@ -625,6 +616,22 @@ void red_negative_awp() {
   chassis.pid_wait(); 
   chassis.pid_drive_set(24_in, DS);
   chassis.pid_wait();
+}
+
+void red_positive_awp() {
+  /*
+  place robot in front of alliancestake
+  score preload
+  go to mid goal
+  extend goal doinker
+  retract and pull back
+  clamp goal
+  get closest ring
+  sweep corner
+  intake those
+  drive to touch hang
+  */
+  eject_color = "red";
 }
 
 void red_goal_rush() {
