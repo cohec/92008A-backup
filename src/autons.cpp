@@ -731,10 +731,14 @@ void skills() {
   hook.move(127);
   pros::delay(500);
   lbPID.target_set(800);
-  lb.move(lbPID.compute(lb.get_position()));
+  while (lb.get_position() < 790) {
+    lb.move(lbPID.compute(lb.get_position()));
+  }
   chassis.pid_drive_set(-12,DS);
   lbPID.target_set(0);
-  lb.move(lbPID.compute(lb.get_position()));
+  while (lb.get_position() > 10) {
+    lb.move(lbPID.compute(lb.get_position()));
+  }
   chassis.pid_wait();
 
   chassis.pid_turn_set(56,TS);
@@ -776,16 +780,7 @@ void skills() {
   chassis.pid_turn_set(-60,TS);
   chassis.pid_wait();
 
-  chassis.pid_drive_set(-5,DS);
-  chassis.pid_wait();
-
-  goalClamp.set(true);
-  chassis.pid_wait();
-
-  chassis.pid_turn_set(134.4,TS);
-  chassis.pid_wait();
-
-  chassis.pid_drive_set(-35,DS);
+  chassis.pid_drive_set(-5,50);
   chassis.pid_wait();
 
   goalClamp.set(true);
@@ -801,7 +796,7 @@ void skills() {
   chassis.pid_turn_set(90,TS);
   chassis.pid_wait();
 
-  chassis.pid_drive_set(25,DS);
+  chassis.pid_drive_set(24,DS);
   chassis.pid_wait();
   chassis.pid_turn_set(-180,TS);
   chassis.pid_wait();
