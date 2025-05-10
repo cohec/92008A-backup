@@ -709,27 +709,25 @@ void skills() {
   chassis.pid_turn_set(180_deg, TS);
   chassis.pid_wait();
   //Drive Forward
-  chassis.pid_drive_set(74,DS);
+  chassis.pid_drive_set(78,DS);
   chassis.pid_wait();
   //Turn
   chassis.pid_turn_set(68,TS);
   chassis.pid_wait();
-  intake.move(0);
-  hook.brake();
+
   //Put the goal on the positive side
   chassis.pid_drive_set(-10,DS);
   chassis.pid_wait();
   goalClamp.set(false);
   chassis.pid_wait();
-  chassis.pid_turn_set(5,TS);
-  chassis.pid_wait();
-  intake.move(127);
-  chassis.pid_drive_set(16,DS);
-  chassis.pid_wait();
   chassis.pid_turn_set(0,TS);
   chassis.pid_wait();
+  hook.move(0);
+  chassis.pid_drive_set(16,DS);
+  chassis.pid_wait();
 
-  chassis.pid_drive_set(48,DS);
+
+  chassis.pid_drive_set(64,DS);
   chassis.pid_wait();
   chassis.pid_turn_set(-90,TS);
   chassis.pid_wait();
@@ -813,7 +811,7 @@ void skills() {
   chassis.pid_wait();
 
   intake.move(0);
-  hook.brake();
+  hook.move(0);
 
   chassis.pid_turn_set(111,TS);
   chassis.pid_wait();
