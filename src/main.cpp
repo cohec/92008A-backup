@@ -403,7 +403,7 @@ void opcontrol() {
     if (current_state && !last_state) {
       lb.set_brake_mode(MOTOR_BRAKE_COAST);
       if (stage == -1 || stage == 0) {
-        lbPID.target_set(200);
+        lbPID.target_set(180);
         fd = 0;
         stage = 1;
       } else if (stage == 1) {
@@ -418,7 +418,7 @@ void opcontrol() {
     if (!current_state && stage != -1) {
       lb.move(lbPID.compute(lb.get_position()));
     }
-    if (stage == 1 && lbPID.target_get() == 200 && lb.get_position() >= 150) {
+    if (stage == 1 && lbPID.target_get() == 180 && lb.get_position() >= 130) {
       hook.set_brake_mode(MOTOR_BRAKE_HOLD);
       intake.move(127);
     }

@@ -396,8 +396,8 @@ void blue_negative_awp() {
   */
   eject_color = "red";
   int64_t failsafe = pros::millis();
-  lbPID.target_set(200);
-  while (lb.get_position() < 180 && pros::millis() - failsafe < 500) {
+  lbPID.target_set(180);
+  while (lb.get_position() < 160 && pros::millis() - failsafe < 500) {
     lb.move(lbPID.compute(lb.get_position()));
   }
   pros::delay(100);
@@ -405,7 +405,7 @@ void blue_negative_awp() {
   pros::delay(500);
   chassis.pid_drive_set(8_in, DS);
   chassis.pid_wait();
-  chassis.pid_swing_set(ez::RIGHT_SWING, 180_deg, SS);
+  chassis.pid_swing_set(ez::RIGHT_SWING, 180_deg, SS, ez::ccw);
   intakeLift.set(true);
   chassis.pid_wait();
   chassis.pid_drive_set(8_in, DS);
@@ -432,7 +432,7 @@ void blue_negative_awp() {
   chassis.pid_wait();
   chassis.pid_drive_set(-30_in, DS);
   chassis.pid_wait();
-  chassis.pid_drive_set(-6_in, DS/2);
+  chassis.pid_drive_set(-6_in, DS/3);
   chassis.pid_wait();
   goalClamp.set(true);
   chassis.pid_drive_set(7_in, DS);
@@ -442,7 +442,7 @@ void blue_negative_awp() {
   intake.move(127);
   chassis.pid_drive_set(25_in, DS/1.5);
   chassis.pid_wait_quick();
-  chassis.pid_swing_set(ez::RIGHT_SWING, 90, SS/1.5);
+  chassis.pid_swing_set(ez::RIGHT_SWING, -90_deg, SS/2, ez::ccw);
   chassis.pid_wait();
   chassis.pid_drive_set(15_in, DS);
   chassis.pid_wait();
@@ -562,8 +562,8 @@ void red_negative_awp() {
   */
   eject_color = "blue";
   int64_t failsafe = pros::millis();
-  lbPID.target_set(200);
-  while (lb.get_position() < 180 && pros::millis() - failsafe < 500) {
+  lbPID.target_set(180);
+  while (lb.get_position() < 160 && pros::millis() - failsafe < 500) {
     lb.move(lbPID.compute(lb.get_position()));
   }
   pros::delay(100);
@@ -598,7 +598,7 @@ void red_negative_awp() {
   chassis.pid_wait();
   chassis.pid_drive_set(-30_in, DS);
   chassis.pid_wait();
-  chassis.pid_drive_set(-6_in, DS/2);
+  chassis.pid_drive_set(-6_in, DS/3);
   chassis.pid_wait();
   goalClamp.set(true);
   chassis.pid_drive_set(7_in, DS);
@@ -722,7 +722,7 @@ void skills() {
   chassis.pid_turn_set(-90,TS);
   chassis.pid_wait();
   //score ring
-  lbPID.target_set(200);
+  lbPID.target_set(180);
   lb.move(lbPID.compute(lb.get_position()));
   hook.move(127);
   pros::delay(500);
