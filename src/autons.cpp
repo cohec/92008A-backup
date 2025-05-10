@@ -709,7 +709,7 @@ void skills() {
   chassis.pid_turn_set(180_deg, TS);
   chassis.pid_wait();
   //Drive Forward
-  chassis.pid_drive_set(78,DS);
+  chassis.pid_drive_set(78,70);
   chassis.pid_wait();
   //Turn
   chassis.pid_turn_set(68,TS);
