@@ -685,7 +685,8 @@ void skills() {
 
   chassis.pid_drive_set(24,DS);
   chassis.pid_wait();
-  
+  pros::delay(500);
+
   chassis.pid_drive_set(-12,DS);
   chassis.pid_wait();
   chassis.pid_turn_set(-22.7,TS);
@@ -708,7 +709,7 @@ void skills() {
   chassis.pid_turn_set(180_deg, TS);
   chassis.pid_wait();
   //Drive Forward
-  chassis.pid_drive_set(84,DS);
+  chassis.pid_drive_set(74,DS);
   chassis.pid_wait();
   //Turn
   chassis.pid_turn_set(68,TS);
