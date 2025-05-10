@@ -558,15 +558,11 @@ void red_top_rings() {
   chassis.pid_wait();
 }
 
-
-
-
-
 void skills() {
   //score the ring
   hook.move(127);
   pros::delay(700);
-  hook.brake();
+  hook.move(0);
   //swing to the right of 90 degrees
   chassis.pid_swing_set(ez::LEFT_SWING, 106.2_deg, SS);
   chassis.pid_wait();
@@ -578,13 +574,13 @@ void skills() {
   chassis.pid_wait();
   //Turn to the left of -90 degrees
   chassis.pid_turn_set(0_deg, TS);
-  chassis.pid_wait_quick_chain();
+  chassis.pid_wait();
   //*****score the ring
   hook.move(128);
   intake.move(128);
   //Drive forward
   chassis.pid_swing_set(ez::RIGHT_SWING, -30, 75, 90);
-  chassis.pid_wait_quick_chain();
+  chassis.pid_wait();
   chassis.pid_swing_set(ez::LEFT_SWING, 0_deg, 90, 75);
   chassis.pid_wait();
   chassis.pid_turn_set(-30,90);
