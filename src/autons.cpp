@@ -398,7 +398,7 @@ void blue_negative_awp() {
  int64_t failsafe = pros::millis();
  lbPID.target_set(150);
  while (lb.get_position() < 130 && pros::millis() - failsafe < 500) {
- lb.move(lbPID.compute(lb.get_position()));
+  lb.move(lbPID.compute(lb.get_position()));
  }
  pros::delay(100);
  intake.move(127);
@@ -414,10 +414,10 @@ void blue_negative_awp() {
  failsafe = pros::millis();
  lbPID.target_set(975);
  while (lb.get_position() < 950 && pros::millis() - failsafe < 500) {
- lb.move(lbPID.compute(lb.get_position()));
- if (lb.get_position() <= 300) {
- hook.move(127);
- }
+  lb.move(lbPID.compute(lb.get_position()));
+  if (lb.get_position() <= 300) {
+    hook.move(127);
+  }
  }
  pros::delay(200);
  chassis.pid_drive_set(-8_in, DS);
@@ -426,7 +426,7 @@ void blue_negative_awp() {
  failsafe = pros::millis();
  lbPID.target_set(0);
  while (lb.get_position() > 10 && pros::millis() - failsafe < 500) {
- lb.move(lbPID.compute(lb.get_position()));
+  lb.move(lbPID.compute(lb.get_position()));
  }
  chassis.pid_turn_set(-135_deg, TS);
  chassis.pid_wait();
@@ -485,14 +485,14 @@ void blue_goal_rush() {
  */
  eject_color = "red";
  roller.move(-127);
- chassis.pid_drive_set(44_in, 127);
- chassis.pid_wait_until(25_in);
+ chassis.pid_drive_set(43_in, 127);
+ chassis.pid_wait_until(5_in);
  goalrush.set(true);
- chassis.pid_wait_until(44_in);
+ chassis.pid_wait_until(43_in);
  pros::delay(100);
  goalrush.set(false);
  pros::delay(100);
- chassis.pid_drive_set(-10_in, 127);
+ chassis.pid_drive_set(-20_in, 127);
  chassis.pid_wait();
  goalrush.set(true);
  pros::delay(100);
@@ -508,7 +508,7 @@ void blue_goal_rush() {
  pros::delay(1000);
  intake.move(0);
  goalClamp.set(false);
- chassis.pid_drive_set(10_in, DS);
+ chassis.pid_drive_set(15_in, DS);
  chassis.pid_wait();
  chassis.pid_turn_set(135_deg, TS);
  chassis.pid_wait();
@@ -578,7 +578,7 @@ void red_negative_awp() {
  int64_t failsafe = pros::millis();
  lbPID.target_set(150);
  while (lb.get_position() < 130 && pros::millis() - failsafe < 500) {
- lb.move(lbPID.compute(lb.get_position()));
+  lb.move(lbPID.compute(lb.get_position()));
  }
  pros::delay(100);
  intake.move(127);
@@ -594,10 +594,10 @@ void red_negative_awp() {
  failsafe = pros::millis();
  lbPID.target_set(975);
  while (lb.get_position() < 950 && pros::millis() - failsafe < 500) {
- lb.move(lbPID.compute(lb.get_position()));
- if (lb.get_position() <= 300) {
- hook.move(127);
- }
+  lb.move(lbPID.compute(lb.get_position()));
+  if (lb.get_position() <= 300) {
+    hook.move(127);
+  }
  }
  pros::delay(200);
  chassis.pid_drive_set(-8_in, DS);
@@ -606,7 +606,7 @@ void red_negative_awp() {
  failsafe = pros::millis();
  lbPID.target_set(0);
  while (lb.get_position() > 10 && pros::millis() - failsafe < 500) {
- lb.move(lbPID.compute(lb.get_position()));
+  lb.move(lbPID.compute(lb.get_position()));
  }
  chassis.pid_turn_set(135_deg, TS);
  chassis.pid_wait();
