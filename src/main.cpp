@@ -6,6 +6,7 @@
 #include "pros/motors.h"
 #include "pros/motors.hpp"
 #include "pros/optical.hpp"
+#include "pros/rotation.hpp"
 #include "subsystems.hpp"
 #include "autons.hpp"
 
@@ -42,6 +43,7 @@ void initialize() {
   // Print our branding over your terminal :D
   ez::ez_template_print();
   lb.tare_position();
+  rot.reset();
   
 
   pros::delay(500);  // Stop the user from doing anything while legacy ports configure
@@ -125,7 +127,10 @@ void autonomous() {
   chassis.drive_imu_reset();                  // Reset gyro position to 0
   chassis.drive_sensor_reset();               // Reset drive sensors to 0
   chassis.odom_xyt_set(0_in, 0_in, 0_deg);    // Set the current position, you can start at a specific position with this
-  chassis.drive_brake_set(MOTOR_BRAKE_HOLD);  // Set motors to hold.  This helps autonomous consistency
+  lb.tare_position();
+  rot.reset();
+  chassis.drive_brake_set(MOTOR_BRAKE_HOLD);
+    // Set motors to hold.  This helps autonomous consistency
 
   /*
   Odometry and Pure Pursuit are not magic
@@ -396,6 +401,7 @@ void opcontrol() {
     // LB stages
     if (master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT)) {
       lb.tare_position();
+      rot.reset();
       master.rumble("..-");
     }
     bool current_state = master.get_digital(pros::E_CONTROLLER_DIGITAL_R1);
@@ -403,7 +409,7 @@ void opcontrol() {
     if (current_state && !last_state) {
       lb.set_brake_mode(MOTOR_BRAKE_COAST);
       if (stage == -1 || stage == 0) {
-        lbPID.target_set(180);
+        lbPID.target_set(150);
         fd = 0;
         stage = 1;
       } else if (stage == 1) {
@@ -418,7 +424,7 @@ void opcontrol() {
     if (!current_state && stage != -1) {
       lb.move(lbPID.compute(lb.get_position()));
     }
-    if (stage == 1 && lbPID.target_get() == 180 && lb.get_position() >= 130) {
+    if (stage == 1 && lbPID.target_get() == 150 && lb.get_position() >= 100) {
       hook.set_brake_mode(MOTOR_BRAKE_HOLD);
       intake.move(127);
     }
@@ -426,7 +432,6 @@ void opcontrol() {
       hook.move(127);
     }
     last_state = current_state;
-
     pros::delay(ez::util::DELAY_TIME);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME
   }
 }

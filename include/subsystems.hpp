@@ -4,6 +4,7 @@
 #include "api.h"
 #include "pros/motor_group.hpp"
 #include "pros/optical.hpp"
+#include "pros/rotation.hpp"
 #include <string>
 
 extern Drive chassis;
@@ -11,8 +12,9 @@ extern std::string eject_color;
 inline pros::MotorGroup intake({4,-5});
 inline pros::Motor roller(4);
 inline pros::Motor hook(-5);
-inline pros::Motor lb(17);
 inline pros::Optical op(6);
+inline pros::Rotation rot(16);
+inline pros::Motor lb(17);
 inline ez::Piston goalClamp('C');
 inline ez::Piston climbArm('D');
 inline ez::Piston goalrush('E');
