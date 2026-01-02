@@ -350,7 +350,7 @@ void opcontrol() {
     // Scoring
     if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
       intakeLS.move(127);
-      intakeUS.move(0);
+      intakeUS.move(-50);
     } else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_X)) {
       centerGoal.set(false);
       intakeLS.move(127);
