@@ -370,7 +370,7 @@ void opcontrol() {
     }
 
     // Pneumatics
-    if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_RIGHT)) {
+    if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_LEFT)) {
       lock = false;
     }
     if (lock == true) {
