@@ -9,7 +9,13 @@
 
 extern Drive chassis;
 extern std::string eject_color;
-inline pros::MotorGroup intake({4,-5});
+inline pros::MotorGroup intakeLS({14, 17});
+inline pros::Motor intakeUS(10);
+inline ez::Piston doublePark('A');
+inline ez::Piston centerGoal('B');
+inline ez::Piston descoreWing('C');
+inline ez::Piston matchload('D');
+/**inline pros::MotorGroup intake({4,-5});
 inline pros::Motor roller(4);
 inline pros::Motor hook(-5);
 inline pros::Optical op(6);
@@ -23,3 +29,4 @@ inline ez::Piston intakeLift('G');
 inline ez::PID lbPID{0.45, 0, 0, 0, "lb"};
 void sortcolor(bool enabled);
 void antijam(int direction);
+*/

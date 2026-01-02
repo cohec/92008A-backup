@@ -18,12 +18,12 @@
 // Chassis constructor
 ez::Drive chassis(
   // These are your drive motors, the first motor is used for sensing!
-  {-11,-12,13},     // Left Chassis Ports (negative port will reverse it!)
-  {20,19,-18},  // Right Chassis Ports (negative port will reverse it!)
+  {-11,-12,-13},     // Left Chassis Ports (negative port will reverse it!)
+  {20,19,18},  // Right Chassis Ports (negative port will reverse it!)
     
-  7,      // IMU Port
-  2.75,  // Wheel Diameter (Remember, 4" wheels without screw holes are actually 4.125!)
-  600);   // Wheel RPM = cartridge * (motor gear / wheel gear)
+  16,      // IMU Port
+  3.25,  // Wheel Diameter (Remember, 4" wheels without screw holes are actually 4.125!)
+  450);   // Wheel RPM = cartridge * (motor gear / wheel gear)
 
 // Uncomment the trackers you're using here!
 // - `8` and `9` are smart ports (making these negative will reverse the sensor)
@@ -31,7 +31,7 @@ ez::Drive chassis(
 // - `2.75` is the wheel diameter
 // - `4.0` is the distance from the center of the wheel to the center of the robot
 //ez::tracking_wheel horiz_tracker(15, 2, 0.5);  // This tracking wheel is perpendicular to the drive wheels
-//ez::tracking_wheel vert_tracker(16, 2, 1.25);   // This tracking wheel is parallel to the drive wheels
+ez::tracking_wheel vert_tracker(15, 2, 0.25);   // This tracking wheel is parallel to the drive wheels
 /**
  * Runs initialization code. This occurs as soon as the program is started.
  *
@@ -42,8 +42,8 @@ ez::Drive chassis(
 void initialize() {
   // Print our branding over your terminal :D
   ez::ez_template_print();
-  lb.tare_position();
-  rot.reset();
+  //lb.tare_position();
+  //rot.reset();
   
 
   pros::delay(500);  // Stop the user from doing anything while legacy ports configure
@@ -52,7 +52,7 @@ void initialize() {
   //  - change `back` to `front` if the tracking wheel is in front of the midline
   //  - ignore this if you aren't using a horizontal tracker
   //chassis.odom_tracker_back_set(&horiz_tracker);
-  //chassis.odom_tracker_right_set(&vert_tracker);
+  chassis.odom_tracker_right_set(&vert_tracker);
   // Look at your vertical tracking wheel and decide if it's to the left or right of the center of the robot
   //  - change `left` to `right` if the tracking wheel is to the right of the centerline
   //  - ignore this if you aren't using a vertical tracker
@@ -72,14 +72,8 @@ void initialize() {
 
   // Autonomous Selector using LLEMU
   ez::as::auton_selector.autons_add({
-    {"blue - awp", blue_negative_awp},
-    {"blue + awp", blue_positive_awp},
-    {"blue goal rush", blue_goal_rush},
-    {"blue top rings", blue_top_rings},
-    {"red - awp", red_negative_awp},
-    {"red + awp", red_positive_awp},
-    {"red goal rush", red_goal_rush},
-    {"red top rings", red_top_rings},
+    {"left", left_side},
+    {"right", right_side},
     {"auto skills", skills}
   });
 
@@ -127,8 +121,8 @@ void autonomous() {
   chassis.drive_imu_reset();                  // Reset gyro position to 0
   chassis.drive_sensor_reset();               // Reset drive sensors to 0
   chassis.odom_xyt_set(0_in, 0_in, 0_deg);    // Set the current position, you can start at a specific position with this
-  lb.tare_position();
-  rot.reset();
+  //lb.tare_position();D
+  //rot.reset();
   chassis.drive_brake_set(MOTOR_BRAKE_HOLD);
     // Set motors to hold.  This helps autonomous consistency
 
@@ -237,6 +231,7 @@ void ez_template_extras() {
       chassis.pid_tuner_disable();
   }
 }
+/**
 static bool cma = false; // color match active
 void sortcolor(bool enabled) {
   op.set_led_pwm(100);
@@ -306,6 +301,9 @@ void antijam(int direction) {
     initialp = true;
   }
 }
+*/
+
+
 
 /**
  * Runs the operator control code. This function will be started in its own task
@@ -324,16 +322,21 @@ void antijam(int direction) {
 void opcontrol() {
   // This is preference to what you like to drive on
   chassis.drive_brake_set(MOTOR_BRAKE_COAST);
-  lb.set_brake_mode(MOTOR_BRAKE_HOLD);
-  int stage = 0;
-  bool last_state = false;
-  static bool clamped = false;
+  //lb.set_brake_mode(MOTOR_BRAKE_HOLD);
+  //int stage = 0;
+  //bool last_state = false;
+  //static bool clamped = false;
   
 
   while (true) {
     // Gives you some extras to make EZ-Template ezier
     ez_template_extras();
-    chassis.opcontrol_arcade_standard(ez::SINGLE);
+    //handbrake
+    if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
+      chassis.opcontrol_tank();
+    } else {
+      chassis.opcontrol_arcade_standard(ez::SINGLE);
+    }
 
     // Slowmode
     if (master.get_digital(pros::E_CONTROLLER_DIGITAL_A)) {
@@ -344,8 +347,37 @@ void opcontrol() {
       chassis.opcontrol_speed_max_set(127);
     }
     
+    // Scoring
+    if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
+      intakeLS.move(127);
+      intakeUS.move(-50);
+    } else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_X)) {
+      centerGoal.set(false);
+      intakeLS.move(127);
+      intakeUS.move(127);
+    } else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_B)) {
+      centerGoal.set(false);
+      intakeLS.move(-127);
+      intakeUS.move(-127);
+    } else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_Y)) {
+      centerGoal.set(true);
+      intakeLS.move(127);
+      intakeUS.move(-127);
+    } else {
+      centerGoal.set(false);
+      intakeLS.move(0);
+      intakeUS.move(0);
+    }
+
     // Pneumatics
-    goalClamp.button_toggle(master.get_digital(pros::E_CONTROLLER_DIGITAL_L1));
+    doublePark.button_toggle(master.get_digital(pros::E_CONTROLLER_DIGITAL_UP));
+    descoreWing.set(!master.get_digital(pros::E_CONTROLLER_DIGITAL_L2));
+    matchload.set(master.get_digital(pros::E_CONTROLLER_DIGITAL_R2));
+
+    pros::delay(ez::util::DELAY_TIME);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME
+  }
+}
+    /**goalClamp.button_toggle(master.get_digital(pros::E_CONTROLLER_DIGITAL_L1));
     if (goalClamp.get() == true && !clamped) {
       master.rumble(".-.");
       clamped = true;
@@ -432,6 +464,4 @@ void opcontrol() {
       hook.move(127);
     }
     last_state = current_state;
-    pros::delay(ez::util::DELAY_TIME);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME
-  }
-}
+    */
