@@ -60,7 +60,7 @@ void initialize() {
 
   // Configure your chassis controls
   chassis.opcontrol_curve_buttons_toggle(false);   // Enables modifying the controller curve with buttons on the joysticks
-  chassis.opcontrol_drive_activebrake_set(1);   // Sets the active brake kP. We recommend ~2.  0 will disable.
+  chassis.opcontrol_drive_activebrake_set(0);   // Sets the active brake kP. We recommend ~2.  0 will disable.
   chassis.opcontrol_curve_default_set(5, 10);  // Defaults for curve. If using tank, only the first parameter is used. (Comment this line out if you have an SD card!)
 
   // Set the drive to your own constants from autons.cpp!
@@ -215,7 +215,7 @@ void ez_template_extras() {
       chassis.pid_tuner_toggle();
 
     // Trigger the selected autonomous routine
-    if (master.get_digital(DIGITAL_B) && master.get_digital(DIGITAL_DOWN)) {
+    if (master.get_digital(pros::E_CONTROLLER_DIGITAL_B) && master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN)) {
       pros::motor_brake_mode_e_t preference = chassis.drive_brake_get();
       autonomous();
       chassis.drive_brake_set(preference);

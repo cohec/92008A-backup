@@ -385,11 +385,13 @@ void measure_offsets() {
 // . . .
 void left_side() {
   chassis.pid_drive_set(24_in, DS, true);
+  chassis.pid_wait();
 }
 void right_side() {
   chassis.pid_drive_set(24_in, DS, true);
+  chassis.pid_wait();
 }
 void skills() {
   chassis.pid_drive_set(24_in, DS, true);
-
+  chassis.pid_wait();
 }
