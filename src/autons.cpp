@@ -15,7 +15,7 @@
 const int DS = 100;
 const int TS = 60;
 const int SS = 110;
-std::string eject_color = ""; // "red" or "blue"
+//std::string eject_color = ""; // "red" or "blue"
 
 ///
 // Constants
@@ -384,12 +384,12 @@ void measure_offsets() {
 // Make your own autonomous functions here!
 // . . .
 void left_side() {
-  chassis.pid_drive_set(24, DS);
+  chassis.pid_drive_set(24_in, DS, true);
 }
 void right_side() {
-  chassis.pid_drive_set(24, DS);
+  chassis.pid_drive_set(24_in, DS, true);
 }
 void skills() {
-  chassis.pid_drive_set(24, DS);
+  chassis.pid_drive_set(24_in, DS, true);
 
 }

@@ -121,7 +121,7 @@ void autonomous() {
   chassis.drive_imu_reset();                  // Reset gyro position to 0
   chassis.drive_sensor_reset();               // Reset drive sensors to 0
   chassis.odom_xyt_set(0_in, 0_in, 0_deg);    // Set the current position, you can start at a specific position with this
-  //lb.tare_position();D
+  //lb.tare_position();
   //rot.reset();
   chassis.drive_brake_set(MOTOR_BRAKE_HOLD);
     // Set motors to hold.  This helps autonomous consistency
@@ -326,7 +326,7 @@ void opcontrol() {
   //int stage = 0;
   //bool last_state = false;
   //static bool clamped = false;
-  
+  bool lock = true;
 
   while (true) {
     // Gives you some extras to make EZ-Template ezier
@@ -350,7 +350,7 @@ void opcontrol() {
     // Scoring
     if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
       intakeLS.move(127);
-      intakeUS.move(-50);
+      intakeUS.move(-127);
     } else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_X)) {
       centerGoal.set(false);
       intakeLS.move(127);
@@ -370,8 +370,15 @@ void opcontrol() {
     }
 
     // Pneumatics
+    if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_RIGHT)) {
+      lock = false;
+    }
+    if (lock == true) {
+      descoreWing.set(false);
+    } else {
+      descoreWing.set(!master.get_digital(pros::E_CONTROLLER_DIGITAL_L2));
+    }
     doublePark.button_toggle(master.get_digital(pros::E_CONTROLLER_DIGITAL_UP));
-    descoreWing.set(!master.get_digital(pros::E_CONTROLLER_DIGITAL_L2));
     matchload.set(master.get_digital(pros::E_CONTROLLER_DIGITAL_R2));
 
     pros::delay(ez::util::DELAY_TIME);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME
