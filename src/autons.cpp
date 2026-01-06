@@ -403,7 +403,7 @@ void left_side() {
   matchload.set(false);
   chassis.pid_wait();
   intakeUS.move(127);
-  pros::delay(2000);
+  pros::delay(1500);
 }
 
 void right_side() {
