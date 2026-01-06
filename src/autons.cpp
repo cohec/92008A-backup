@@ -384,13 +384,29 @@ void measure_offsets() {
 // Make your own autonomous functions here!
 // . . .
 void left_side() {
-  chassis.pid_drive_set(24_in, DS, true);
+  chassis.drive_angle_set(-90);
+  chassis.pid_drive_set(33, DS, true);
   chassis.pid_wait();
+  chassis.pid_turn_set(-180, TS);
+  chassis.pid_wait();
+  matchload.set(true);
+  intakeLS.move(127);
+  intakeUS.move(-127);
+  chassis.pid_drive_set(3, DS, true);
+  pros::delay(500);
+  chassis.pid_drive_set(-30, DS, true);
+  chassis.pid_wait_until(-6);
+  matchload.set(false);
+  chassis.pid_wait();
+  intakeUS.move(127);
+  pros::delay(500);
 }
+
 void right_side() {
   chassis.pid_drive_set(24_in, DS, true);
   chassis.pid_wait();
 }
+
 void skills() {
   chassis.pid_drive_set(24_in, DS, true);
   chassis.pid_wait();
