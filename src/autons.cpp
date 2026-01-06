@@ -397,12 +397,12 @@ void left_side() {
   pros::delay(800);
   chassis.pid_drive_set(8, DS/2);
   chassis.pid_wait();
-  pros::delay(250);
-  chassis.pid_drive_set(-15, DS);
+  pros::delay(200);
+  chassis.pid_drive_set(-20, DS);
   chassis.pid_wait_until(-6);
   matchload.set(false);
   chassis.pid_wait();
-  chassis.pid_drive_set(-15, DS/2);
+  chassis.pid_drive_set(-10, DS/2);
   chassis.pid_wait();
   intakeUS.move(127);
   pros::delay(2000);
