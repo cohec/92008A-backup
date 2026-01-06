@@ -387,7 +387,7 @@ void left_side() {
   chassis.drive_angle_set(-90);
   chassis.pid_drive_set(27, DS, true);
   chassis.pid_wait();
-  chassis.pid_drive_set(6, DS/3);
+  chassis.pid_drive_set(7, DS/3);
   chassis.pid_wait();
   chassis.pid_turn_set(-180, TS);
   chassis.pid_wait();
@@ -397,13 +397,13 @@ void left_side() {
   pros::delay(700);
   chassis.pid_drive_set(8, DS/2, true);
   chassis.pid_wait();
-  pros::delay(3000);
+  pros::delay(1000);
   chassis.pid_drive_set(-30, DS, true);
   chassis.pid_wait_until(-6);
   matchload.set(false);
   chassis.pid_wait();
   intakeUS.move(127);
-  pros::delay(500);
+  pros::delay(4000);
 }
 
 void right_side() {
