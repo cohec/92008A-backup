@@ -408,14 +408,9 @@ void left_side() {
   intakeUS.move(-127);
   chassis.pid_odom_set({{-24, 12, 45}, fwd, DS});
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(10, DS/2);
+  chassis.pid_odom_set(20, DS/2);
   chassis.pid_wait();
-  pros::delay(300);
-  chassis.pid_turn_set(-135, TS);
-  chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(-5, DS/2);
-  chassis.pid_wait();
-  centerGoal.set(true);
+  intakeLS.move(-127);
 }
 
 void right_side() {
