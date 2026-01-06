@@ -387,7 +387,7 @@ void left_side() {
   chassis.drive_angle_set(-90);
   chassis.pid_drive_set(25, DS);
   chassis.pid_wait();
-  chassis.pid_drive_set(10, DS/2);
+  chassis.pid_drive_set(1.5, DS/2);
   chassis.pid_wait();
   matchload.set(true);
   chassis.pid_turn_set(-180, TS);
@@ -397,7 +397,7 @@ void left_side() {
   pros::delay(800);
   chassis.pid_drive_set(8, DS/2);
   chassis.pid_wait();
-  pros::delay(1);
+  pros::delay(010);
   chassis.pid_drive_set(-30, DS/1.5);
   chassis.pid_wait_until(-6);
   matchload.set(false);
