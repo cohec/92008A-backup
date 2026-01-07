@@ -455,7 +455,6 @@ void left_side_elims() {
   chassis.pid_wait_quick_chain();
   intakeLS.move(127);
   intakeUS.move(-127);
-  pros::delay(300);
   chassis.pid_odom_set(10, DS/3);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-24, DS/1.5, true);
@@ -504,7 +503,6 @@ void right_side_elims() {
   chassis.pid_wait_quick_chain();
   intakeLS.move(127);
   intakeUS.move(-127);
-  pros::delay(300);
   chassis.pid_odom_set(10, DS/3);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-24, DS/1.5, true);
