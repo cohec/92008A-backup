@@ -405,7 +405,7 @@ void left_side() {
   matchload.set(false);
   chassis.pid_wait_quick_chain();
   intakeUS.move(127);
-  pros::delay(500);
+  pros::delay(600);
   chassis.pid_odom_set(5, DS);
   chassis.pid_wait_quick_chain();
   intakeUS.move(-127);
@@ -417,7 +417,7 @@ void left_side() {
   chassis.pid_wait();
   intakeLS.move(-60);
   pros::delay(1500);
-  chassis.pid_odom_set({{-20, 15, 0}, rev, DS});
+  chassis.pid_odom_set({{-20, 20, 0}, rev, DS});
   chassis.pid_wait_quick_chain();
 }
 
