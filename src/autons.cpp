@@ -396,7 +396,7 @@ void left_side() {
   intakeLS.move(127);
   intakeUS.move(-127);
   pros::delay(300);
-  chassis.pid_odom_set(8, DS/2);
+  chassis.pid_odom_set(8.5, DS/2);
   chassis.pid_wait_quick_chain();
   pros::delay(150);
   chassis.pid_odom_set(-28, DS/1.5, true);
@@ -411,7 +411,7 @@ void left_side() {
   chassis.pid_odom_set(33, DS/2);
   chassis.pid_wait();
   intakeLS.move(-60);
-  pros::delay(1700);
+  pros::delay(1500);
 }
 
 void right_side() {
