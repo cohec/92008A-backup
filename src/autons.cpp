@@ -412,7 +412,7 @@ void left_side() {
   chassis.pid_odom_set({{-24, 9.5, 45}, fwd, DS});
   intakeUS.move(127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(6, DS/2);
+  chassis.pid_odom_set(36, DS/2);
   intakeUS.move(-127);
   chassis.pid_wait();
   intakeLS.move(-60);
