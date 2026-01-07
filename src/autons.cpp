@@ -409,7 +409,7 @@ void auto_wp_quals() {
   intakeUS.move(-127);
   chassis.pid_odom_set(10, DS/3);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(-24, DS/1.5, true);
+  chassis.pid_odom_set(-24, DS, true);
   chassis.pid_wait_until(-6);
   matchload.set(false);
   chassis.pid_wait_quick_chain();
