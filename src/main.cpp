@@ -368,7 +368,7 @@ void opcontrol() {
     }
 
     // Pneumatics
-    if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_LEFT)) {
+    if (master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT)) {
       wdLock = false;
     }
     if (wdLock == true) {
