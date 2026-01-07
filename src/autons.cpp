@@ -419,11 +419,11 @@ void left_side() {
   pros::delay(1500);
   chassis.pid_odom_set({{-20, 13, 0}, rev, DS});
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(10, DS);
-  chassis.pid_wait_until(6);
+  chassis.pid_odom_set(16, DS);
+  chassis.pid_wait_until(8);
   descoreWing.set(false);
   chassis.pid_wait_quick_chain();
-  chassis.pid_turn_set(10, TS);
+  chassis.pid_turn_set(20, TS);
   chassis.pid_wait_quick_chain();
 }
 
