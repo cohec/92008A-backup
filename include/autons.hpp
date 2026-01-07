@@ -13,6 +13,6 @@ void odom_pure_pursuit_wait_until_example();
 void odom_boomerang_example();
 void odom_boomerang_injected_pure_pursuit_example();
 void measure_offsets();
-void left_side();
-void right_side();
+void left_side_elims();
+void right_side_elims();
 void skills();
