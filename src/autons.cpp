@@ -423,8 +423,9 @@ void auto_wp_quals() {
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(34, DS);
   intakeUS.move(-127);
+  chassis.pid_wait_until(30);
   intakeLS.move(-100);
-  chassis.pid_wait();
+  chassis.pid_wait_quick_chain();
   pros::delay(500);
   chassis.pid_odom_set({{-24, 9, 45}, rev, DS});
   chassis.pid_wait_quick_chain();
