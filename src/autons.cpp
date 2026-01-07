@@ -398,7 +398,6 @@ void left_side() {
   pros::delay(300);
   chassis.pid_drive_set(12, DS/2);
   chassis.pid_wait_quick_chain();
-  pros::delay(25);
   chassis.pid_odom_set(-24, DS/1.5, true);
   chassis.pid_wait_until(-6);
   matchload.set(false);
