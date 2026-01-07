@@ -386,7 +386,7 @@ void measure_offsets() {
 void left_side() {
   chassis.drive_angle_set(-90);
   chassis.odom_xyt_set(0, 0, -90);
-  chassis.pid_odom_set(22, DS, true);
+  chassis.pid_odom_set(20, DS, true);
   chassis.pid_wait_quick_chain();
   matchload.set(true);
   chassis.pid_odom_set(10, DS/2);
@@ -410,8 +410,8 @@ void left_side() {
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(33, DS/2);
   chassis.pid_wait();
-  intakeLS.move(-127);
-  pros::delay(1000);
+  intakeLS.move(-60);
+  pros::delay(1500);
 }
 
 void right_side() {
