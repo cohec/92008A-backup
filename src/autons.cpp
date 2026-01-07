@@ -412,16 +412,18 @@ void left_side() {
   chassis.pid_odom_set({{-24, 10, 45}, fwd, DS});
   intakeUS.move(127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(34, DS/2);
+  chassis.pid_odom_set(35, DS/2);
   intakeUS.move(-127);
   chassis.pid_wait();
   intakeLS.move(-60);
   pros::delay(1500);
   chassis.pid_odom_set({{-20, 15, 0}, rev, DS});
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(20, DS);
+  chassis.pid_odom_set(15, DS);
   chassis.pid_wait_until(10);
   descoreWing.set(false);
+  chassis.pid_wait_quick_chain();
+  chassis.pid_turn_set(10, TS);
   chassis.pid_wait_quick_chain();
 }
 
