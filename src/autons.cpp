@@ -420,7 +420,7 @@ void left_side() {
   chassis.pid_odom_set({{-20, 13, 0}, rev, DS});
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(16, DS);
-  chassis.pid_wait_until(8);
+  chassis.pid_wait_until(5);
   descoreWing.set(false);
   chassis.pid_wait_quick_chain();
   chassis.pid_turn_set(20, TS);
