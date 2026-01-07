@@ -383,6 +383,65 @@ void measure_offsets() {
 // . . .
 // Make your own autonomous functions here!
 // . . .
+void left_side_quals() {
+  wdLock = false;
+  chassis.drive_angle_set(-90);
+  chassis.odom_xyt_set(0, 0, -90);
+}
+
+void right_side_quals() {
+  wdLock = false;
+  chassis.drive_angle_set(-90);
+  chassis.odom_xyt_set(0, 0, 90);
+}
+
+void auto_wp_quals() {
+  wdLock = false;
+  chassis.drive_angle_set(90);
+  chassis.odom_xyt_set(0, 0, 90);
+  chassis.pid_odom_set(20, DS, true);
+  chassis.pid_wait_quick_chain();
+  matchload.set(true);
+  chassis.pid_odom_set(10, DS/2);
+  chassis.pid_wait_quick_chain();
+  chassis.pid_turn_set(180, TS);
+  chassis.pid_wait_quick_chain();
+  intakeLS.move(127);
+  intakeUS.move(-127);
+  pros::delay(300);
+  chassis.pid_odom_set(10, DS/3);
+  chassis.pid_wait_quick_chain();
+  chassis.pid_odom_set(-24, DS/1.5, true);
+  chassis.pid_wait_until(-6);
+  matchload.set(false);
+  chassis.pid_wait_quick_chain();
+  intakeUS.move(127);
+  pros::delay(600);
+  intakeUS.move(0);
+  chassis.pid_odom_set(5, DS);
+  chassis.pid_wait_quick_chain();
+  chassis.pid_odom_set({{24, 9, -45}, fwd, DS});
+  intakeUS.move(127);
+  chassis.pid_wait_quick_chain();
+  chassis.pid_odom_set(34, DS);
+  intakeUS.move(-127);
+  intakeLS.move(-100);
+  chassis.pid_wait();
+  pros::delay(500);
+  chassis.pid_odom_set({{-24, 9, 45}, rev, DS});
+  chassis.pid_wait_quick_chain();
+  intakeLS.move(127);
+  chassis.pid_odom_set(20, DS);
+  chassis.pid_wait_quick_chain();
+  chassis.pid_turn_set(-135, TS);
+  chassis.pid_wait_quick_chain();
+  chassis.pid_odom_set(-14, DS);
+  chassis.pid_wait();
+  trapdoor.set(true);
+  pros::delay(2000);
+  trapdoor.set(false);
+}
+
 void left_side_elims() {
   wdLock = false;
   descore.set(true);
@@ -421,7 +480,7 @@ void left_side_elims() {
   chassis.pid_wait();
   trapdoor.set(true);
   pros::delay(1500);
-  chassis.pid_odom_set({{-20, 13, 0}, rev, DS});
+  chassis.pid_odom_set({{-20, 13, 0}, fwd, DS});
   trapdoor.set(false);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(16, DS/2);
