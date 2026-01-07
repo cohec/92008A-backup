@@ -9,7 +9,7 @@
 
 extern Drive chassis;
 //extern std::string eject_color;
-extern bool lock;
+inline bool lock = true;
 inline pros::MotorGroup intakeLS({14, 17});
 inline pros::Motor intakeUS(10);
 inline ez::Piston doublePark('A');
