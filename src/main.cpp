@@ -71,8 +71,8 @@ void initialize() {
 
   // Autonomous Selector using LLEMU
   ez::as::auton_selector.autons_add({
-    {"left", left_side},
-    {"right", right_side},
+    {"left elims", left_side_elims},
+    {"right elims", right_side_elims},
     {"auto skills", skills}
   });
 

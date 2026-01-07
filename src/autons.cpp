@@ -383,7 +383,7 @@ void measure_offsets() {
 // . . .
 // Make your own autonomous functions here!
 // . . .
-void left_side() {
+void left_side_elims() {
   wdLock = false;
   descore.set(true);
   chassis.drive_angle_set(-90);
@@ -406,9 +406,9 @@ void left_side() {
   chassis.pid_wait_quick_chain();
   intakeUS.move(127);
   pros::delay(600);
+  intakeUS.move(0);
   chassis.pid_odom_set(5, DS);
   chassis.pid_wait_quick_chain();
-  intakeUS.move(-127);
   chassis.pid_odom_set({{-24, 9, 45}, fwd, DS});
   intakeUS.move(127);
   chassis.pid_wait_quick_chain();
@@ -432,7 +432,7 @@ void left_side() {
   chassis.pid_wait_quick_chain();
 }
 
-void right_side() {
+void right_side_elims() {
   wdLock = false;
   descore.set(true);
   chassis.drive_angle_set(90);
@@ -455,9 +455,9 @@ void right_side() {
   chassis.pid_wait_quick_chain();
   intakeUS.move(127);
   pros::delay(600);
+  intakeUS.move(0);
   chassis.pid_odom_set(5, DS);
   chassis.pid_wait_quick_chain();
-  intakeUS.move(-127);
   chassis.pid_odom_set({{24, 9, -45}, fwd, DS});
   intakeUS.move(127);
   chassis.pid_wait_quick_chain();
