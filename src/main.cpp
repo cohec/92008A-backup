@@ -369,9 +369,9 @@ void opcontrol() {
 
     // Pneumatics
     if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_LEFT)) {
-      lock = false;
+      wdLock = false;
     }
-    if (lock == true) {
+    if (wdLock == true) {
       descoreWing.set(false);
     } else {
       descoreWing.set(!master.get_digital(pros::E_CONTROLLER_DIGITAL_L2));
