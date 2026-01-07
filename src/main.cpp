@@ -38,7 +38,7 @@ ez::tracking_wheel vert_tracker(15, 2, 0.25);   // This tracking wheel is parall
  * All other competition modes are blocked by initialize; it is recommended
  * to keep execution time for this mode under a few seconds.
  */
-
+bool lock = true;
 void initialize() {
   // Print our branding over your terminal :D
   ez::ez_template_print();
@@ -326,7 +326,6 @@ void opcontrol() {
   //int stage = 0;
   //bool last_state = false;
   //static bool clamped = false;
-  bool lock = true;
 
   while (true) {
     // Gives you some extras to make EZ-Template ezier

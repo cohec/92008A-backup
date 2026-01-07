@@ -384,7 +384,7 @@ void measure_offsets() {
 // Make your own autonomous functions here!
 // . . .
 void left_side() {
-  bool lock = false;
+  lock = false;
   chassis.drive_angle_set(-90);
   chassis.odom_xyt_set(0, 0, -90);
   chassis.pid_odom_set(20, DS, true);
@@ -420,13 +420,13 @@ void left_side() {
 }
 
 void right_side() {
-  bool lock = false;
+  lock = false;
   chassis.pid_drive_set(24_in, DS, true);
   chassis.pid_wait();
 }
 
 void skills() {
-  bool lock = false;
+  lock = false;
   chassis.pid_drive_set(24_in, DS, true);
   chassis.pid_wait();
 }
