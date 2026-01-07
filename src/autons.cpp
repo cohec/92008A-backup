@@ -385,7 +385,7 @@ void measure_offsets() {
 // . . .
 void left_side() {
   wdLock = false;
-  descoreWing.set(true);
+  descore.set(true);
   chassis.drive_angle_set(-90);
   chassis.odom_xyt_set(0, 0, -90);
   chassis.pid_odom_set(20, DS, true);
@@ -421,7 +421,7 @@ void left_side() {
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(16, DS/2);
   chassis.pid_wait_until(5);
-  descoreWing.set(false);
+  descore.set(false);
   chassis.pid_wait_quick_chain();
   chassis.pid_turn_set(20, TS);
   chassis.pid_wait_quick_chain();

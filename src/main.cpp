@@ -350,19 +350,19 @@ void opcontrol() {
       intakeLS.move(127);
       intakeUS.move(-127);
     } else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_X)) {
-      centerGoal.set(false);
+      trapdoor.set(false);
       intakeLS.move(127);
       intakeUS.move(127);
     } else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_B)) {
-      centerGoal.set(false);
+      trapdoor.set(false);
       intakeLS.move(-127);
       intakeUS.move(-127);
     } else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_Y)) {
-      centerGoal.set(true);
+      trapdoor.set(true);
       intakeLS.move(127);
       intakeUS.move(-127);
     } else {
-      centerGoal.set(false);
+      trapdoor.set(false);
       intakeLS.move(0);
       intakeUS.move(0);
     }
@@ -372,11 +372,11 @@ void opcontrol() {
       wdLock = false;
     }
     if (wdLock == true) {
-      descoreWing.set(false);
+      descore.set(false);
     } else {
-      descoreWing.set(!master.get_digital(pros::E_CONTROLLER_DIGITAL_L2));
+      descore.set(!master.get_digital(pros::E_CONTROLLER_DIGITAL_L2));
     }
-    doublePark.button_toggle(master.get_digital(pros::E_CONTROLLER_DIGITAL_UP));
+    aligner.button_toggle(master.get_digital(pros::E_CONTROLLER_DIGITAL_UP));
     matchload.set(master.get_digital(pros::E_CONTROLLER_DIGITAL_R2));
 
     pros::delay(ez::util::DELAY_TIME);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME
