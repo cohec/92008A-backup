@@ -512,7 +512,7 @@ void right_side_elims() {
   matchload.set(false);
   chassis.pid_wait_quick_chain();
   intakeUS.move(127);
-  pros::delay(600);
+  pros::delay(800);
   intakeUS.move(0);
   chassis.pid_odom_set(5, DS);
   chassis.pid_wait_quick_chain();
@@ -524,7 +524,7 @@ void right_side_elims() {
   chassis.pid_wait();
   intakeLS.move(-80);
   pros::delay(1500);
-  chassis.pid_odom_set({{15, 13, -180}, rev, DS});
+  chassis.pid_odom_set({{15, 13, 180}, fwd, DS});
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-16, DS/2);
   chassis.pid_wait_until(-5);
