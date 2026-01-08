@@ -526,7 +526,7 @@ void right_side_elims() {
   pros::delay(1500);
   chassis.pid_odom_set(-3, DS);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set({{19, 13, 180}, fwd, DS});
+  chassis.pid_odom_set({{19, 17, 180}, fwd, DS});
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-16, DS/2);
   chassis.pid_wait_until(-5);
