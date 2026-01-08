@@ -473,7 +473,7 @@ void left_side_elims() {
   intakeUS.move(-127);
   chassis.pid_turn_set(-135, TS);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(-14, DS/2);
+  chassis.pid_odom_set(-16, DS/2);
   chassis.pid_wait();
   trapdoor.set(true);
   pros::delay(1500);
