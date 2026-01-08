@@ -468,15 +468,15 @@ void left_side_elims() {
   chassis.pid_odom_set({{-22, 9, 45}, fwd, DS});
   intakeUS.move(127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(20, DS);
+  chassis.pid_odom_set(25, DS);
   chassis.pid_wait_quick_chain();
   intakeUS.move(-127);
   chassis.pid_turn_set(-135, TS);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(-15, DS/2);
+  chassis.pid_odom_set(-10, DS/2);
   trapdoor.set(true);
   chassis.pid_wait();
-  pros::delay(1500);
+  pros::delay(1000);
   chassis.pid_odom_set({{-20, 16, 0}, fwd, DS});
   trapdoor.set(false);
   chassis.pid_wait_quick_chain();
