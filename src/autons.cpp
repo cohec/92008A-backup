@@ -480,7 +480,7 @@ void left_side_elims() {
   trapdoor.set(true);
   chassis.pid_wait_quick_chain();
   pros::delay(1500);
-  chassis.pid_odom_set({{-19, 17, 0}, fwd, DS});
+  chassis.pid_odom_set({{-18, 18, 0}, fwd, DS});
   trapdoor.set(false);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(24, DS/2);
