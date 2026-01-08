@@ -446,7 +446,7 @@ void left_side_elims() {
   descore.set(true);
   chassis.drive_angle_set(-90);
   chassis.odom_xyt_set(0, 0, -90);
-  chassis.pid_odom_set(28, DS, true);
+  chassis.pid_odom_set(29, DS, true);
   chassis.pid_wait_until(10);
   matchload.set(true);
   chassis.pid_wait_quick_chain();
@@ -480,7 +480,7 @@ void left_side_elims() {
   chassis.pid_odom_set({{-20, 16, 0}, fwd, DS});
   trapdoor.set(false);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(16, DS/2);
+  chassis.pid_odom_set(18, DS/2);
   chassis.pid_wait_until(5);
   descore.set(false);
   chassis.pid_wait_quick_chain();
