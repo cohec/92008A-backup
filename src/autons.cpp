@@ -397,11 +397,13 @@ void right_side_quals() {
 
 void auto_wp_quals() {
   wdLock = false;
+  descore.set(true);
   chassis.drive_angle_set(90);
   chassis.odom_xyt_set(0, 0, 90);
-  chassis.pid_odom_set(30, DS, true);
-  chassis.pid_wait_until(10);
+  chassis.pid_odom_set(20, DS, true);
+  chassis.pid_wait_quick_chain();
   matchload.set(true);
+  chassis.pid_odom_set(10, DS/2);
   chassis.pid_wait_quick_chain();
   chassis.pid_turn_set(180, TS);
   chassis.pid_wait_quick_chain();
@@ -409,36 +411,40 @@ void auto_wp_quals() {
   intakeUS.move(-127);
   chassis.pid_odom_set(10, DS/3);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(-24, DS, true);
+  chassis.pid_odom_set(-24, DS/1.5, true);
   chassis.pid_wait_until(-6);
   matchload.set(false);
   chassis.pid_wait_quick_chain();
   intakeUS.move(127);
-  pros::delay(600);
+  pros::delay(800);
   intakeUS.move(0);
   chassis.pid_odom_set(5, DS);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set({{24, 9, -45}, fwd, DS});
+  chassis.pid_odom_set({{24, 11, -45}, fwd, DS});
   intakeUS.move(127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(34, DS);
+  chassis.pid_odom_set(34, DS/2);
   intakeUS.move(-127);
-  chassis.pid_wait_until(30);
+  chassis.pid_wait_quick_chain();
   intakeLS.move(-100);
+  pros::delay(1000);
+  chassis.pid_odom_set(-3, DS);
   chassis.pid_wait_quick_chain();
-  pros::delay(500);
-  chassis.pid_odom_set({{-24, 9, 45}, rev, DS});
+  chassis.pid_odom_set({{-28, 13, 45}, fwd, DS});
+  intakeUS.move(127);
   chassis.pid_wait_quick_chain();
-  intakeLS.move(127);
-  chassis.pid_odom_set(20, DS);
+  chassis.pid_odom_set(25, DS/1.5);
+  chassis.pid_wait_quick_chain();
+  intakeUS.move(-127);
+  chassis.pid_odom_set(-0.5, DS/1.5, true);
   chassis.pid_wait_quick_chain();
   chassis.pid_turn_set(-135, TS);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(-14, DS);
-  chassis.pid_wait();
+  chassis.pid_odom_set(-13, DS/2);
+  chassis.pid_wait_until(-9);
   trapdoor.set(true);
-  pros::delay(2000);
-  trapdoor.set(false);
+  chassis.pid_wait_quick_chain();
+  pros::delay(1500);
 }
 
 void left_side_elims() {
