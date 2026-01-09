@@ -430,10 +430,10 @@ void auto_wp_quals() {
   pros::delay(1000);
   chassis.pid_odom_set(-3, DS);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set({{-40, 27, -90}, fwd, DS});
+  chassis.pid_odom_set({{-43, 27, -90}, fwd, DS});
   intakeLS.move(127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_drive_set(-0.1, DS/2);
+  chassis.pid_drive_set(-3.1, DS/2);
   chassis.pid_wait_quick_chain();
   chassis.pid_turn_set(-135, TS);
   chassis.pid_wait_quick_chain();
