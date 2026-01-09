@@ -432,8 +432,11 @@ void auto_wp_quals() {
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set({{-38, 27, -90}, fwd, DS});
   intakeLS.move(127);
+  chassis.pid_wait_until(30);
+  matchload.set(true);
   chassis.pid_wait_quick_chain();
   chassis.pid_turn_set(-135, TS);
+  matchload.set(false);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-17, DS/2);
   chassis.pid_wait_until(-12);
