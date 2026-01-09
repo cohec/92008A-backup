@@ -430,12 +430,12 @@ void auto_wp_quals() {
   pros::delay(1000);
   chassis.pid_odom_set(-3, DS);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set({{-37, 27, -90}, fwd, DS});
-  intakeUS.move(127);
+  chassis.pid_odom_set({{-38, 27, -90}, fwd, DS});
+  intakeLS.move(127);
   chassis.pid_wait_quick_chain();
   chassis.pid_turn_set(-135, TS);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(-16, DS/2);
+  chassis.pid_odom_set(-17, DS/2);
   chassis.pid_wait_until(-12);
   trapdoor.set(true);
   chassis.pid_wait_quick_chain();
