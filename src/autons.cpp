@@ -519,7 +519,7 @@ void right_side_elims() {
   intakeUS.move(0);
   chassis.pid_odom_set(5, DS);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set({{24, 11, -45}, fwd, DS});
+  chassis.pid_odom_set({{24, 12, -45}, fwd, DS});
   intakeUS.move(127);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(34, DS/2);
@@ -529,7 +529,7 @@ void right_side_elims() {
   pros::delay(1500);
   chassis.pid_odom_set(-3, DS);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set({{19.5, 15, 180}, fwd, DS});
+  chassis.pid_odom_set({{20, 15, 180}, fwd, DS});
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-20, DS/2);
   chassis.pid_wait_until(-5);
