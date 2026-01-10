@@ -573,11 +573,11 @@ void skills() {
   pros::delay(1000);
   chassis.pid_odom_set(-10, 127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set({{-60, 20, -180}, rev, 127});
   matchload.set(false);
+  chassis.pid_turn_set(-200, TS);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(-60, 127);
+  chassis.pid_odom_set(-80, 127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_swing_set(ez::LEFT_SWING, 0, -127, -45);
+  chassis.pid_swing_set(ez::RIGHT_SWING, 0, -127, 0);
   chassis.pid_wait_quick_chain();
 }
