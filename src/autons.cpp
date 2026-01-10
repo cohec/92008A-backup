@@ -560,7 +560,7 @@ void skills() {
   chassis.pid_wait_until(-3);
   trapdoor.set(true);
   chassis.pid_wait_quick_chain();
-  pros::delay(1000);
+  pros::delay(800);
   trapdoor.set(false);
   chassis.pid_odom_set(25, 127);
   chassis.pid_wait_quick_chain();
@@ -605,4 +605,5 @@ void skills() {
   chassis.pid_odom_set(5, DS);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set({{-24, 110, 90}, fwd, 127});
+  chassis.pid_wait_quick_chain();
 }
