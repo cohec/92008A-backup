@@ -546,12 +546,12 @@ void skills() {
   chassis.odom_xyt_set(0, 0, -90);
   intakeUS.move(-127);
   intakeLS.move(127);
-  chassis.pid_odom_set({{-5, 8, -45}, fwd, 127});
+  chassis.pid_odom_set({{-6, 6, -45}, fwd, 127});
   chassis.pid_wait_quick_chain();
   intakeLS.move(0);
   chassis.pid_odom_set(10, 127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set({{0, 20, 135}, rev, 127});
+  chassis.pid_odom_set({{-10, 20, 135}, rev, 127});
   chassis.pid_wait_quick_chain();
   intakeLS.move(127);
   chassis.pid_odom_set(-5, DS/2);
@@ -559,7 +559,7 @@ void skills() {
   trapdoor.set(true);
   chassis.pid_wait_quick_chain();
   pros::delay(300);
-  chassis.pid_odom_set({{-30, 0, -180}, fwd, 127});
+  chassis.pid_odom_set({{-36, 0, -180}, fwd, 127});
   trapdoor.set(false);
   intakeLS.move(0);
   chassis.pid_wait_quick_chain();
