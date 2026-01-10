@@ -678,4 +678,7 @@ void skills() {
   intakeLS.move(127);
   intakeUS.move(127);
   chassis.pid_wait_quick_chain();
+  aligner.set(true);
+  chassis.pid_drive_set(10, 127);
+  chassis.pid_wait();
 }
