@@ -550,9 +550,9 @@ void skills() {
   chassis.pid_odom_set({{-15, 15, -45}, fwd, 127});
   chassis.pid_wait_quick_chain();
   matchload.set(true);
-  chassis.pid_odom_set(5, DS/1.5);
+  chassis.pid_odom_set(5, DS/3);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set({{-15, 31, -135}, rev, 127});
+  chassis.pid_odom_set({{-15, 32, -135}, rev, 127});
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-5.5, DS/2);
   chassis.pid_wait_until(-3);
