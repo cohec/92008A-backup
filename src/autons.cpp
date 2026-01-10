@@ -556,7 +556,7 @@ void skills() {
   chassis.pid_wait_quick_chain();
   intakeLS.move(127);
   chassis.pid_odom_set(-5, DS/2);
-  chassis.pid_wait_until(-2);
+  chassis.pid_wait_until(-1);
   trapdoor.set(true);
   chassis.pid_wait_quick_chain();
   pros::delay(1000);
