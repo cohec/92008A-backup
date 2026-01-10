@@ -588,7 +588,7 @@ void skills() {
   intakeUS.move(127);
   pros::delay(1600);
   intakeUS.move(0);
-  chassis.pid_odom_set(10, DS/1.5);
+  chassis.pid_odom_set(15, DS/1.5);
   matchload.set(true);
   intakeUS.move(-127);
   chassis.pid_wait_quick_chain();
