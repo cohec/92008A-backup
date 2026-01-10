@@ -576,11 +576,11 @@ void skills() {
   matchload.set(false);
   chassis.pid_turn_set(-225, TS);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(-20, 127);
+  chassis.pid_odom_set(-15, 127);
   chassis.pid_wait_quick_chain();
   chassis.pid_turn_set(180, TS);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(-60, 127);
+  chassis.pid_odom_set(-50, 127);
   chassis.pid_wait_quick_chain();
   chassis.pid_swing_set(ez::RIGHT_SWING, 0, -127, 0);
   chassis.pid_wait_quick_chain();
