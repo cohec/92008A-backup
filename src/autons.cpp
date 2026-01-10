@@ -549,8 +549,8 @@ void skills() {
   intakeLS.move(127);
   chassis.pid_odom_set({{-15, 15, -45}, fwd, 127});
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(5, DS/1.5);
   matchload.set(true);
+  chassis.pid_odom_set(5, DS/1.5);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set({{-15, 32, -135}, rev, 127});
   chassis.pid_wait_quick_chain();
