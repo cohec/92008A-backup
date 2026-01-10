@@ -542,16 +542,16 @@ void right_side_elims() {
 void skills() {
   wdLock = false;
   descore.set(true);
-  chassis.drive_angle_set(-90);
-  chassis.odom_xyt_set(0, 0, -90);
+  chassis.drive_angle_set(0);
+  chassis.odom_xyt_set(0, 0, 0);
   intakeUS.move(-127);
   intakeLS.move(127);
-  chassis.pid_odom_set({{-6, 6, -45}, fwd, 127});
+  chassis.pid_odom_set({{-15, 15, -45}, fwd, 127});
   chassis.pid_wait_quick_chain();
   intakeLS.move(0);
-  chassis.pid_odom_set(10, 127);
+  chassis.pid_odom_set(5, DS/1.5);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set({{-10, 20, 135}, rev, 127});
+  chassis.pid_odom_set({{-10, 20, -135}, rev, 127});
   chassis.pid_wait_quick_chain();
   intakeLS.move(127);
   chassis.pid_odom_set(-5, DS/2);
