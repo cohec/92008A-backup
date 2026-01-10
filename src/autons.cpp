@@ -1,6 +1,7 @@
 #include "EZ-Template/util.hpp"
 #include "pros/motors.h"
 #include "pros/motors.hpp"
+#include "pros/rtos.h"
 #include "subsystems.hpp"
 #include "autons.hpp"
 #include <cstdlib>
@@ -558,12 +559,22 @@ void skills() {
   chassis.pid_wait_until(-2);
   trapdoor.set(true);
   chassis.pid_wait_quick_chain();
-  pros::delay(300);
+  pros::delay(500);
   chassis.pid_odom_set(20, 127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set({{-42, 0, -180}, fwd, 127});
+  chassis.pid_odom_set({{-45, 0, -180}, fwd, 127});
   trapdoor.set(false);
   intakeLS.move(0);
   matchload.set(true);
   chassis.pid_wait_quick_chain();
+  intakeLS.move(127);
+  chassis.pid_odom_set(10, DS/3);
+  chassis.pid_wait_quick_chain();
+  pros::delay(1000);
+  chassis.pid_odom_set(-15, 127);
+  matchload.set(false);
+  chassis.pid_wait_quick_chain();
+  chassis.pid_odom_set({{-60, 30, -180}, rev, 127});
+  chassis.pid_wait_quick_chain();
+  chassis.pid_odom_set(-60, 127, true);
 }
