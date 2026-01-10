@@ -613,12 +613,11 @@ void skills() {
   pros::delay(2000);
   chassis.pid_odom_set(-5, DS);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set({{ 28, 64, 90}, fwd, 80});
+  chassis.pid_odom_set({{ 30, 64, 90}, fwd, 80});
   intakeLS.move(127);
   intakeUS.move(-127);
   chassis.pid_wait_quick_chain();
   matchload.set(true);
-  chassis.pid_drive_set(-5, DS/2);
   chassis.pid_wait_quick_chain();
   chassis.pid_turn_set(45, TS);
   chassis.pid_wait_quick_chain();
