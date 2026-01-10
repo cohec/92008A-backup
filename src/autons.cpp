@@ -578,6 +578,6 @@ void skills() {
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-60, 127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_swing_set(ez::RIGHT_SWING, 0, -127, -60);
+  chassis.pid_swing_set(ez::LEFT_SWING, 0, -127, -45);
   chassis.pid_wait_quick_chain();
 }
