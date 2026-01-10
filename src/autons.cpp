@@ -604,9 +604,9 @@ void skills() {
   intakeUS.move(0);
   chassis.pid_odom_set(5, DS);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set({{-24, 90, 90}, fwd, 127});
+  chassis.pid_odom_set({{-24, 100, 90}, fwd, 127});
   chassis.pid_wait_quick_chain();
   aligner.set(true);
-  chassis.pid_drive_set(15, DS);
+  chassis.pid_drive_set(20, DS/2);
   chassis.pid_wait_quick_chain();
 }
