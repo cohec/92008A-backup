@@ -602,10 +602,10 @@ void skills() {
   intakeUS.move(0);
   chassis.pid_odom_set(5, DS);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set({{-32, 82, 135}, fwd, DS});
-  intakeUS.move(127);
+  chassis.pid_odom_set({{-24, 71, 135}, fwd, DS});
+  intakeUS.move(-127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(30, DS/2);
+  chassis.pid_odom_set(10, DS/2);
   intakeUS.move(-127);
   chassis.pid_wait_quick_chain();
   intakeLS.move(-100);
