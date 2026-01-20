@@ -487,8 +487,8 @@ void auto_wp_right() {
   chassis.pid_wait_quick_chain();
   chassis.pid_turn_set(-135, TS);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(-18, DS/1.5);
-  chassis.pid_wait_until(-14);
+  chassis.pid_odom_set(-16, DS/1.5);
+  chassis.pid_wait_until(-12);
   trapdoor.set(true);
   pros::delay(2000);
   trapdoor.set(false);
