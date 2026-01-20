@@ -417,7 +417,7 @@ void auto_wp_left() {
   matchload.set(false);
   chassis.pid_wait_quick_chain();
   intakeUS.move(127);
-  pros::delay(900);
+  pros::delay(850);
   intakeUS.move(0);
   chassis.pid_odom_set(5, DS);
   chassis.pid_wait_quick_chain();
@@ -473,27 +473,24 @@ void auto_wp_right() {
   matchload.set(false);
   chassis.pid_wait_quick_chain();
   intakeUS.move(127);
-  pros::delay(900);
+  pros::delay(850);
   intakeUS.move(0);
   chassis.pid_odom_set(5, DS);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set({{-60, 28, -90}, fwd, DS});
   intakeUS.move(127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(34, DS/2);
-  intakeUS.move(-127);
-  chassis.pid_wait();
-  intakeLS.move(-80);
-  pros::delay(1500);
-  chassis.pid_odom_set(-3, DS);
+  chassis.pid_odom_set(-5, DS/2);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set({{20, 15, 180}, fwd, DS});
+  chassis.pid_turn_set(-135, TS);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(-20, DS/2);
-  chassis.pid_wait_until(-5);
-  descore.set(false);
-  chassis.pid_wait_quick_chain();
-  chassis.pid_turn_set(160, TS);
+  chassis.pid_odom_set(-6, DS/1.5);
+  chassis.pid_wait_until(-3);
+  trapdoor.set(true);
+  pros::delay(2000);
+  trapdoor.set(false);
+  chassis.pid_odom_set(25, DS);
+  matchload.set(true);
   chassis.pid_wait_quick_chain();
 }
 
@@ -501,9 +498,10 @@ void left_side_elims() {
   descore.set(true);
   chassis.drive_angle_set(-90);
   chassis.odom_xyt_set(0, 0, -90);
-  chassis.pid_odom_set(29, DS, true);
-  chassis.pid_wait_until(10);
+  chassis.pid_odom_set(20, DS, true);
+  chassis.pid_wait_quick_chain();
   matchload.set(true);
+  chassis.pid_odom_set(10, DS/2);
   chassis.pid_wait_quick_chain();
   chassis.pid_turn_set(-180, TS);
   chassis.pid_wait_quick_chain();
@@ -516,7 +514,7 @@ void left_side_elims() {
   matchload.set(false);
   chassis.pid_wait_quick_chain();
   intakeUS.move(127);
-  pros::delay(900);
+  pros::delay(850);
   intakeUS.move(0);
   chassis.pid_odom_set(5, DS);
   chassis.pid_wait_quick_chain();
@@ -566,7 +564,7 @@ void right_side_elims() {
   matchload.set(false);
   chassis.pid_wait_quick_chain();
   intakeUS.move(127);
-  pros::delay(900);
+  pros::delay(850);
   intakeUS.move(0);
   chassis.pid_odom_set(5, DS);
   chassis.pid_wait_quick_chain();
