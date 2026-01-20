@@ -445,7 +445,7 @@ void auto_wp_left() {
   chassis.pid_wait_quick_chain();
   chassis.pid_turn_set(-45, TS);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(8, DS);
+  chassis.pid_odom_set(10, DS);
   chassis.pid_wait_quick_chain();
   intakeLS.move(-100);
   pros::delay(1500);
