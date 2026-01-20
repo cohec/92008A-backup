@@ -487,15 +487,15 @@ void auto_wp_right() {
   chassis.pid_wait_quick_chain();
   chassis.pid_turn_set(-135, TS);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(-16, DS/1.5);
-  chassis.pid_wait_until(-12);
+  chassis.pid_odom_set(-18, DS/1.5);
+  chassis.pid_wait_until(-14);
   trapdoor.set(true);
   pros::delay(2000);
   trapdoor.set(false);
   chassis.pid_odom_set(25, DS);
   matchload.set(true);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set({{-60, 0, -180}, fwd, DS});
+  chassis.pid_odom_set({{-63, 0, -180}, fwd, DS});
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(10, DS/3);
   chassis.pid_wait_quick_chain();
