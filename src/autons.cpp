@@ -495,9 +495,9 @@ void auto_wp_right() {
   intakeLS.move(127);
   pros::delay(1500);
   trapdoor.set(false);
-  chassis.pid_odom_set(30, 127);
+  chassis.pid_odom_set(45, 127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set({{-64, 0, -180}, fwd, 127, ez::shortest});
+  chassis.pid_turn_set(-180, TS);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(10, DS/1.5);
   chassis.pid_wait_quick_chain();
