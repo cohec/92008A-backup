@@ -486,8 +486,8 @@ void auto_wp_right() {
   chassis.pid_wait_quick_chain();
   intakeLS.move(-60);
   chassis.pid_turn_set(-135, TS);
-  chassis.pid_wait_quick_chain();
   intakeLS.move(0);
+  chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-18, 127);
   chassis.pid_wait_until(-14);
   trapdoor.set(true);
