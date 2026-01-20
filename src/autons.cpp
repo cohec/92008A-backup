@@ -495,7 +495,7 @@ void auto_wp_right() {
   chassis.pid_odom_set(25, DS);
   matchload.set(true);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set({{-63, 0, -180}, fwd, DS});
+  chassis.pid_odom_set({{-64, 0, -180}, fwd, DS});
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(10, DS/3);
   chassis.pid_wait_quick_chain();
