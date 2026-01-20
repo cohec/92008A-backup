@@ -71,7 +71,8 @@ void initialize() {
 
   // Autonomous Selector using LLEMU
   ez::as::auton_selector.autons_add({
-    {"AWP quals (start on right)", auto_wp_quals},
+    {"AWP left (left long goal both center goal)", auto_wp_left},
+    {"AWP right (right long goal, upper center goal, left long goal)" , auto_wp_right},
     {"left elims", left_side_elims},
     {"right elims", right_side_elims},
     {"auto skills", skills}
