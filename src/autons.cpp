@@ -477,9 +477,10 @@ void auto_wp_right() {
   intakeUS.move(0);
   chassis.pid_odom_set(5, DS);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set({{-60, 28, -90}, fwd, DS});
+  chassis.pid_odom_set({{10, 27, -60}, fwd, DS});
   intakeUS.move(127);
   chassis.pid_wait_quick_chain();
+  chassis.pid_odom_set({{-45, 25, -90}, fwd, DS});
   chassis.pid_odom_set(-5, DS/2);
   chassis.pid_wait_quick_chain();
   chassis.pid_turn_set(-135, TS);
