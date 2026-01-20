@@ -71,10 +71,12 @@ void initialize() {
 
   // Autonomous Selector using LLEMU
   ez::as::auton_selector.autons_add({
-    {"AWP left (left long goal both center goal)", auto_wp_left},
-    {"AWP right (right long goal, upper center goal, left long goal)" , auto_wp_right},
-    {"left elims", left_side_elims},
-    {"right elims", right_side_elims},
+    {"AWP left (left long goal, both center goals)", auto_wp_left},
+    {"AWP right (right long goal, top center goal, left long goal)" , auto_wp_right},
+    {"left sweep (left long goal, top center goal, push long)", left_sweep},
+    {"right sweep (right long goal, bottom center goal, push long)", right_sweep},
+    {"left contest (left long goal, push long)", left_contest},
+    {"right contest (right long goal, push long)", right_contest},
     {"auto skills", skills}
   });
 
