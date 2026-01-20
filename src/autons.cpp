@@ -481,14 +481,14 @@ void auto_wp_right() {
   intakeUS.move(127);
   chassis.pid_wait_quick_chain();
   intakeUS.move(-127);
-  chassis.pid_odom_set({{-45, 25, -90}, fwd, DS});
+  chassis.pid_odom_set({{-50, 25, -90}, fwd, DS});
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-5, DS/2);
   chassis.pid_wait_quick_chain();
   chassis.pid_turn_set(-135, TS);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(-6, DS/1.5);
-  chassis.pid_wait_until(-3);
+  chassis.pid_odom_set(-12, DS/1.5);
+  chassis.pid_wait_until(-10);
   trapdoor.set(true);
   pros::delay(2000);
   trapdoor.set(false);
