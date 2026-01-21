@@ -581,7 +581,7 @@ void right_sweep() {
   pros::delay(1500);
   chassis.pid_odom_set(-3, DS);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set({{16, 16, 180}, fwd, DS});
+  chassis.pid_odom_set({{16, 14, 180}, fwd, DS});
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-20, DS/2);
   chassis.pid_wait_until(-5);
