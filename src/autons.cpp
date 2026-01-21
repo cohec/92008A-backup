@@ -571,7 +571,7 @@ void right_sweep() {
   intakeUS.move(0);
   chassis.pid_odom_set(5, DS);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set({{23, 10, -45}, fwd, DS});
+  chassis.pid_odom_set({{22, 10, -45}, fwd, DS});
   intakeUS.move(127);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(32, DS/2);
@@ -581,7 +581,7 @@ void right_sweep() {
   pros::delay(1500);
   chassis.pid_odom_set(-3, DS);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set({{18, 14, 180}, fwd, DS});
+  chassis.pid_odom_set({{17, 14, 180}, fwd, DS});
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-20, DS/2);
   chassis.pid_wait_until(-5);
