@@ -522,7 +522,7 @@ void left_sweep() {
   intakeUS.move(0);
   chassis.pid_odom_set(5, DS);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set({{-17, 13, 45}, fwd, DS});
+  chassis.pid_odom_set({{-16, 13, 45}, fwd, DS});
   intakeUS.move(127);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(23, DS/2);
@@ -538,7 +538,7 @@ void left_sweep() {
   chassis.pid_wait_quick_chain();
   pros::delay(1500);
   trapdoor.set(false);
-  chassis.pid_odom_set({{-16, 19, 0}, fwd, DS});
+  chassis.pid_odom_set({{-16, 16, 0}, fwd, DS});
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(24, DS/2);
   chassis.pid_wait_until(5);
