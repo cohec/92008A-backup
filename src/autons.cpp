@@ -472,11 +472,11 @@ void auto_wp_right() {
   chassis.pid_odom_set(-6.5, 127);
   matchload.set(true);
   chassis.pid_wait_quick_chain();
-  intakeLS.move(-50);
+  intakeLS.move(-70);
   chassis.pid_turn_set(-135, TS);
   chassis.pid_wait_quick_chain();
-  intakeLS.move(0);
   chassis.pid_odom_set(-16, 127);
+  intakeLS.move(0);
   chassis.pid_wait_until(-14);
   trapdoor.set(true);
   intakeLS.move(127);
