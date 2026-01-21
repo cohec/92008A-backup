@@ -469,7 +469,7 @@ void auto_wp_right() {
   intakeUS.move(-127);
   chassis.pid_odom_set({{-50, 25, -90}, fwd, 80});
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(-7, 127);
+  chassis.pid_odom_set(-6.5, 127);
   matchload.set(true);
   chassis.pid_wait_quick_chain();
   intakeLS.move(-50);
