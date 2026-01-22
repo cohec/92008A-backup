@@ -654,10 +654,9 @@ void skills() {
   chassis.pid_odom_set(5, DS/3);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set({{-15, 32, -135}, rev, 127});
-  intakeLS.move(-60);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-5.5, DS/2);
-  intakeLS.move(0);
+  intakeLS.move(-50);
   chassis.pid_wait_until(-3);
   trapdoor.set(true);
   chassis.pid_wait_quick_chain();
@@ -676,6 +675,7 @@ void skills() {
   chassis.pid_odom_set(-10, 127);
   chassis.pid_wait_quick_chain();
   matchload.set(false);
+  intakeLS.move(0);
   chassis.pid_turn_set(-225, TS);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-15, 127);
