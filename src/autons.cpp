@@ -687,6 +687,7 @@ void skills() {
   chassis.pid_swing_set(ez::RIGHT_SWING, 0, -127, 3);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-9, DS);
+  intakeLS.move(127);
   intakeUS.move(127);
   pros::delay(2000);
   intakeUS.move(0);
