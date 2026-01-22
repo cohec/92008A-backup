@@ -788,5 +788,13 @@ void skills() {
   chassis.pid_wait_quick_chain();
   aligner.set(true);
   chassis.pid_drive_set(30, 127);
-  chassis.pid_wait();
+  chassis.pid_wait_quick_chain();
+  chassis.pid_drive_set(-3, 127);
+  chassis.pid_wait_quick_chain();
+  chassis.pid_drive_set(3, 127);
+  chassis.pid_wait_quick_chain();
+  chassis.pid_drive_set(-3, 127);
+  chassis.pid_wait_quick_chain();
+  chassis.pid_drive_set(3, 127);
+  chassis.pid_wait_quick_chain();
 }
