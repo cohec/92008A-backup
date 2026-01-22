@@ -760,7 +760,7 @@ void skills() {
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(10, DS/3);
   chassis.pid_wait_quick_chain();
-  pros::delay(1000);
+  pros::delay(1500);
   chassis.pid_odom_set(-24, DS, true);
   chassis.pid_wait_until(-6);
   chassis.pid_wait_quick_chain();
