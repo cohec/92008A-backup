@@ -799,7 +799,7 @@ void skills() {
   pros::delay(2000);
   chassis.pid_odom_set(-2, DS);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set({{3.5, 10, 180}, fwd, DS});
+  chassis.pid_odom_set({{3, 10, 180}, fwd, DS});
   intakeLS.move(127);
   intakeUS.move(127);
   chassis.pid_wait_quick_chain();
