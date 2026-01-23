@@ -645,7 +645,15 @@ void right_contest() {
   intakeUS.move(127);
   pros::delay(850);
   intakeUS.move(0);
-  chassis.pid_swing_set(ez::RIGHT_SWING, 0, 127, 0);
+  chassis.pid_odom_set(1, 127);
+  chassis.pid_wait_quick_chain();
+  chassis.pid_swing_set(ez::RIGHT_SWING, 0, 127, -25, ccw);
+  chassis.pid_wait_quick_chain();
+  chassis.pid_odom_set(18, 127);
+  chassis.pid_wait_until(7);
+  descore.set(false);
+  chassis.pid_wait_quick_chain();
+  chassis.pid_turn_set(20, TS);
   chassis.pid_wait_quick_chain();
 }
 
