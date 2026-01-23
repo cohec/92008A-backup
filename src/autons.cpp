@@ -671,9 +671,9 @@ void skills() {
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set({{-15, 32, -135}, rev, 127});
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(-6, DS/2);
+  chassis.pid_odom_set(-7, DS/2);
   intakeLS.move(-50);
-  chassis.pid_wait_until(-3);
+  chassis.pid_wait_until(-5);
   trapdoor.set(true);
   chassis.pid_wait_quick_chain();
   intakeLS.move(127);
