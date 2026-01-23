@@ -616,6 +616,10 @@ void left_contest() {
   chassis.pid_wait_quick_chain();
   chassis.pid_swing_set(ez::RIGHT_SWING, 0, 127, -3, ccw);
   chassis.pid_wait_quick_chain();
+  chassis.pid_odom_set(20, 127);
+  chassis.pid_wait_until(7);
+  descore.set(false);
+  chassis.pid_wait_quick_chain();
 }
 
 void right_contest() {
