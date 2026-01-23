@@ -738,12 +738,12 @@ void skills() {
   intakeUS.move(-127);
   chassis.pid_wait_quick_chain();
   matchload.set(true);
-  chassis.pid_drive_set(-9, DS/2);
+  chassis.pid_drive_set(-10, DS/2);
   chassis.pid_wait_quick_chain();
   chassis.pid_turn_set(45, TS);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(-15, DS/2);
-  chassis.pid_wait_until(-13);
+  chassis.pid_odom_set(-14, DS/2);
+  chassis.pid_wait_until(-12);
   trapdoor.set(true);
   chassis.pid_wait_quick_chain();
   intakeLS.move(127);
@@ -808,10 +808,10 @@ void skills() {
   chassis.pid_wait_quick_chain();
   chassis.pid_drive_set(-3, 127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_drive_set(3, 127);
+  chassis.pid_drive_set(4, 127);
   chassis.pid_wait_quick_chain();
   chassis.pid_drive_set(-3, 127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_drive_set(3, 127);
+  chassis.pid_drive_set(5, 127);
   chassis.pid_wait_quick_chain();
 }
