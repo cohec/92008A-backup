@@ -30,8 +30,8 @@ ez::Drive chassis(
 //  - you should get positive values on the encoders going FORWARD and RIGHT
 // - `2.75` is the wheel diameter
 // - `4.0` is the distance from the center of the wheel to the center of the robot
-ez::tracking_wheel horiz_tracker(1, 2, 2.75);  // (3in is actual to center 2.75 is dist to turning center, try 2.5 if inaccurate)This tracking wheel is perpendicular to the drive wheels
-ez::tracking_wheel vert_tracker(15, 2, 0.25);   // This tracking wheel is parallel to the drive wheels
+ez::tracking_wheel horiz_tracker(1, 2, 2.50);  // (3in is actual to center 2.75 is dist to turning center, try 2.5 if inaccurate)This tracking wheel is perpendicular to the drive wheels
+ez::tracking_wheel vert_tracker(15, 2, 0.00);   // This tracking wheel is parallel to the drive wheels
 /**
  * Runs initialization code. This occurs as soon as the program is started.
  *
