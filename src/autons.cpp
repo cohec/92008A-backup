@@ -397,7 +397,7 @@ void auto_wp_left() {
   chassis.pid_wait_quick_chain();
   intakeLS.move(127);
   intakeUS.move(-127);
-  chassis.pid_odom_set(14, DS/3);
+  chassis.pid_odom_set(13, DS/3);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-24.5, DS, true);
   chassis.pid_wait_until(-6);
@@ -409,7 +409,7 @@ void auto_wp_left() {
   chassis.pid_odom_set(5, DS);
   chassis.pid_wait_quick_chain();
   intakeUS.move(127);
-  chassis.pid_odom_set({{-15, 15, 45}, fwd, DS});
+  chassis.pid_odom_set({{-16, 16, 45}, fwd, DS});
   chassis.pid_wait_quick_chain();
   intakeUS.move(-127);
   chassis.pid_odom_set(20, DS/2);
