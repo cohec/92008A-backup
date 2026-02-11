@@ -426,7 +426,7 @@ void auto_wp_left() {
   trapdoor.set(false);
   chassis.pid_odom_set(5, DS);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set({{50, 27, 90}, fwd, DS});
+  chassis.pid_odom_set({{50, 25, 90}, fwd, DS});
   intakeLS.move(127);
   chassis.pid_wait_quick_chain();
   chassis.pid_drive_set(-3, DS/2);
