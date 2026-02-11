@@ -412,13 +412,13 @@ void auto_wp_left() {
   chassis.pid_odom_set({{-16, 16, 45}, fwd, DS});
   chassis.pid_wait_quick_chain();
   intakeUS.move(-127);
-  chassis.pid_odom_set(20, DS/2);
+  chassis.pid_odom_set(22, DS/2);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(-0.5, DS/1.5, true);
+  chassis.pid_odom_set(-1, DS/1.5, true);
   chassis.pid_wait_quick_chain();
   chassis.pid_turn_set(-135, TS);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(-15, DS/2);
+  chassis.pid_odom_set(-14, DS/2);
   chassis.pid_wait_until(-10);
   trapdoor.set(true);
   chassis.pid_wait_quick_chain();
@@ -433,7 +433,7 @@ void auto_wp_left() {
   chassis.pid_wait_quick_chain();
   chassis.pid_turn_set(-45, TS);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(7, DS);
+  chassis.pid_odom_set(9, DS);
   chassis.pid_wait_quick_chain();
   intakeLS.move(-80);
   pros::delay(2000);
