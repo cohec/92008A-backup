@@ -77,7 +77,8 @@ void initialize() {
     {"right sweep (right long goal, bottom center goal, push long)", right_sweep},
     {"left contest (left long goal, push long)", left_contest},
     {"right contest (right long goal, push long)", right_contest},
-    {"auto skills", skills}
+    {"auto skills", skills},
+    {"measure offsets" measure_offsets}
   });
 
   // Initialize chassis and auton selector
