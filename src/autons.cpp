@@ -348,7 +348,7 @@ void measure_offsets() {
     double target = i % 2 == 0 ? -90 : -270;  // Switch the turn target every run from 270 to 90
 
     // Turn to target at half power
-    chassis.pid_turn_set(target, 63, ez::raw);
+    chassis.pid_turn_set(target, 30, ez::raw);
     chassis.pid_wait();
     pros::delay(250);
 
