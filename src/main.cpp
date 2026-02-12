@@ -216,7 +216,7 @@ void ez_template_extras() {
     //  * use the arrow keys to navigate the constants
     if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1)) {
       chassis.pid_tuner_toggle();
-    } if (pros::E_CONTROLLER_DIGITAL_R1 == false) {
+    } if (!master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
       chassis.pid_tuner_disable();
     }
     
