@@ -214,8 +214,11 @@ void ez_template_extras() {
     //  When enabled:
     //  * use A and Y to increment / decrement the constants
     //  * use the arrow keys to navigate the constants
-    if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_RIGHT))
-      chassis.pid_tuner_toggle();
+    if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R1))
+      chassis.pid_tuner_enable();
+    else {
+      chassis.pid_tuner_disable();
+    }
 
     // Trigger the selected autonomous routine
     if (master.get_digital(pros::E_CONTROLLER_DIGITAL_B) && master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN)) {
@@ -333,55 +336,52 @@ void opcontrol() {
   while (true) {
     // Gives you some extras to make EZ-Template ezier
     ez_template_extras();
-    //handbrake
-    if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
-      chassis.opcontrol_tank();
-    } else {
-      chassis.opcontrol_arcade_standard(ez::SINGLE);
-    }
+    chassis.opcontrol_arcade_standard(ez::SINGLE);
 
-    // Slowmode
-    if (master.get_digital(pros::E_CONTROLLER_DIGITAL_A)) {
-      chassis.drive_brake_set(MOTOR_BRAKE_HOLD);
-      chassis.opcontrol_speed_max_set(127 * 0.5);
-    } else {
-      chassis.drive_brake_set(MOTOR_BRAKE_COAST);
-      chassis.opcontrol_speed_max_set(127);
-    }
-    
-    // Scoring
-    if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
-      intakeLS.move(127);
-      intakeUS.move(-127);
-    } else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_X)) {
-      trapdoor.set(false);
-      intakeLS.move(127);
-      intakeUS.move(127);
-    } else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_B)) {
-      trapdoor.set(false);
-      intakeLS.move(-127);
-      intakeUS.move(-127);
-    } else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_Y)) {
-      trapdoor.set(true);
-      intakeLS.move(127);
-      intakeUS.move(-127);
-    } else {
-      trapdoor.set(false);
-      intakeLS.move(0);
-      intakeUS.move(0);
-    }
+    if (!master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
+      // Slowmode
+      if (master.get_digital(pros::E_CONTROLLER_DIGITAL_A)) {
+        chassis.drive_brake_set(MOTOR_BRAKE_HOLD);
+        chassis.opcontrol_speed_max_set(127 * 0.5);
+      } else {
+        chassis.drive_brake_set(MOTOR_BRAKE_COAST);
+        chassis.opcontrol_speed_max_set(127);
+      }
+      
+      // Scoring
+      if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
+        intakeLS.move(127);
+        intakeUS.move(-127);
+      } else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_X)) {
+        trapdoor.set(false);
+        intakeLS.move(127);
+        intakeUS.move(127);
+      } else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_B)) {
+        trapdoor.set(false);
+        intakeLS.move(-127);
+        intakeUS.move(-127);
+      } else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_Y)) {
+        trapdoor.set(true);
+        intakeLS.move(127);
+        intakeUS.move(-127);
+      } else {
+        trapdoor.set(false);
+        intakeLS.move(0);
+        intakeUS.move(0);
+      }
 
-    // Pneumatics
-    if (master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT)) {
-      wdLock = false;
+      // Pneumatics
+      if (master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT)) {
+        wdLock = false;
+      }
+      if (wdLock == true) {
+        descore.set(false);
+      } else {
+        descore.set(!master.get_digital(pros::E_CONTROLLER_DIGITAL_L2));
+      }
+      aligner.button_toggle(master.get_digital(pros::E_CONTROLLER_DIGITAL_UP));
+      matchload.set(master.get_digital(pros::E_CONTROLLER_DIGITAL_R2));
     }
-    if (wdLock == true) {
-      descore.set(false);
-    } else {
-      descore.set(!master.get_digital(pros::E_CONTROLLER_DIGITAL_L2));
-    }
-    aligner.button_toggle(master.get_digital(pros::E_CONTROLLER_DIGITAL_UP));
-    matchload.set(master.get_digital(pros::E_CONTROLLER_DIGITAL_R2));
 
     pros::delay(ez::util::DELAY_TIME);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME
   }
