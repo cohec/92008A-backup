@@ -215,11 +215,8 @@ void ez_template_extras() {
     //  * use A and Y to increment / decrement the constants
     //  * use the arrow keys to navigate the constants
     if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1)) {
-      chassis.pid_tuner_full_enable(true);
-    } else {
-      chassis.pid_tuner_disable();
+      chassis.pid_tuner_toggle();
     }
-    
 
     // Trigger the selected autonomous routine
     if (master.get_digital(pros::E_CONTROLLER_DIGITAL_B) && master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN)) {
@@ -339,7 +336,7 @@ void opcontrol() {
     ez_template_extras();
     chassis.opcontrol_arcade_standard(ez::SINGLE);
 
-    if (!master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
+    if (!chassis.pid_tuner_enabled()) {
       // Slowmode
       if (master.get_digital(pros::E_CONTROLLER_DIGITAL_A)) {
         chassis.drive_brake_set(MOTOR_BRAKE_HOLD);
