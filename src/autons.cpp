@@ -444,7 +444,7 @@ void auto_wp_right() {
   descore.set(true);
   chassis.drive_angle_set(90);
   chassis.odom_xyt_set(0, 0, 90);
-  chassis.pid_odom_set(27, 127, true);
+  chassis.pid_odom_set(29, 127, true);
   chassis.pid_wait_until(10);
   matchload.set(true);
   chassis.pid_wait_quick_chain();
@@ -454,7 +454,7 @@ void auto_wp_right() {
   intakeUS.move(-127);
   chassis.pid_odom_set(10, DS/3);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(-24.5, 127, true);
+  chassis.pid_odom_set(-25, 127, true);
   chassis.pid_wait_until(-6);
   matchload.set(false);
   chassis.pid_wait_quick_chain();
@@ -488,7 +488,7 @@ void auto_wp_right() {
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(14, 60);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(-24, 127, true);
+  chassis.pid_odom_set(-25, 127, true);
   chassis.pid_wait_until(-6);
   matchload.set(false);
   chassis.pid_wait_quick_chain();
@@ -503,7 +503,7 @@ void left_sweep() {
   descore.set(true);
   chassis.drive_angle_set(-90);
   chassis.odom_xyt_set(0, 0, -90);
-  chassis.pid_odom_set(27, 127, true);
+  chassis.pid_odom_set(29, 127, true);
   chassis.pid_wait_until(10);
   matchload.set(true);
   chassis.pid_wait_quick_chain();
@@ -513,7 +513,7 @@ void left_sweep() {
   intakeUS.move(-127);
   chassis.pid_odom_set(12, DS/3);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(-24.5, DS, true);
+  chassis.pid_odom_set(-25, DS, true);
   chassis.pid_wait_until(-6);
   matchload.set(false);
   chassis.pid_wait_quick_chain();
@@ -523,7 +523,7 @@ void left_sweep() {
   chassis.pid_odom_set(5, DS);
   chassis.pid_wait_quick_chain();
   intakeUS.move(127);
-  chassis.pid_odom_set({{-16, 13, 45}, fwd, DS});
+  chassis.pid_odom_set({{-16, 16, 45}, fwd, DS});
   chassis.pid_wait_quick_chain();
   intakeUS.move(-127);
   chassis.pid_odom_set(23, DS/2);
@@ -552,7 +552,7 @@ void right_sweep() {
   descore.set(true);
   chassis.drive_angle_set(90);
   chassis.odom_xyt_set(0, 0, 90);
-  chassis.pid_odom_set(27, 127, true);
+  chassis.pid_odom_set(29, 127, true);
   chassis.pid_wait_until(10);
   matchload.set(true);
   chassis.pid_wait_quick_chain();
@@ -562,7 +562,7 @@ void right_sweep() {
   intakeUS.move(-127);
   chassis.pid_odom_set(10, DS/3);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(-24.5, DS, true);
+  chassis.pid_odom_set(-25, DS, true);
   chassis.pid_wait_until(-6);
   matchload.set(false);
   chassis.pid_wait_quick_chain();
@@ -595,7 +595,7 @@ void left_contest() {
   descore.set(true);
   chassis.drive_angle_set(-90);
   chassis.odom_xyt_set(0, 0, -90);
-  chassis.pid_odom_set(27, 127, true);
+  chassis.pid_odom_set(29, 127, true);
   chassis.pid_wait_until(10);
   matchload.set(true);
   chassis.pid_wait_quick_chain();
@@ -605,7 +605,7 @@ void left_contest() {
   intakeUS.move(-127);
   chassis.pid_odom_set(12, DS/3);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(-24.5, DS, true);
+  chassis.pid_odom_set(-25, DS, true);
   chassis.pid_wait_until(-6);
   matchload.set(false);
   chassis.pid_wait_quick_chain();
@@ -628,7 +628,7 @@ void right_contest() {
   descore.set(true);
   chassis.drive_angle_set(90);
   chassis.odom_xyt_set(0, 0, 90);
-  chassis.pid_odom_set(27, 127, true);
+  chassis.pid_odom_set(29, 127, true);
   chassis.pid_wait_until(10);
   matchload.set(true);
   chassis.pid_wait_quick_chain();
@@ -638,7 +638,7 @@ void right_contest() {
   intakeUS.move(-127);
   chassis.pid_odom_set(10, DS/3);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(-24.5, DS, true);
+  chassis.pid_odom_set(-25, DS, true);
   chassis.pid_wait_until(-6);
   matchload.set(false);
   chassis.pid_wait_quick_chain();
