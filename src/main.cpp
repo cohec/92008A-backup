@@ -335,10 +335,6 @@ void opcontrol() {
     // Gives you some extras to make EZ-Template ezier
     ez_template_extras();
     chassis.opcontrol_arcade_standard(ez::SINGLE);
-
-    if (chassis.pid_tuner_enabled()) {
-      master.rumble(".");
-    }
     if (!chassis.pid_tuner_enabled()) {
       // Slowmode
       if (master.get_digital(pros::E_CONTROLLER_DIGITAL_A)) {
@@ -382,6 +378,8 @@ void opcontrol() {
       }
       aligner.button_toggle(master.get_digital(pros::E_CONTROLLER_DIGITAL_UP));
       matchload.set(master.get_digital(pros::E_CONTROLLER_DIGITAL_R2));
+    } else if (chassis.pid_tuner_enabled()) {
+      master.rumble(".");
     }
 
     pros::delay(ez::util::DELAY_TIME);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME
