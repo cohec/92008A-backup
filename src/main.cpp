@@ -216,11 +216,6 @@ void ez_template_extras() {
     //  * use the arrow keys to navigate the constants
     if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1)) {
       chassis.pid_tuner_toggle();
-      if (chassis.pid_tuner_enabled()) {
-        master.rumble("-");
-      } else if (!chassis.pid_tuner_enabled()) {
-        master.rumble(".");
-      }
     }
 
     // Trigger the selected autonomous routine
@@ -341,6 +336,9 @@ void opcontrol() {
     ez_template_extras();
     chassis.opcontrol_arcade_standard(ez::SINGLE);
 
+    if (chassis.pid_tuner_enabled()) {
+      master.rumble(".");
+    }
     if (!chassis.pid_tuner_enabled()) {
       // Slowmode
       if (master.get_digital(pros::E_CONTROLLER_DIGITAL_A)) {
