@@ -345,7 +345,7 @@ void measure_offsets() {
     chassis.drive_brake_set(pros::E_MOTOR_BRAKE_HOLD);
     chassis.odom_xyt_set(0_in, 0_in, 0_deg);
     double imu_start = chassis.odom_theta_get();
-    double target = i % 2 == 0 ? -90 : -270;  // Switch the turn target every run from 270 to 90
+    double target = i % 2 == 0 ? 90 : 270;  // Switch the turn target every run from 270 to 90
 
     // Turn to target at half power
     chassis.pid_turn_set(target, 30, ez::raw);
