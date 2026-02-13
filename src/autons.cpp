@@ -31,11 +31,11 @@ void default_constants() {
   chassis.pid_odom_boomerang_constants_set(5.8, 0.0, 32.5);  // Angular control for boomerang motions
 
   // Exit conditions
-  chassis.pid_turn_exit_condition_set(90_ms, 3_deg, 250_ms, 7_deg, 500_ms, 500_ms);
-  chassis.pid_swing_exit_condition_set(90_ms, 3_deg, 250_ms, 7_deg, 500_ms, 500_ms);
-  chassis.pid_drive_exit_condition_set(90_ms, 1_in, 250_ms, 3_in, 500_ms, 500_ms);
-  chassis.pid_odom_turn_exit_condition_set(90_ms, 3_deg, 250_ms, 7_deg, 500_ms, 750_ms);
-  chassis.pid_odom_drive_exit_condition_set(90_ms, 1_in, 250_ms, 3_in, 500_ms, 750_ms);
+  chassis.pid_turn_exit_condition_set(60_ms, 4_deg, 250_ms, 7_deg, 500_ms, 500_ms);
+  chassis.pid_swing_exit_condition_set(60_ms, 3_deg, 250_ms, 7_deg, 500_ms, 500_ms);
+  chassis.pid_drive_exit_condition_set(60_ms, 1.5_in, 250_ms, 3_in, 500_ms, 500_ms);
+  chassis.pid_odom_turn_exit_condition_set(60_ms, 4_deg, 250_ms, 7_deg, 500_ms, 750_ms);
+  chassis.pid_odom_drive_exit_condition_set(60_ms, 1.5_in, 250_ms, 3_in, 500_ms, 750_ms);
   chassis.pid_turn_chain_constant_set(3_deg);
   chassis.pid_swing_chain_constant_set(5_deg);
   chassis.pid_drive_chain_constant_set(3_in);
@@ -389,7 +389,7 @@ void auto_wp_left() {
   descore.set(true);
   chassis.drive_angle_set(-90);
   chassis.odom_xyt_set(0, 0, -90);
-  chassis.pid_odom_set(29, 127, true);
+  chassis.pid_odom_set(32, 127, true);
   chassis.pid_wait_until(10);
   matchload.set(true);
   chassis.pid_wait_quick_chain();
