@@ -25,7 +25,7 @@ void default_constants() {
   // P, I, D, and Start I
   chassis.pid_drive_constants_set(15.0, 0.0, 100.0);         // Fwd/rev constants, used for odom and non odom motions
   chassis.pid_heading_constants_set(6.0, 0.0, 40.0);        // Holds the robot straight while going forward without odom
-  chassis.pid_turn_constants_set(3.0, 0.05, 40.0, 20.0);     // Turn in place constants
+  chassis.pid_turn_constants_set(2.5, 0.05, 25.0, 15.0);     // Turn in place constants
   chassis.pid_swing_constants_set(6.0, 0.0, 65.0);           // Swing constants
   chassis.pid_odom_angular_constants_set(6.5, 0.0, 52.5);    // Angular control for odom motions
   chassis.pid_odom_boomerang_constants_set(5.8, 0.0, 32.5);  // Angular control for boomerang motions
@@ -41,13 +41,13 @@ void default_constants() {
   chassis.pid_drive_chain_constant_set(3_in);
 
   // Slew constants
-  chassis.slew_turn_constants_set(6_deg, 60);
-  chassis.slew_drive_constants_set(6_in, 60);
-  chassis.slew_swing_constants_set(6_in, 60);
+  chassis.slew_turn_constants_set(5_deg, 50);
+  chassis.slew_drive_constants_set(5_in, 50);
+  chassis.slew_swing_constants_set(5_in, 50);
 
   // The amount that turns are prioritized over driving in odom motions
   // - if you have tracking wheels, you can run this higher.  1.0 is the max
-  chassis.odom_turn_bias_set(0.6);
+  chassis.odom_turn_bias_set(0.5);
 
   chassis.odom_look_ahead_set(10_in);           // This is how far ahead in the path the robot looks at
   chassis.odom_boomerang_distance_set(16_in);  // This sets the maximum distance away from target that the carrot point can be
