@@ -422,7 +422,7 @@ void auto_wp_left() {
   chassis.pid_wait_until(-6);
   trapdoor.set(true);
   chassis.pid_wait_quick_chain();
-  pros::delay(700);
+  pros::delay(1000);
   trapdoor.set(false);
   chassis.pid_odom_set(5, DS);
   chassis.pid_wait_quick_chain();
