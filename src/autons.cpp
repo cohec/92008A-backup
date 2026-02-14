@@ -392,7 +392,7 @@ void auto_wp_left() {
   chassis.pid_odom_set({{-8, 26}, fwd, 127});
   intakeUS.move(-127);
   intakeLS.move(127);
-  chassis.pid_wait_until(6);
+  chassis.pid_wait_until(3);
   matchload.set(true);
   chassis.pid_wait_quick_chain();
   chassis.pid_swing_set(ez::RIGHT_SWING, 180, -100, 20, cw);
