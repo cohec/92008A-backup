@@ -431,9 +431,9 @@ void auto_wp_left() {
   chassis.pid_wait_quick_chain();
   chassis.pid_swing_set(ez::LEFT_SWING, -45, -100, -30);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(20, 127);
-  chassis.pid_wait_until(10);
-  intakeLS.move(-80);
+  chassis.pid_odom_set(18, 127);
+  chassis.pid_wait_until(8);
+  intakeLS.move(-100);
   chassis.pid_wait_quick_chain();
   pros::delay(1500);
 }
