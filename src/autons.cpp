@@ -400,6 +400,13 @@ void auto_wp_left() {
   chassis.pid_wait_quick_chain();
   intakeUS.move(127);
   pros::delay(900);
+  chassis.pid_odom_set(20, 127);
+  chassis.pid_wait_quick_chain();
+  intakeUS.move(-127);
+  chassis.pid_odom_set(10, DS/2);
+  chassis.pid_wait_quick_chain();
+  chassis.pid_odom_set({{3, 33}, rev, 127});
+  chassis.pid_wait_quick_chain();
 }
 
 void auto_wp_right() {
