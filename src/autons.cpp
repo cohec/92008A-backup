@@ -421,15 +421,15 @@ void auto_wp_left() {
   pros::delay(800);
   trapdoor.set(false);
   matchload.set(false);
-  chassis.pid_odom_set(3, 127);
+  chassis.pid_odom_set(5, 127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_swing_set(RIGHT_SWING, 90, 127, -40, ccw);
+  chassis.pid_swing_set(RIGHT_SWING, 90, 100, -50, ccw);
   intakeUS.move(127);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(50, DS);
   intakeUS.move(-127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_swing_set(ez::LEFT_SWING, -45, -100, -50);
+  chassis.pid_swing_set(ez::LEFT_SWING, -45, -100, -60);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(22, 127);
   chassis.pid_wait_until(18);
