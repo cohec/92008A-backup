@@ -435,7 +435,7 @@ void auto_wp_left() {
   chassis.pid_wait_until(10);
   intakeLS.move(-80);
   chassis.pid_wait_quick_chain();
-  pros::delay(1000);
+  pros::delay(1500);
 }
 
 void auto_wp_right() {
