@@ -400,8 +400,6 @@ void auto_wp_left() {
   chassis.pid_odom_set(-10, 127);
   chassis.pid_wait_quick_chain();
   intakeUS.move(127);
-  chassis.drive_sensor_reset();
-  chassis.odom_xyt_set(0, 0, 180);
   pros::delay(900);
   chassis.pid_odom_set(20, 127);
   chassis.pid_wait_quick_chain();
@@ -410,7 +408,7 @@ void auto_wp_left() {
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-5, 127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set({{34, 18}, rev, 127});
+  chassis.pid_odom_set({{5, 37}, rev, 127});
   chassis.pid_wait_quick_chain();
 }
 
