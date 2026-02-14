@@ -426,10 +426,10 @@ void auto_wp_left() {
   chassis.pid_swing_set(RIGHT_SWING, 90, 127, -30, ccw);
   intakeUS.move(127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(45, DS);
+  chassis.pid_odom_set(50, DS);
   intakeUS.move(-127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_swing_set(ez::LEFT_SWING, -45, -100, -50);
+  chassis.pid_swing_set(ez::LEFT_SWING, -45, -100, -40);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(20, 127);
   chassis.pid_wait_until(15);
