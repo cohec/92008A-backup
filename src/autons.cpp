@@ -400,8 +400,9 @@ void auto_wp_left() {
   chassis.pid_odom_set(-8, 127);
   chassis.pid_wait_quick_chain();
   intakeUS.move(127);
-  chassis.odom_xyt_set(0, 0, 180);
   pros::delay(900);
+  chassis.odom_xyt_set(0, 0, 180);
+  pros::delay(100);
   chassis.pid_odom_set(20, 127);
   chassis.pid_wait_quick_chain();
   intakeUS.move(-127);
