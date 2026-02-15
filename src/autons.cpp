@@ -460,7 +460,7 @@ void auto_wp_right() {
   intakeUS.move(127);
   pros::delay(900);
   intakeUS.move(0);
-  chassis.pid_swing_set(ez::LEFT_SWING, -90, 70, -127, cw);
+  chassis.pid_swing_set(ez::LEFT_SWING, -90, 60, -127, cw);
   chassis.pid_wait_quick_chain();
   intakeUS.move(127);
   chassis.pid_odom_set(55, 127);
@@ -471,9 +471,9 @@ void auto_wp_right() {
   chassis.pid_wait_quick_chain();
   chassis.pid_swing_set(ez::RIGHT_SWING, -120, 127, 50, ccw);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(20, 127);
+  chassis.pid_odom_set(25, 127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_swing_set(ez::LEFT_SWING, 180, -127, 20, ccw);
+  chassis.pid_swing_set(ez::LEFT_SWING, 180, -127, 30, ccw);
   chassis.pid_wait_quick_chain();
   intakeUS.move(127);
   pros::delay(1200);
