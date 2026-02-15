@@ -473,6 +473,30 @@ void auto_wp_right() {
   chassis.pid_wait_quick_chain();
   chassis.pid_swing_set(ez::LEFT_SWING, 180, -127, 0, ccw);
   chassis.pid_wait_quick_chain();
+  intakeUS.move(127);
+  pros::delay(1200);
+  chassis.pid_odom_set(20, 127);
+  chassis.pid_wait_quick_chain();
+  intakeUS.move(-127);
+  chassis.pid_odom_set(9, DS/2);
+  chassis.pid_wait_quick_chain();
+  intakeLS.move(0);
+  chassis.pid_odom_set(-5, 127);
+  chassis.pid_wait_quick_chain();
+  chassis.pid_turn_set(-135, 127);
+  chassis.pid_wait_quick_chain();
+  chassis.pid_odom_set(-52, 127);
+  chassis.pid_wait_until(-40);
+  intakeLS.move(-50);
+  chassis.pid_wait_until(-48);
+  trapdoor.set(true);
+  intakeLS.move(127);
+  chassis.pid_wait_quick_chain();
+  pros::delay(800);
+  trapdoor.set(false);
+  matchload.set(false);
+  chassis.pid_odom_set(5, 127);
+  chassis.pid_wait_quick_chain();
 }
 
 void left_sweep() {
