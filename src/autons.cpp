@@ -443,7 +443,7 @@ void auto_wp_right() {
   descore.set(true);
   chassis.drive_angle_set(90);
   chassis.odom_xyt_set(0, 0, 90);
-  chassis.pid_odom_set(29, 127, true);
+  chassis.pid_odom_set(32, 127, true);
   chassis.pid_wait_until(10);
   matchload.set(true);
   chassis.pid_wait_quick_chain();
