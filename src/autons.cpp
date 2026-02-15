@@ -469,7 +469,7 @@ void auto_wp_right() {
   chassis.pid_wait_until(35);
   matchload.set(true);
   chassis.pid_wait_quick_chain();
-  chassis.pid_swing_set(ez::RIGHT_SWING, -180, 127, 50, ccw);
+  chassis.pid_swing_set(ez::RIGHT_SWING, -180, 127, 55, ccw);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-7, 127);
   chassis.pid_wait_quick_chain();
