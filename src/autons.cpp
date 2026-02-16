@@ -463,13 +463,13 @@ void auto_wp_right() {
   chassis.pid_swing_set(ez::LEFT_SWING, -89, 50, -127, cw);
   chassis.pid_wait_quick_chain();
   intakeUS.move(127);
-  chassis.pid_odom_set(45, 127); //45-48
+  chassis.pid_odom_set(45, 127); //43-47
   chassis.pid_wait_until(10);
   intakeUS.move(-127);
   chassis.pid_wait_until(40);
   matchload.set(true);
   chassis.pid_wait_quick_chain();
-  chassis.pid_swing_set(ez::RIGHT_SWING, -180, 127, 55, ccw); //55-60
+  chassis.pid_swing_set(ez::RIGHT_SWING, -180, 127, 55, ccw); //50-60
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-8, 127);
   chassis.pid_wait_quick_chain();
