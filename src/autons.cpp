@@ -476,7 +476,7 @@ void auto_wp_right() {
   intakeUS.move(127); //not sure yet
   chassis.pid_odom_set(-5, 127);
   chassis.pid_wait_quick_chain();
-  pros::delay(800);
+  pros::delay(600);
   chassis.pid_turn_set(-180, 127);
   chassis.pid_wait_quick_chain();
   intakeUS.move(-127);
