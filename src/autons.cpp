@@ -581,7 +581,20 @@ void right_sweep() {
   chassis.pid_odom_set(20, 127);
   intakeUS.move(-127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_swing_set(ez::RIGHT_SWING, -45, -127, 30, cw);
+  chassis.pid_swing_set(ez::RIGHT_SWING, -45, -127, -30, cw);
+  chassis.pid_wait_quick_chain();
+  chassis.pid_odom_set(10, 127);
+  chassis.pid_wait_until(5);
+  intakeLS.move(-127);
+  chassis.pid_wait_quick_chain();
+  pros::delay(1000);
+  chassis.pid_swing_set(ez::LEFT_SWING, -180, -127, 20, ccw);
+  chassis.pid_wait_quick_chain();
+  descore.set(false);
+  chassis.pid_odom_set(-5, 127);
+  chassis.pid_wait_quick_chain();
+  chassis.pid_turn_set(160, 127);
+  chassis.pid_wait_quick_chain();
 }
 
 void left_contest() {
