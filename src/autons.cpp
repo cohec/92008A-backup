@@ -465,7 +465,7 @@ void auto_wp_right() {
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(45, 127); //44-46
   intakeUS.move(-127);
-  chassis.pid_wait_until(37);
+  chassis.pid_wait_until(39);
   matchload.set(true);
   chassis.pid_wait_quick_chain();
   chassis.pid_swing_set(ez::RIGHT_SWING, 175, 127, 52, ccw); //50-60
