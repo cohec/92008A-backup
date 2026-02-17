@@ -412,13 +412,13 @@ void auto_wp_left() {
   chassis.pid_turn_set(-135, 127);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-52, 127);
-  chassis.pid_wait_until(-40);
+  chassis.pid_wait_until(-35);
   intakeLS.move(-50);
-  chassis.pid_wait_until(-46);
+  chassis.pid_wait_until(-42);
   trapdoor.set(true);
   intakeLS.move(127);
   chassis.pid_wait_quick_chain();
-  pros::delay(800);
+  pros::delay(700);
   chassis.pid_odom_set(5, 127);
   trapdoor.set(false);
   matchload.set(false);
@@ -472,7 +472,7 @@ void auto_wp_right() {
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-5, 127);
   chassis.pid_wait_quick_chain();
-  intakeUS.move(127); //not sure yet
+  intakeUS.move(127);
   chassis.pid_odom_set(-15, 127);
   chassis.pid_wait_quick_chain();
   chassis.pid_turn_set(-180, 127);
@@ -488,13 +488,13 @@ void auto_wp_right() {
   chassis.pid_turn_set(-135, 127);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-50, 127, false);
-  chassis.pid_wait_until(-36);
+  chassis.pid_wait_until(-30);
   intakeLS.move(-50);
-  chassis.pid_wait_until(-42);
+  chassis.pid_wait_until(-40);
   trapdoor.set(true);
   intakeLS.move(127);
   chassis.pid_wait_quick_chain();
-  pros::delay(700);
+  pros::delay(500);
   chassis.pid_odom_set(5, 127);
   trapdoor.set(false);
   matchload.set(false);
