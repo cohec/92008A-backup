@@ -578,7 +578,7 @@ void right_sweep() {
   chassis.pid_swing_set(ez::LEFT_SWING, -85, 60, -127, cw);
   intakeUS.move(127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_swing_set(ez::LEFT_SWING, -45, 100, 50, cw);
+  chassis.pid_swing_set(ez::LEFT_SWING, -45, 110, 55, cw);
   intakeUS.move(-127);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(3, 127);
