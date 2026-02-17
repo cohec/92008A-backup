@@ -547,7 +547,7 @@ void left_sweep() {
   chassis.pid_swing_set(ez::LEFT_SWING, 0, 127, 10, cw);
   chassis.pid_wait_quick_chain();
   descore.set(false);
-  chassis.pid_swing_set(ez::LEFT_SWING, 20, 127, 20, cw);
+  chassis.pid_swing_set(ez::LEFT_SWING, 10, 127, 20, cw);
   chassis.pid_wait_quick_chain();
 }
 
