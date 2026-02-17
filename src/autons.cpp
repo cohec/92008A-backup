@@ -542,7 +542,7 @@ void left_sweep() {
   pros::delay(800);
   trapdoor.set(false);
   matchload.set(false);
-  chassis.pid_swing_set(ez::LEFT_SWING, 20, 127, 20, cw);
+  chassis.pid_swing_set(ez::LEFT_SWING, 20, 127, 30, cw);
   descore.set(false);
   chassis.pid_wait_quick_chain();
 }
