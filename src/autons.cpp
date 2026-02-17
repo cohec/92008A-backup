@@ -540,10 +540,14 @@ void left_sweep() {
   intakeLS.move(127);
   chassis.pid_wait_quick_chain();
   pros::delay(800);
+  chassis.pid_odom_set(5, 127);
   trapdoor.set(false);
   matchload.set(false);
-  chassis.pid_swing_set(ez::LEFT_SWING, 20, 127, 30, cw);
+  chassis.pid_wait_quick_chain();
+  chassis.pid_swing_set(ez::LEFT_SWING, 0, 127, 10, cw);
+  chassis.pid_wait_quick_chain();
   descore.set(false);
+  chassis.pid_swing_set(ez::LEFT_SWING, 20, 127, 20, cw);
   chassis.pid_wait_quick_chain();
 }
 
