@@ -625,7 +625,7 @@ void left_contest() {
   pros::delay(1500);
   intakeUS.move(0);
   chassis.pid_odom_set(5, 127);
-  chassis.pid_swing_set(ez::RIGHT_SWING, 0, 127, -10, ccw);
+  chassis.pid_swing_set(ez::RIGHT_SWING, 0, 127, -40, ccw);
   chassis.pid_wait_quick_chain();
 }
 
