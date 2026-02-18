@@ -602,34 +602,30 @@ void right_sweep() {
 
 void left_contest() {
   descore.set(true);
-  chassis.drive_angle_set(-90);
-  chassis.odom_xyt_set(0, 0, -90);
-  chassis.pid_odom_set(29, 127, true);
-  chassis.pid_wait_until(10);
+  chassis.drive_angle_set(0);
+  chassis.odom_xyt_set(0, 0, 0);
+  chassis.pid_odom_set({{-8, 28}, fwd, 100});
+  intakeUS.move(-127);
+  intakeLS.move(127);
+  chassis.pid_wait_until(2);
   matchload.set(true);
   chassis.pid_wait_quick_chain();
-  chassis.pid_turn_set(-180, 127);
+  chassis.pid_swing_set(ez::RIGHT_SWING, 180, -100, 20, cw);
   chassis.pid_wait_quick_chain();
-  intakeLS.move(127);
-  intakeUS.move(-127);
-  chassis.pid_odom_set(12, DS/3);
+  chassis.pid_odom_set(15, 127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(-25, DS, true);
+  chassis.pid_odom_set(10, DS/2);
+  chassis.pid_wait_quick_chain();
+  chassis.pid_odom_set(-26, 127, true);
   chassis.pid_wait_until(-6);
   matchload.set(false);
-  chassis.pid_wait_quick_chain();
+  chassis.pid_wait_until(-18);
   intakeUS.move(127);
-  pros::delay(900);
+  chassis.pid_wait_quick_chain();
+  pros::delay(1500);
   intakeUS.move(0);
-  chassis.pid_odom_set(1, 127);
-  chassis.pid_wait_quick_chain();
-  chassis.pid_swing_set(ez::RIGHT_SWING, 0, 127, -20, ccw);
-  chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(18, 127);
-  chassis.pid_wait_until(7);
-  descore.set(false);
-  chassis.pid_wait_quick_chain();
-  chassis.pid_turn_set(20, TS);
+  chassis.pid_odom_set(5, 127);
+  chassis.pid_swing_set(ez::RIGHT_SWING, 0, 127, -10, ccw);
   chassis.pid_wait_quick_chain();
 }
 
