@@ -687,9 +687,11 @@ void skills() {
   chassis.odom_xyt_set(0, 0, 90);
   intakeUS.move(-127);
   intakeLS.move(127);
-  chassis.pid_drive_set(50, 127);
+  chassis.pid_drive_set(60, 127);
   chassis.pid_wait_quick_chain();
   matchload.set(false);
   chassis.pid_drive_set(-10, 50);
   chassis.pid_wait_quick_chain();
+  aligner.set(false);
+  
 }
