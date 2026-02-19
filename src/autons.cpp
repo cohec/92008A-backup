@@ -699,7 +699,7 @@ void skills() {
   aligner.set(false);
   intakeUS.move(0);
   intakeLS.move(0);
-  chassis.pid_odom_set(7, 127);
+  chassis.pid_odom_set(6, 127);
   chassis.pid_wait_quick_chain();
   chassis.pid_swing_set(RIGHT_SWING, 180, -100, -20, cw);
   chassis.pid_wait_quick_chain();
