@@ -714,9 +714,9 @@ void skills() {
   chassis.pid_wait_quick_chain();
   intakeLS.move(127);
   intakeUS.move(-127);
-  matchload.set(true);
   chassis.pid_odom_set(2, DS/2);
   chassis.pid_wait_quick_chain();
+  matchload.set(true);
   pros::delay(100);
   chassis.pid_odom_set(-6, DS/1.5);
   intakeLS.move(-50);
