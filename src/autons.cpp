@@ -662,14 +662,14 @@ void right_contest() {
   chassis.pid_wait_until(-18);
   intakeUS.move(127);
   intakeLS.move(127);
-  chassis.pid_wait_quick_chain();
+  chassis.pid_wait_quick_chain(); 
   pros::delay(1500);
   intakeUS.move(0);
   chassis.pid_odom_set(3, 127);
   chassis.pid_wait_quick_chain();
   chassis.pid_turn_set(90, 127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_swing_set(ez::RIGHT_SWING, -15, 100, 10, ccw);
+  chassis.pid_swing_set(ez::RIGHT_SWING, -10, 100, 5, ccw);
   chassis.pid_wait_quick_chain();
   descore.set(false);
   chassis.pid_odom_set(15, 127);
