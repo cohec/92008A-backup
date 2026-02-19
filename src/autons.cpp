@@ -731,4 +731,6 @@ void skills() {
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-20, 127);
   chassis.pid_wait_quick_chain();
+  intakeLS.move(127);
+  intakeUS.move(127);
 }
