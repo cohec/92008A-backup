@@ -682,17 +682,14 @@ void skills() {
   wdLock = false;
   descore.set(true);
   aligner.set(true);
-  matchload.set(true);
   chassis.drive_angle_set(90);
   chassis.odom_xyt_set(0, 0, 90);
   intakeUS.move(-127);
   intakeLS.move(127);
   chassis.pid_drive_set(70, 127);
-  chassis.pid_wait_until(50);
-  matchload.set(false);
-  chassis.pid_wait_quick_chain();
+  chassis.pid_wait();
   chassis.pid_drive_set(-10, 50);
   chassis.pid_wait_quick_chain();
   aligner.set(false);
-  
+
 }
