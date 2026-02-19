@@ -688,7 +688,7 @@ void skills() {
   intakeLS.move(127);
   chassis.pid_drive_set(40, 127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_drive_set(40, 80);
+  chassis.pid_drive_set(30, 80);
   chassis.pid_wait_quick_chain();
   chassis.pid_drive_set(-20, 50);
   chassis.pid_wait_quick_chain();
