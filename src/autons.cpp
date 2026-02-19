@@ -624,10 +624,10 @@ void left_contest() {
   chassis.pid_wait_quick_chain();
   pros::delay(1500);
   intakeUS.move(0);
-  chassis.pid_swing_set(ez::RIGHT_SWING, 90, 70, -127, ccw);
+  chassis.pid_swing_set(ez::RIGHT_SWING, 90, 80, -127, ccw);
   intakeUS.move(127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_swing_set(ez::RIGHT_SWING, 0, 100, 0, ccw);
+  chassis.pid_swing_set(ez::RIGHT_SWING, 0, 100, -30, ccw);
   chassis.pid_wait_quick_chain();
 }
 
