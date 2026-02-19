@@ -691,5 +691,6 @@ void skills() {
   chassis.pid_drive_set(-10, 50);
   chassis.pid_wait_quick_chain();
   aligner.set(false);
-  
+  chassis.drive_angle_set(90);
+  chassis.odom_xyt_set(0, 0, 90);
 }
