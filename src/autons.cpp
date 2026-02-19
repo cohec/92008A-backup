@@ -693,11 +693,11 @@ void skills() {
   aligner.set(false);
   intakeUS.move(0);
   intakeLS.move(0);
-  chassis.pid_odom_set(10, 127);
+  chassis.pid_odom_set(5, 127);
   chassis.pid_wait_quick_chain();
   chassis.pid_swing_set(RIGHT_SWING, 180, -100, -20, cw);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(5, DS/3);
+  chassis.pid_odom_set(10, DS/3);
   chassis.pid_wait_quick_chain();
   chassis.drive_angle_set(180);
   chassis.odom_xyt_set(0, 0, 180);
