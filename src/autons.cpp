@@ -682,8 +682,6 @@ void skills() {
   wdLock = false;
   descore.set(true);
   aligner.set(true);
-  chassis.drive_angle_set(90);
-  chassis.odom_xyt_set(0, 0, 90);
   intakeUS.move(-127);
   intakeLS.move(127);
   chassis.pid_drive_set(70, 127);
@@ -693,7 +691,16 @@ void skills() {
   aligner.set(false);
   chassis.drive_angle_set(90);
   chassis.odom_xyt_set(0, 0, 90);
-  pros::delay(1000);
-  chassis.pid_swing_set(RIGHT_SWING, 0, 127, 0, ccw);
+  pros::delay(500);
+  chassis.pid_odom_set(5, 127);
+  chassis.pid_wait_quick_chain();
+  chassis.pid_turn_set(180, 127, cw);
+  chassis.pid_wait_quick_chain();
+  chassis.pid_odom_set(10, DS/2);
+  chassis.pid_wait_quick_chain();
+  chassis.drive_angle_set(180);
+  chassis.odom_xyt_set(0, 0, 180);
+  pros::delay(500);
+  chassis.pid_odom_set(-15, 127);
   chassis.pid_wait_quick_chain();
 }
