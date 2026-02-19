@@ -693,4 +693,7 @@ void skills() {
   aligner.set(false);
   chassis.drive_angle_set(90);
   chassis.odom_xyt_set(0, 0, 90);
+  pros::delay(1000);
+  chassis.pid_odom_set(10, 127);
+  chassis.pid_wait_quick_chain();
 }
