@@ -687,8 +687,8 @@ void skills() {
   intakeUS.move(-127);
   intakeLS.move(127);
   chassis.pid_drive_set(40, 127);
-  chassis.pid_wait_quick_chain();
   matchload.set(true);
+  chassis.pid_wait_quick_chain();
   chassis.pid_drive_set(20, 70);
   chassis.pid_wait_quick_chain();
   chassis.pid_drive_set(-20, 50);
@@ -712,7 +712,7 @@ void skills() {
   chassis.pid_wait_quick_chain();
   chassis.pid_turn_set(135, 127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(-41, 127);
+  chassis.pid_odom_set(-42, 127);
   chassis.pid_wait_quick_chain();
   chassis.pid_turn_set(-135, 100);
   chassis.pid_wait_quick_chain();
