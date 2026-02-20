@@ -767,7 +767,7 @@ void skills() {
   chassis.pid_wait_quick_chain();
   chassis.pid_swing_set(RIGHT_SWING, -90, -127, 20);
   chassis.pid_wait_quick_chain();
-  chassis.pid_swing_set(RIGHT_SWING, 0, -100, -10);
+  chassis.pid_swing_set(RIGHT_SWING, 0, -110, -10);
   matchload.set(true);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-10, 127);
