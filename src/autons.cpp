@@ -731,7 +731,7 @@ void skills() {
   pros::delay(1000);
   trapdoor.set(false);
   pros::delay(300);
-  chassis.pid_odom_set(41, 127);
+  chassis.pid_odom_set(42, 127); //end of center top goal
   chassis.pid_wait_quick_chain();
   matchload.set(true);
   intakeLS.move(-50);
@@ -792,7 +792,7 @@ void skills() {
   pros::delay(1000);
   intakeUS.move(70);
   pros::delay(700);
-  chassis.pid_swing_set(LEFT_SWING, 95, 60, -127, cw);
+  chassis.pid_swing_set(LEFT_SWING, 95, 60, -127, cw); //end of left side long goal
   intakeUS.move(127);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(25, 127);
@@ -808,7 +808,7 @@ void skills() {
   intakeLS.move(-127);
   chassis.pid_wait_quick_chain();
   pros::delay(1500);
-  chassis.pid_swing_set(LEFT_SWING, 90, -127, 45);
+  chassis.pid_swing_set(LEFT_SWING, 90, -127, 45); //end of center bottom goal pt1
   chassis.pid_wait_quick_chain();
   intakeUS.move(-127);
   intakeLS.move(127);
@@ -818,7 +818,7 @@ void skills() {
   chassis.pid_wait_quick_chain();
   chassis.pid_swing_set(RIGHT_SWING, 45, 127, 0);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(20, 127);
+  chassis.pid_odom_set(25, 127);
   chassis.pid_wait_quick_chain();
   chassis.pid_turn_set(0, 127);
   chassis.pid_wait_quick_chain();
@@ -876,7 +876,7 @@ void skills() {
   pros::delay(1000);
   intakeUS.move(70);
   pros::delay(700);
-  chassis.pid_swing_set(LEFT_SWING, -85, 60, -127, cw);
+  chassis.pid_swing_set(LEFT_SWING, -85, 60, -127, cw); //end of right side long goal
   intakeUS.move(127);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(25, 127);
