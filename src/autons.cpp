@@ -729,9 +729,7 @@ void skills() {
   trapdoor.set(true);
   intakeLS.move(60);
   chassis.pid_wait_quick_chain();
-  pros::delay(2000);
-  intakeLS.move(127);
-  pros::delay(1000);
+  pros::delay(3000);
   trapdoor.set(false);
   pros::delay(300);
   chassis.pid_odom_set(42, 127);
@@ -792,8 +790,5 @@ void skills() {
   intakeUS.move(127);
   intakeLS.move(127);
   chassis.pid_wait_quick_chain();
-  pros::delay(700);
-  intakeUS.move(80);
-  pros::delay(500);
-  intakeUS.move(0);
+  pros::delay(1200);
 }
