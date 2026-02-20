@@ -718,10 +718,10 @@ void skills() {
   chassis.pid_wait_quick_chain();
   intakeLS.move(127);
   intakeUS.move(-127);
-  chassis.pid_odom_set(6, 127);
+  chassis.pid_odom_set(4, 127);
   chassis.pid_wait_quick_chain();
   pros::delay(100);
-  chassis.pid_odom_set(-10, DS/1.5);
+  chassis.pid_odom_set(-8, DS/1.5);
   chassis.pid_wait_until(-6);
   trapdoor.set(true);
   intakeLS.move(80);
