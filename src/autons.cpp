@@ -687,13 +687,13 @@ void skills() {
   intakeUS.move(-127);
   intakeLS.move(127);
   chassis.pid_drive_set(40, 127);
-  chassis.pid_wait_until(5);
+  chassis.pid_wait_until(10);
   matchload.set(true);
   chassis.pid_wait_quick_chain();
   chassis.pid_drive_set(15, 70);
   chassis.pid_wait_quick_chain();
   aligner.set(false);
-  chassis.pid_drive_set(-10, 50);
+  chassis.pid_drive_set(-5, 50);
   matchload.set(false);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(15, 127);
