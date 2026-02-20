@@ -894,7 +894,7 @@ void skills() {
   pros::delay(1500);
   chassis.pid_swing_set(LEFT_SWING, -90, -100, 40); //end of center bottom goal pt2
   chassis.pid_wait_quick_chain();
-  chassis.pid_swing_set(RIGHT_SWING, 180, 127, 50, ccw);
+  chassis.pid_swing_set(RIGHT_SWING, 180, 127, 40, ccw);
   chassis.pid_wait_quick_chain();
   aligner.set(true);
   chassis.pid_drive_set(60, 127);
