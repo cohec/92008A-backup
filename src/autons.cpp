@@ -731,7 +731,7 @@ void skills() {
   pros::delay(1000);
   trapdoor.set(false);
   pros::delay(300);
-  chassis.pid_odom_set(40, 127);
+  chassis.pid_odom_set(41, 127);
   chassis.pid_wait_quick_chain();
   matchload.set(true);
   intakeLS.move(-50);
