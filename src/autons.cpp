@@ -694,7 +694,7 @@ void skills() {
   matchload.set(false);
   chassis.pid_wait_quick_chain();
   matchload.set(true);
-  chassis.pid_drive_set(-15, 50);
+  chassis.pid_drive_set(-17, 50);
   chassis.pid_wait_quick_chain();
   matchload.set(false);
   aligner.set(false);
