@@ -693,7 +693,7 @@ void skills() {
   chassis.pid_drive_set(20, 70);
   chassis.pid_wait_quick_chain();
   aligner.set(false);
-  chassis.pid_odom_set(10, 50);
+  chassis.pid_odom_set(5, 50);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-6, 127);
   chassis.pid_wait_quick_chain();
