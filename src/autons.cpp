@@ -694,7 +694,7 @@ void skills() {
   matchload.set(false);
   chassis.pid_wait_quick_chain();
   matchload.set(true);
-  chassis.pid_drive_set(-17, 50);
+  chassis.pid_drive_set(-20, 50);
   chassis.pid_wait_quick_chain();
   matchload.set(false);
   aligner.set(false);
@@ -744,8 +744,6 @@ void skills() {
   intakeUS.move(127);
   chassis.pid_wait_quick_chain();
   pros::delay(800);
-  chassis.pid_turn_set(177, 127);
-  chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(20, 127);
   chassis.pid_wait_quick_chain();
   intakeUS.move(-127);
