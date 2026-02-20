@@ -732,6 +732,7 @@ void skills() {
   trapdoor.set(false);
   chassis.pid_odom_set(45, 127);
   chassis.pid_wait_quick_chain();
+  matchload.set(true);
   chassis.pid_turn_set(180, 127);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-20, 127);
