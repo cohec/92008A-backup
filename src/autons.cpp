@@ -692,6 +692,9 @@ void skills() {
   matchload.set(false);
   chassis.pid_drive_set(20, 70);
   chassis.pid_wait_quick_chain();
+  aligner.set(false);
+  chassis.pid_odom_set(20, 50);
+  chassis.pid_wait_quick_chain();
   chassis.pid_turn_set(90, 127);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-5, 127);
