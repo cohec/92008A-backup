@@ -795,7 +795,7 @@ void skills() {
   chassis.pid_swing_set(LEFT_SWING, 95, 60, -127, cw); //end of left side long goal
   intakeUS.move(127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(20, 127);
+  chassis.pid_odom_set(22, 127);
   intakeUS.move(-127);
   chassis.pid_wait_until(10);
   matchload.set(true);
@@ -854,7 +854,7 @@ void skills() {
   matchload.set(true);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-10, 127);
-  chassis.pid_wait_until(-3);
+  chassis.pid_wait_until(-1);
   intakeLS.move(127);
   intakeUS.move(127);
   chassis.pid_wait_quick_chain();
@@ -879,12 +879,12 @@ void skills() {
   chassis.pid_swing_set(LEFT_SWING, -85, 60, -127, cw); //end of right side long goal
   intakeUS.move(127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(25, 127);
+  chassis.pid_odom_set(22, 127);
   intakeUS.move(-127);
   chassis.pid_wait_until(10);
   matchload.set(true);
   chassis.pid_wait_quick_chain();
-  chassis.pid_swing_set(RIGHT_SWING, -55, -110, 50, cw);
+  chassis.pid_swing_set(RIGHT_SWING, -55, -127, 50, cw);
   chassis.pid_wait_quick_chain();
   matchload.set(false);
   chassis.pid_odom_set(15, 127);
