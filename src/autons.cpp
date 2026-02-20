@@ -702,12 +702,8 @@ void skills() {
   chassis.pid_wait_quick_chain();
   chassis.pid_swing_set(RIGHT_SWING, 180, -127, 0, cw);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(-3, 127);
-  chassis.pid_odom_set(8, DS/3);
+  chassis.pid_odom_set(5, DS/2);
   chassis.pid_wait_quick_chain();
-  chassis.drive_angle_set(180);
-  chassis.odom_xyt_set(0, 0, 180);
-  pros::delay(300);
   chassis.pid_turn_set(180, 127);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-10, 127);
