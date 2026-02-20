@@ -800,7 +800,7 @@ void skills() {
   chassis.pid_wait_until(10);
   matchload.set(true);
   chassis.pid_wait_quick_chain();
-  chassis.pid_swing_set(RIGHT_SWING, 135, -127, 50, cw);
+  chassis.pid_swing_set(RIGHT_SWING, 130, -127, 50, cw);
   chassis.pid_wait_quick_chain();
   matchload.set(false);
   chassis.pid_odom_set(15, 127);
@@ -808,7 +808,7 @@ void skills() {
   intakeLS.move(-127);
   chassis.pid_wait_quick_chain();
   pros::delay(1500);
-  chassis.pid_swing_set(LEFT_SWING, 90, -127, 45); //end of center bottom goal pt1
+  chassis.pid_swing_set(LEFT_SWING, 90, -100, 40); //end of center bottom goal pt1
   chassis.pid_wait_quick_chain();
   intakeUS.move(-127);
   intakeLS.move(127);
@@ -884,12 +884,19 @@ void skills() {
   chassis.pid_wait_until(10);
   matchload.set(true);
   chassis.pid_wait_quick_chain();
-  chassis.pid_swing_set(RIGHT_SWING, -45, -110, 50, cw);
+  chassis.pid_swing_set(RIGHT_SWING, -55, -110, 50, cw);
   chassis.pid_wait_quick_chain();
   matchload.set(false);
   chassis.pid_odom_set(15, 127);
   chassis.pid_wait_until(10);
   intakeLS.move(-127);
   chassis.pid_wait_quick_chain();
-  pros::delay(1500); 
+  pros::delay(1500);
+  chassis.pid_swing_set(LEFT_SWING, -90, -100, 40); //end of center bottom goal pt2
+  chassis.pid_wait_quick_chain();
+  chassis.pid_swing_set(RIGHT_SWING, 180, 127, 50, ccw);
+  chassis.pid_wait_quick_chain();
+  aligner.set(true);
+  chassis.pid_drive_set(60, 127);
+  chassis.pid_wait_quick_chain();
 }
