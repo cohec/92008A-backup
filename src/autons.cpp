@@ -414,7 +414,7 @@ void auto_wp_left() {
   chassis.pid_odom_set(-52, 127);
   chassis.pid_wait_until(-35);
   intakeLS.move(-50);
-  chassis.pid_wait_until(-42);
+  chassis.pid_wait_until(-40);
   trapdoor.set(true);
   intakeLS.move(127);
   chassis.pid_wait_quick_chain();
