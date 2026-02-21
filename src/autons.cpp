@@ -395,7 +395,7 @@ void auto_wp_left() {
   chassis.pid_wait_until(2);
   matchload.set(true);
   chassis.pid_wait_quick_chain();
-  chassis.pid_swing_set(RIGHT_SWING, 180, -100, 20, cw);
+  chassis.pid_swing_set(RIGHT_SWING, 180, -110, 20, cw);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-7, 127);
   chassis.pid_wait_quick_chain();
