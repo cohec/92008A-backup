@@ -431,7 +431,7 @@ void auto_wp_left() {
   chassis.pid_wait_quick_chain();
   chassis.pid_swing_set(LEFT_SWING, -45, -90, -35);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(15, 127);
+  chassis.pid_odom_set(17, 127);
   chassis.pid_wait_until(10);
   intakeLS.move(-100);
   chassis.pid_wait_quick_chain();
