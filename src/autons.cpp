@@ -398,7 +398,7 @@ void auto_wp_left() {
   chassis.pid_swing_set(RIGHT_SWING, 180, -100, 20, cw);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-7, 127);
-  chassis.pid_wait_until(2);
+  chassis.pid_wait_until(-4);
   intakeUS.move(127);
   chassis.pid_wait_quick_chain();
   pros::delay(1000);
