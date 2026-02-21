@@ -617,14 +617,14 @@ void left_contest() {
   chassis.pid_odom_set(10, DS/1.5);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-26, 127, true);
+  intakeLS.move(-10);
   chassis.pid_wait_until(-6);
   intakeLS.move(0);
   matchload.set(false);
-  chassis.pid_wait_until(-20);
+  chassis.pid_wait_until(-18);
   intakeUS.move(127);
   intakeLS.move(-30);
   chassis.pid_wait_quick_chain();
-  intakeUS.move(127);
   pros::delay(2000);
   intakeUS.move(0);
   chassis.pid_odom_set(3, 127);
