@@ -20,3 +20,4 @@ void right_sweep();
 void left_contest();
 void right_contest();
 void skills();
+void no_auto();
