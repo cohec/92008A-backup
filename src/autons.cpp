@@ -897,3 +897,10 @@ void skills() {
   chassis.pid_drive_set(60, 127);
   chassis.pid_wait_quick_chain();
 }
+void no_auto() {
+  descore.set(true);
+  chassis.drive_angle_set(0);
+  chassis.odom_xyt_set(0, 0, 0);
+  chassis.pid_odom_set(3, 100);
+  chassis.pid_wait_quick_chain();
+}
