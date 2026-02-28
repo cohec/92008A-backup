@@ -565,7 +565,7 @@ void right_sweep() {
   chassis.pid_wait_quick_chain();
   intakeLS.move(127);
   intakeUS.move(-127);
-  chassis.pid_odom_set(12, DS/1.5);
+  chassis.pid_odom_set(12, DS/2);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-26, 127, true);
   chassis.pid_wait_until(-6);
