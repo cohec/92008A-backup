@@ -458,7 +458,7 @@ void auto_wp_right() {
   chassis.pid_wait_until(-18);
   intakeUS.move(127);
   chassis.pid_wait_quick_chain();
-  pros::delay(700);
+  pros::delay(600);
   intakeUS.move(0);
   chassis.pid_swing_set(LEFT_SWING, -88, 60, -127, cw);
   intakeUS.move(127);
@@ -573,12 +573,12 @@ void right_sweep() {
   chassis.pid_wait_until(-18);
   intakeUS.move(127);
   chassis.pid_wait_quick_chain();
-  pros::delay(700);
+  pros::delay(600);
   intakeUS.move(0);
   chassis.pid_swing_set(LEFT_SWING, -85, 60, -127, cw);
   intakeUS.move(127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(25, 127);
+  chassis.pid_odom_set(24, 127);
   intakeUS.move(-127);
   chassis.pid_wait_until(10);
   matchload.set(true);
