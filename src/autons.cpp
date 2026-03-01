@@ -539,7 +539,7 @@ void left_sweep() {
   trapdoor.set(true);
   intakeLS.move(100);
   chassis.pid_wait_quick_chain();
-  pros::delay(500);
+  pros::delay(600);
   chassis.pid_odom_set(5, 127);
   trapdoor.set(false);
   matchload.set(false);
