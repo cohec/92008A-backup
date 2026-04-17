@@ -10,7 +10,7 @@
 extern Drive chassis;
 //extern std::string eject_color;
 inline bool wdLock = true;
-inline pros::Motor intakeLS(15);
+inline pros::Motor intakeLS(-15);
 inline pros::Motor intakeUS(14);
 inline ez::Piston aligner('A');
 inline ez::Piston trapdoor('B');
