@@ -335,52 +335,48 @@ void opcontrol() {
     // Gives you some extras to make EZ-Template ezier
     ez_template_extras();
     chassis.opcontrol_arcade_standard(ez::SINGLE);
-    if (!chassis.pid_tuner_enabled()) {
-      // Slowmode
-      if (master.get_digital(pros::E_CONTROLLER_DIGITAL_A)) {
-        chassis.drive_brake_set(MOTOR_BRAKE_HOLD);
-        chassis.opcontrol_speed_max_set(127 * 0.5);
-      } else {
-        chassis.drive_brake_set(MOTOR_BRAKE_COAST);
-        chassis.opcontrol_speed_max_set(127);
-      }
-      
-      // Scoring
-      if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
-        intakeLS.move(127);
-        intakeUS.move(-127);
-      } else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_X)) {
-        trapdoor.set(false);
-        intakeLS.move(127);
-        intakeUS.move(127);
-      } else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_B)) {
-        trapdoor.set(false);
-        intakeLS.move(-127);
-        intakeUS.move(-127);
-      } else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_Y)) {
-        trapdoor.set(true);
-        intakeLS.move(127);
-        intakeUS.move(-127);
-      } else {
-        trapdoor.set(false);
-        intakeLS.move(0);
-        intakeUS.move(0);
-      }
-
-      // Pneumatics
-      if (master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT)) {
-        wdLock = false;
-      }
-      if (wdLock == true) {
-        descore.set(false);
-      } else {
-        descore.set(!master.get_digital(pros::E_CONTROLLER_DIGITAL_L2));
-      }
-      aligner.button_toggle(master.get_digital(pros::E_CONTROLLER_DIGITAL_UP));
-      matchload.set(master.get_digital(pros::E_CONTROLLER_DIGITAL_R2));
-    } else if (chassis.pid_tuner_enabled()) {
-      master.rumble(".");
+    // Slowmode
+    if (master.get_digital(pros::E_CONTROLLER_DIGITAL_A)) {
+      chassis.drive_brake_set(MOTOR_BRAKE_HOLD);
+      chassis.opcontrol_speed_max_set(127 * 0.5);
+    } else {
+      chassis.drive_brake_set(MOTOR_BRAKE_COAST);
+      chassis.opcontrol_speed_max_set(127);
     }
+    
+    // Scoring
+    if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
+      intakeLS.move(127);
+      intakeUS.move(-127);
+    } else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_X)) {
+      trapdoor.set(false);
+      intakeLS.move(127);
+      intakeUS.move(127);
+    } else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_B)) {
+      trapdoor.set(false);
+      intakeLS.move(-127);
+      intakeUS.move(-127);
+    } else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_Y)) {
+      trapdoor.set(true);
+      intakeLS.move(127);
+      intakeUS.move(-127);
+    } else {
+      trapdoor.set(false);
+      intakeLS.move(0);
+      intakeUS.move(0);
+    }
+
+    // Pneumatics
+    if (master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT)) {
+      wdLock = false;
+    }
+    if (wdLock == true) {
+      descore.set(false);
+    } else {
+      descore.set(!master.get_digital(pros::E_CONTROLLER_DIGITAL_L2));
+    }
+    aligner.button_toggle(master.get_digital(pros::E_CONTROLLER_DIGITAL_UP));
+    matchload.set(master.get_digital(pros::E_CONTROLLER_DIGITAL_R2));
 
     pros::delay(ez::util::DELAY_TIME);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME
   }
