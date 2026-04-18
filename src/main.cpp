@@ -365,9 +365,10 @@ void opcontrol() {
           if (reset == 0) reset = pros::millis();
           if (pros::millis() - reset < 250) {
             intakeLS.move(127);
+          if (pros::millis() - reset < 300) {
             lift.set(true);
           } else {
-            intakeLS.move(-127);
+            intakeLS.move(-80);
           }
       } else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_Y)) {
         center.set(true);
