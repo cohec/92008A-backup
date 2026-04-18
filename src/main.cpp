@@ -362,14 +362,14 @@ void opcontrol() {
         intakeLS.move(127);
         intakeUS.move(-127);
       } else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_B)) {
+        intakeLS.move(0);
           if (reset == 0) reset = pros::millis();
-          if (pros::millis() - reset < 250) {
+          if (pros::millis() - reset < 300) {
             intakeLS.move(127);
-          } else if (pros::millis() - reset < 300) {
-            lift.set(true);
           } else {
             intakeLS.move(-80);
           }
+          if (pros::millis() - reset > 200) lift.set(true);
       } else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_Y)) {
         center.set(true);
       } else {
