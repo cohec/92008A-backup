@@ -365,11 +365,11 @@ void opcontrol() {
         intakeLS.move(0);
           if (reset == 0) reset = pros::millis();
           if (pros::millis() - reset < 300) {
-            intakeLS.move(127);
+            intakeLS.move(100);
           } else {
-            intakeLS.move(-80);
+            intakeLS.move(-60);
           }
-          if (pros::millis() - reset > 200) lift.set(true);
+          if (pros::millis() - reset > 100) lift.set(true);
       } else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_Y)) {
         center.set(true);
       } else {
