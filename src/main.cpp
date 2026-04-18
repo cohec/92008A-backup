@@ -379,6 +379,7 @@ void opcontrol() {
         center.set(false);
       }
     } else {
+      lift.set(false);
       center.set(false);
       if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
         intakeLS.move(127);
