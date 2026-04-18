@@ -365,7 +365,7 @@ void opcontrol() {
           if (reset == 0) reset = pros::millis();
           if (pros::millis() - reset < 250) {
             intakeLS.move(127);
-          if (pros::millis() - reset < 300) {
+          } else if (pros::millis() - reset < 300) {
             lift.set(true);
           } else {
             intakeLS.move(-80);
