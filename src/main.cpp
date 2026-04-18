@@ -214,9 +214,6 @@ void ez_template_extras() {
     //  When enabled:
     //  * use A and Y to increment / decrement the constants
     //  * use the arrow keys to navigate the constants
-    if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1)) {
-      chassis.pid_tuner_toggle();
-    }
 
     // Trigger the selected autonomous routine
     if (master.get_digital(pros::E_CONTROLLER_DIGITAL_B) && master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN)) {
