@@ -363,7 +363,7 @@ void opcontrol() {
         intakeUS.move(-127);
       } else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_B)) {
           if (reset == 0) reset = pros::millis();
-          if (pros::millis() - reset < 100) {
+          if (pros::millis() - reset < 250) {
             intakeLS.move(127);
             lift.set(true);
           } else {
