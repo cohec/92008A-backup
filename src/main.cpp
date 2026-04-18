@@ -330,6 +330,7 @@ void opcontrol() {
   //int stage = 0;
   //bool last_state = false;
   //static bool clamped = false;
+  static uint32_t reset = 0;
 
   while (true) {
     // Gives you some extras to make EZ-Template ezier
@@ -343,29 +344,6 @@ void opcontrol() {
       chassis.drive_brake_set(MOTOR_BRAKE_COAST);
       chassis.opcontrol_speed_max_set(127);
     }
-    
-    // Scoring
-    if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
-      intakeLS.move(127);
-      intakeUS.move(-10);
-    } else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_X)) {
-      trapdoor.set(false);
-      intakeLS.move(127);
-      intakeUS.move(127);
-    } else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_B)) {
-      trapdoor.set(false);
-      intakeLS.move(-127);
-      intakeUS.move(-127);
-    } else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_Y)) {
-      trapdoor.set(true);
-      intakeLS.move(127);
-      intakeUS.move(-127);
-    } else {
-      trapdoor.set(false);
-      intakeLS.move(0);
-      intakeUS.move(0);
-    }
-
     // Pneumatics
     if (master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT)) {
       wdLock = false;
@@ -375,9 +353,54 @@ void opcontrol() {
     } else {
       descore.set(!master.get_digital(pros::E_CONTROLLER_DIGITAL_L2));
     }
-    aligner.button_toggle(master.get_digital(pros::E_CONTROLLER_DIGITAL_UP));
     matchload.set(master.get_digital(pros::E_CONTROLLER_DIGITAL_R2));
-
+    
+    // Scoring
+    if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
+      matchload.set(false);
+      if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
+        intakeLS.move(127);
+        intakeUS.move(-127);
+      } else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_B)) {
+          if (reset == 0) reset = pros::millis();
+          if (pros::millis() - reset < 100) {
+            intakeLS.move(127);
+            lift.set(true);
+          } else {
+            intakeLS.move(-127);
+          }
+      } else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_Y)) {
+        center.set(true);
+      } else {
+        reset = 0;
+        intakeLS.move(0);
+        intakeUS.move(0);
+        lift.set(false);
+        center.set(false);
+      }
+    } else {
+      center.set(false);
+      if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
+        intakeLS.move(127);
+        intakeUS.move(-20);
+      } else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_X)) {
+        trapdoor.set(false);
+        intakeLS.move(127);
+        intakeUS.move(127);
+      } else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_B)) {
+        trapdoor.set(false);
+        intakeLS.move(-127);
+        intakeUS.move(-127);
+      } else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_Y)) {
+        trapdoor.set(true);
+        intakeLS.move(127);
+        intakeUS.move(-127);
+      } else {
+        trapdoor.set(false);
+        intakeLS.move(0);
+        intakeUS.move(0);
+      }
+    }
     pros::delay(ez::util::DELAY_TIME);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME
   }
 }

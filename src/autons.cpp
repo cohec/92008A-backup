@@ -683,7 +683,7 @@ void right_contest() {
 void skills() {
   wdLock = false;
   descore.set(true);
-  aligner.set(true);
+  //aligner.set(true);
   chassis.drive_angle_set(90);
   chassis.odom_xyt_set(0, 0, 90);
   intakeUS.move(-127);
@@ -694,7 +694,7 @@ void skills() {
   chassis.pid_wait_quick_chain();
   chassis.pid_drive_set(25, 70);
   matchload.set(false);
-  aligner.set(false);
+  //aligner.set(false);
   chassis.pid_wait_quick_chain();
   chassis.pid_drive_set(-6, 127);
   chassis.pid_wait_quick_chain();
@@ -894,7 +894,7 @@ void skills() {
   chassis.pid_wait_quick_chain();
   chassis.pid_swing_set(RIGHT_SWING, 180, 127, 40, ccw);
   chassis.pid_wait_quick_chain();
-  aligner.set(true);
+  //aligner.set(true);
   chassis.pid_drive_set(60, 127);
   chassis.pid_wait_quick_chain();
 }
