@@ -443,8 +443,10 @@ void test() {
   intakeUS.move(-127);
   chassis.pid_wait_quick_chain();
   intakeLS.move(127);
+  chassis.pid_odom_set(2, 127);
+  chassis.pid_wait_quick_chain();
   pros::delay(1200);
-  chassis.pid_odom_set(5, 127);
+  chassis.pid_odom_set(3, 127);
   trapdoor.set(false);
   matchload.set(false);
   chassis.pid_wait_quick_chain();
@@ -544,7 +546,7 @@ void left_sweep() {
   chassis.pid_odom_set(20, 127);
   chassis.pid_wait_quick_chain();
   intakeUS.move(-20);
-  intakeLS.move(90);
+  intakeLS.move(40);
   chassis.pid_odom_set(9, DS/2);
   chassis.pid_wait_quick_chain();
   intakeLS.move(0);
