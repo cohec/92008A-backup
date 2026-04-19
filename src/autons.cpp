@@ -385,19 +385,18 @@ void measure_offsets() {
 // Make your own autonomous functions here!
 // . . .
 void test() {
-  wdLock = false;
   descore.set(true);
   chassis.drive_angle_set(0);
   chassis.odom_xyt_set(0, 0, 0);
   chassis.pid_odom_set({{-8, 28}, fwd, 100});
-  intakeUS.move(-127);
+  intakeUS.move(-20);
   intakeLS.move(127);
   chassis.pid_wait_until(2);
   matchload.set(true);
   chassis.pid_wait_quick_chain();
-  chassis.pid_swing_set(RIGHT_SWING, 180, -110, 20, cw);
+  chassis.pid_swing_set(RIGHT_SWING, 180, -127, 20, cw);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(-7, 127);
+  chassis.pid_odom_set(-10, 127);
   chassis.pid_wait_quick_chain();
   intakeUS.move(127);
   pros::delay(1000);
@@ -416,26 +415,20 @@ void test() {
   intakeLS.move(-50);
   chassis.pid_wait_until(-40);
   trapdoor.set(true);
-  intakeLS.move(127);
+  intakeLS.move(100);
   chassis.pid_wait_quick_chain();
-  pros::delay(700);
+  pros::delay(600);
   chassis.pid_odom_set(5, 127);
   trapdoor.set(false);
   matchload.set(false);
   chassis.pid_wait_quick_chain();
-  chassis.pid_swing_set(RIGHT_SWING, 90, 100, -50, ccw);
-  intakeUS.move(127);
+  chassis.pid_swing_set(LEFT_SWING, 0, 127, 10, cw);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(50, DS);
-  intakeUS.move(-127);
+  descore.set(false);
+  chassis.pid_odom_set(5, 127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_swing_set(LEFT_SWING, -45, -90, -30);
+  chassis.pid_turn_set(20, 127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(18, 127);
-  chassis.pid_wait_until(8);
-  intakeLS.move(-100);
-  chassis.pid_wait_quick_chain();
-  pros::delay(1500);
 }
 
 void awp() {
