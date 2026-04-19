@@ -436,7 +436,7 @@ void test() {
   intakeLS.move(127);
   chassis.pid_turn_set(-135, 127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(-53, 127);
+  chassis.pid_odom_set(-55, 127);
   intakeLS.move(0);
   chassis.pid_wait_until(-40);
   trapdoor.set(true);
@@ -554,7 +554,7 @@ void left_sweep() {
   chassis.pid_wait_quick_chain();
   chassis.pid_turn_set(-135, 127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(-53, 127);
+  chassis.pid_odom_set(-55, 127);
   chassis.pid_wait_until(-40);
   trapdoor.set(true);
   intakeLS.move(127);
