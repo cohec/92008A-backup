@@ -406,7 +406,7 @@ void test() {
   chassis.pid_wait_quick_chain();
   pros::delay(600);
   intakeUS.move(0);
-  chassis.pid_swing_set(LEFT_SWING, -85, 60, -127, cw);
+  chassis.pid_swing_set(LEFT_SWING, -85, 100, -127, cw);
   intakeUS.move(127);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(8, 127);
