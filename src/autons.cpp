@@ -384,7 +384,7 @@ void measure_offsets() {
 // . . .
 // Make your own autonomous functions here!
 // . . .
-void auto_wp_left() {
+void test() {
   wdLock = false;
   descore.set(true);
   chassis.drive_angle_set(0);
@@ -438,7 +438,7 @@ void auto_wp_left() {
   pros::delay(1500);
 }
 
-void auto_wp_right() {
+void awp() {
   descore.set(true);
   chassis.drive_angle_set(90);
   chassis.odom_xyt_set(0, 0, 90);
