@@ -397,7 +397,7 @@ void test() {
   chassis.pid_turn_set(180, 127);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(13, DS/2);
-  intakeLS.move(70);
+  intakeLS.move(90);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-26, 127, true);
   chassis.pid_wait_until(-6);
@@ -427,7 +427,7 @@ void test() {
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(20, 127);
   intakeUS.move(-20);
-  intakeLS.move(70);
+  intakeLS.move(90);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(9, DS/2);
   chassis.pid_wait_quick_chain();
