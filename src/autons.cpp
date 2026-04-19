@@ -424,8 +424,10 @@ void test() {
   intakeLS.move(-80);
   chassis.pid_wait_quick_chain();
   pros::delay(500);
+  lift.set(false);
   intakeLS.move(127);
   pros::delay(700);
+  lift.set(true);
   intakeLS.move(-100);
   pros::delay(900);
   lift.set(false);
