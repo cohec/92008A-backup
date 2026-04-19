@@ -403,14 +403,14 @@ void test() {
   chassis.pid_odom_set(20, 127);
   chassis.pid_wait_quick_chain();
   intakeUS.move(-20);
-  intakeLS.move(100);
+  intakeLS.move(90);
   chassis.pid_odom_set(9, DS/2);
   chassis.pid_wait_quick_chain();
   intakeLS.move(0);
   chassis.pid_odom_set(-5, 127);
+  matchload.set(false);
   chassis.pid_wait_quick_chain();
   chassis.pid_turn_set(-135, 127);
-  matchload.set(false);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-50, 127);
   chassis.pid_wait_until(-40);
