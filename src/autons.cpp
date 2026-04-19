@@ -433,10 +433,11 @@ void test() {
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-4, 127);
   chassis.pid_wait_quick_chain();
+  intakeLS.move(127);
   chassis.pid_turn_set(-135, 127);
   chassis.pid_wait_quick_chain();
-  intakeLS.move(127);
   chassis.pid_odom_set(-50, 127);
+  intakeLS.move(0);
   chassis.pid_wait_until(-40);
   trapdoor.set(true);
   intakeLS.move(127);
