@@ -431,14 +431,11 @@ void test() {
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(9, DS/2);
   chassis.pid_wait_quick_chain();
-  intakeLS.move(0);
   chassis.pid_odom_set(-5, 127);
   chassis.pid_wait_quick_chain();
   chassis.pid_turn_set(-135, 127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(-50, 127, false);
-  chassis.pid_wait_until(-35);
-  intakeLS.move(-50);
+  chassis.pid_odom_set(-50, 127);
   chassis.pid_wait_until(-40);
   trapdoor.set(true);
   intakeLS.move(127);
@@ -452,7 +449,7 @@ void test() {
   chassis.pid_swing_set(LEFT_SWING, 0, 127, 10, cw);
   chassis.pid_wait_quick_chain();
   descore.set(false);
-  chassis.pid_swing_set(LEFT_SWING, 15, 127, 20, cw);
+  chassis.pid_odom_set(10, 127);
   chassis.pid_wait_quick_chain();
 }
 
