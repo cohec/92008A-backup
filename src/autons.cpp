@@ -425,9 +425,9 @@ void test() {
   chassis.pid_wait_quick_chain();
   pros::delay(500);
   intakeLS.move(127);
-  pros::delay(500);
+  pros::delay(700);
   intakeLS.move(-100);
-  pros::delay(1000);
+  pros::delay(900);
   lift.set(false);
   chassis.pid_odom_set(-1, 127);
   chassis.pid_wait_quick_chain();
