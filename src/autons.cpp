@@ -412,9 +412,9 @@ void test() {
   intakeUS.move(127);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(10, 127);
-  intakeUS.move(-20);
   matchload.set(true);
   chassis.pid_wait_quick_chain();
+  intakeUS.move(-20);
   chassis.pid_turn_set(-45, 127);
   chassis.pid_wait_quick_chain();
   matchload.set(false);
