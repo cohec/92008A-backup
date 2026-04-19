@@ -391,7 +391,7 @@ void test() {
   chassis.pid_odom_set({{-8, 28}, fwd, 100});
   intakeUS.move(-20);
   intakeLS.move(127);
-  chassis.pid_wait_until(2);
+  chassis.pid_wait_until(4);
   matchload.set(true);
   chassis.pid_wait_quick_chain();
   chassis.pid_swing_set(RIGHT_SWING, 180, -100, 20, cw);
