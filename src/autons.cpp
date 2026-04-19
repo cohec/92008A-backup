@@ -413,7 +413,7 @@ void test() {
   chassis.pid_odom_set(-50, 127);
   chassis.pid_wait_until(-40);
   trapdoor.set(true);
-  intakeLS.move(127);
+  intakeLS.move(120);
   intakeUS.move(-60);
   chassis.pid_wait_quick_chain();
   pros::delay(700);
