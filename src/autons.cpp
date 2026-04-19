@@ -397,10 +397,12 @@ void test() {
   chassis.pid_turn_set(180, 127);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(13, DS/2);
+  intakeLS.move(90);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-26, 127, true);
   chassis.pid_wait_until(-6);
   matchload.set(false);
+  intakeLS.move(127);
   chassis.pid_wait_until(-18);
   intakeUS.move(127);
   chassis.pid_wait_quick_chain();
