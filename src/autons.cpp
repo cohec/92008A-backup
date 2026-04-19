@@ -442,9 +442,9 @@ void test() {
   chassis.pid_wait_until(-40);
   trapdoor.set(true);
   intakeLS.move(127);
-  intakeUS.move(-50);
+  intakeUS.move(-60);
   chassis.pid_wait_quick_chain();
-  pros::delay(700);
+  pros::delay(1000);
   chassis.pid_odom_set(5, 127);
   trapdoor.set(false);
   matchload.set(false);
