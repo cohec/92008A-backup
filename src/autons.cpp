@@ -411,7 +411,7 @@ void test() {
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(8, 127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(-5, 60);
+  chassis.pid_odom_set(-5, 70);
   intakeLS.move(-30);
   intakeUS.move(-40);
   matchload.set(true);
