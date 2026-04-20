@@ -443,6 +443,17 @@ void test() {
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-50, 127);
   chassis.pid_wait_quick_chain();
+  chassis.pid_turn_set(45, 127);
+  chassis.pid_wait_quick_chain();
+  chassis.pid_odom_set(10, 127);
+  chassis.pid_wait_quick_chain();
+  chassis.pid_turn_set(0, 127);
+  chassis.pid_wait_quick_chain();
+  chassis.pid_odom_set(-10, 127);
+  chassis.pid_wait_quick_chain();
+  intakeLS.move(127);
+  intakeUS.move(127);
+  pros::delay(2000);
 }
 
 void awp() {
