@@ -411,15 +411,14 @@ void test() {
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(8, 127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(-5, 70);
+  chassis.pid_odom_set(-4, 80);
   intakeLS.move(-30);
-  intakeUS.move(-40);
-  matchload.set(true);
-  trapdoor.set(true);
-  intakeLS.move(100);
   chassis.pid_wait_quick_chain();
+  matchload.set(true);
   intakeLS.move(100);
-  pros::delay(2000);
+  intakeUS.move(-40);
+  trapdoor.set(true);
+  pros::delay(3000);
 }
 
 void awp() {
