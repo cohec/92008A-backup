@@ -394,7 +394,7 @@ void test() {
   chassis.pid_wait_until(6);
   matchload.set(true);
   chassis.pid_wait_quick_chain();
-  chassis.pid_turn_set(140, 127);
+  chassis.pid_turn_set(135, 127);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(30, 127);
   chassis.pid_wait_quick_chain();
@@ -413,12 +413,12 @@ void test() {
   intakeUS.move(127);
   chassis.pid_wait_quick_chain(); 
   pros::delay(1500);
-  chassis.pid_swing_set(LEFT_SWING, -120, 127, -127, cw);
+  chassis.pid_swing_set(LEFT_SWING, -135, 127, -127, cw);
   intakeUS.move(127);
   chassis.pid_wait_quick_chain();
   chassis.pid_swing_set(RIGHT_SWING, -180, 127, 0, ccw);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(-8, 127);
+  chassis.pid_odom_set(-15, 127);
   chassis.pid_wait_quick_chain();
 }
 
