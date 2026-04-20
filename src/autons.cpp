@@ -421,7 +421,8 @@ void test() {
   pros::delay(3000);
   chassis.pid_odom_set(2, 30);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(30, 127);
+  trapdoor.set(false);
+  chassis.pid_odom_set(35, 127);
   chassis.pid_wait_quick_chain();
   matchload.set(true);
   chassis.pid_turn_set(180, 127);
