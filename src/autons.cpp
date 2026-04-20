@@ -443,9 +443,9 @@ void test() {
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-50, 127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_turn_set(45, 127);
+  chassis.pid_turn_set(-135, 127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(10, 127);
+  chassis.pid_odom_set(-10, 127);
   chassis.pid_wait_quick_chain();
   chassis.pid_turn_set(0, 127);
   chassis.pid_wait_quick_chain();
