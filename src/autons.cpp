@@ -413,6 +413,7 @@ void test() {
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-4, 80);
   intakeLS.move(-30);
+  trapdoor.set(true);
   chassis.pid_wait_quick_chain();
   matchload.set(true);
   intakeLS.move(100);
