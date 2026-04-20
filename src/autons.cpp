@@ -416,7 +416,7 @@ void test() {
   chassis.pid_swing_set(LEFT_SWING, -120, 127, -127, cw);
   intakeUS.move(127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_swing_set(RIGHT_SWING, -180, 127, 0, ccw);
+  chassis.pid_swing_set(RIGHT_SWING, -175, 127, 0, ccw);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-15, 127);
   chassis.pid_wait_quick_chain();
