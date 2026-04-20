@@ -394,11 +394,11 @@ void test() {
   chassis.pid_wait_until(2);
   matchload.set(true);
   chassis.pid_wait_quick_chain();
-  chassis.pid_swing_set(LEFT_SWING, 180, -100, 20, ccw);
+  chassis.pid_turn_set(135, 127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(15, 127);
+  chassis.pid_odom_set(20, 127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(10, DS/1.5);
+  /*chassis.pid_odom_set(10, DS/1.5);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-26, 127, true);
   chassis.pid_wait_until(-6);
@@ -420,7 +420,7 @@ void test() {
   chassis.pid_odom_set(15, 127);
   chassis.pid_wait_quick_chain();
   chassis.pid_turn_set(20, 127);
-  chassis.pid_wait_quick_chain();
+  chassis.pid_wait_quick_chain();*/
 }
 
 void awp() {
