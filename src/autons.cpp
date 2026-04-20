@@ -398,7 +398,7 @@ void test() {
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(3, 100);
   pros::delay(800);
-  chassis.pid_odom_set(-32, 127);
+  chassis.pid_odom_set(-30, 127);
   chassis.pid_wait_quick_chain();
   chassis.pid_turn_set(135, 127);
   chassis.pid_wait_quick_chain();
@@ -457,6 +457,7 @@ void test() {
   intakeLS.move(127);
   intakeUS.move(127);
   pros::delay(2000);
+  chassis.pid_turn_set(5, 127);
   chassis.pid_odom_set(20, 127);
   chassis.pid_wait_quick_chain();
   intakeUS.move(-20);
@@ -464,7 +465,6 @@ void test() {
   chassis.pid_odom_set(12, DS/2);
   chassis.pid_wait_quick_chain();
   pros::delay(1000);
-  chassis.pid_turn_set(5, 127);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-26, 127, true);
   chassis.pid_wait_until(-6);
