@@ -387,7 +387,6 @@ void measure_offsets() {
 void test() {
   wdLock = false;
   descore.set(true);
-  //aligner.set(true);
   chassis.drive_angle_set(180);
   intakeLS.move(127);
   intakeUS.move(-20);
@@ -417,7 +416,7 @@ void test() {
   chassis.pid_odom_set(-14, 100);
   chassis.pid_wait_until(-10);
   trapdoor.set(true);
-  intakeUS.move(-50);
+  intakeUS.move(-40);
   intakeLS.move(70);
   chassis.pid_wait_quick_chain();
   pros::delay(2000);
@@ -462,9 +461,11 @@ void test() {
   chassis.pid_wait_quick_chain();
   intakeUS.move(-20);
   intakeLS.move(127);
-  chassis.pid_odom_set(10, DS/2);
+  chassis.pid_odom_set(12, DS/2);
   chassis.pid_wait_quick_chain();
   pros::delay(1000);
+  chassis.pid_turn_set(5, 127);
+  chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-26, 127, true);
   chassis.pid_wait_until(-6);
   intakeLS.move(127);
