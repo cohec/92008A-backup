@@ -413,7 +413,7 @@ void test() {
   intakeUS.move(127);
   chassis.pid_wait_quick_chain(); 
   pros::delay(1500);
-  chassis.pid_swing_set(LEFT_SWING, -135, 127, -127, cw);
+  chassis.pid_swing_set(LEFT_SWING, -120, 127, -127, cw);
   intakeUS.move(127);
   chassis.pid_wait_quick_chain();
   chassis.pid_swing_set(RIGHT_SWING, -180, 127, 0, ccw);
