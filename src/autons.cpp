@@ -391,7 +391,7 @@ void test() {
   chassis.drive_angle_set(180);
   intakeLS.move(127);
   intakeUS.move(-20);
-  chassis.pid_odom_set(5, 127);
+  chassis.pid_odom_set(10, 127);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-3, 127);
   chassis.pid_wait_quick_chain();
