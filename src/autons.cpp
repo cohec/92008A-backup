@@ -493,6 +493,7 @@ void test() {
   chassis.pid_odom_set(30, 127);
   chassis.pid_swing_set(RIGHT_SWING, 90, 127, 50, cw);
   chassis.pid_wait_quick_chain();
+  lift.set(true);
 }
 
 void awp() {
