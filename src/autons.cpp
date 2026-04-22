@@ -445,18 +445,16 @@ void test() {
   intakeLS.move(127);
   chassis.pid_odom_set(0.5, 127);
   chassis.pid_wait_quick_chain();
-  pros::delay(1200);
-  chassis.pid_odom_set(3, 127);
+  pros::delay(1500);
   trapdoor.set(false);
   matchload.set(false);
-  chassis.pid_wait_quick_chain();
-  chassis.pid_swing_set(LEFT_SWING, 0, 127, 10, cw);
-  chassis.pid_wait_quick_chain();
-  descore.set(false);
   chassis.pid_odom_set(7, 127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_turn_set(20, 127);
+  center.set(true);
+  pros::delay(300);
+  chassis.pid_drive_set(-9, 127);
   chassis.pid_wait_quick_chain();
+  pros::delay(3000);
 }
 
 void awp() {
@@ -520,16 +518,18 @@ void awp() {
   intakeLS.move(127);
   chassis.pid_odom_set(0.5, 127);
   chassis.pid_wait_quick_chain();
-  pros::delay(1500);
+  pros::delay(1200);
+  chassis.pid_odom_set(3, 127);
   trapdoor.set(false);
   matchload.set(false);
+  chassis.pid_wait_quick_chain();
+  chassis.pid_swing_set(LEFT_SWING, 0, 127, 10, cw);
+  chassis.pid_wait_quick_chain();
+  descore.set(false);
   chassis.pid_odom_set(7, 127);
   chassis.pid_wait_quick_chain();
-  center.set(true);
-  pros::delay(300);
-  chassis.pid_drive_set(-9, 127);
+  chassis.pid_turn_set(20, 127);
   chassis.pid_wait_quick_chain();
-  pros::delay(3000);
 }
 
 void left_sweep() {
