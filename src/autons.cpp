@@ -411,12 +411,12 @@ void test() {
   chassis.pid_swing_set(LEFT_SWING, -90, 127, -127, cw);
   intakeUS.move(127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(45, 127);
+  chassis.pid_odom_set(46, 127);
   intakeUS.move(-20);
   chassis.pid_wait_until(39);
   matchload.set(true);
   chassis.pid_wait_quick_chain();
-  chassis.pid_swing_set(RIGHT_SWING, 175, 127, 52, ccw);
+  chassis.pid_swing_set(RIGHT_SWING, 170, 127, 52, ccw);
   chassis.pid_wait_quick_chain();
   chassis.pid_odom_set(-5, 127);
   chassis.pid_wait_quick_chain();
@@ -484,7 +484,7 @@ void awp() {
   chassis.pid_swing_set(LEFT_SWING, -90, 127, -127, cw);
   intakeUS.move(127);
   chassis.pid_wait_quick_chain();
-  chassis.pid_odom_set(45, 127);
+  chassis.pid_odom_set(46, 127);
   intakeUS.move(-20);
   chassis.pid_wait_until(39);
   matchload.set(true);
